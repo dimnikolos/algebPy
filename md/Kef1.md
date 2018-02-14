@@ -150,3 +150,15 @@ True
 >>> einaiArtios(x)
 False
 ```
+### Στρογγυλοποίηση;
+### Πρόσθεση, αφαίρεση και πολλαπλασιασμός φυσικών αριθμών
+Το παρακάτω πρόγραμμα εμφανίζει τον πίνακα πρόσθεσης όπως φαίνεται στη σελίδα 13 του βιβλίου σας.
+```python
+def pinakasProsthesis():
+    for i in range(10):
+        for j in range(10):
+            print(str(i+j).rjust(4),end = '')
+        print()
+
+pinakasProsthesis()
+```
