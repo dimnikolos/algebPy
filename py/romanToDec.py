@@ -16,8 +16,8 @@ def romanToDec(romStr):
   
   result = 0
   
-  v = list(sorted(romNum.keys(),reverse = True))
-  value = v.pop(0)
+  v = list(sorted(romNum.keys()))
+  value = v.pop()
   while romStr != '':
     chars = len(romNum[value])
     if (romStr[:chars] == romNum[value]):
@@ -29,7 +29,7 @@ def romanToDec(romStr):
         #not parsed
         return(None)
       else:
-        value = v.pop(0)
+        value = v.pop()
   return(result)
 
 print(romanToDec('MCDXXIV'))
