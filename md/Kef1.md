@@ -669,3 +669,155 @@ meres = ['ΤΡ','ΤΕ','ΠΕ','ΠΑ','ΣΑ','ΚΥ','ΔΕ']
 meres = ['ΤΡ','ΤΕ','ΠΕ','ΠΑ','ΣΑ','ΚΥ','ΔΕ']
 print(meres[247%7])
 ```
+# Χαρακτήρες διαιρετότητας - ΜΚΔ - ΕΚΠ - Ανάλυση αριθμού σε γινόμενο πρώτων παραγόντων
+>Το τοπικό γραφείο της UNICEF θα μοιράσει 150 τετράδια, 90 στυλό και 60 γόμες σε πακέτα δώρων, ώστε τα πακέτα να είναι τα ίδια και να περιέχουν και τα τρία είδη.
+> 1. Μπορεί να γίνουν 10 πακέτα δώρων; Αν ναι, πόσα από κάθε είδος θα έχει κάθε πακέτο;
+> 2. Πόσα πακέτα δώρων μπορεί να γίνουν με όλα τα διαθέσιμα είδη;
+> 3. Πόσα πακέτα δώρων μπορεί να γίνουν με τα λιγότερα δυνατά από κάθε είδος;
+
+1. Μπορούν να γίνουν 10 πακέτα δώρων, με 15 τετράδια, 9 στυλό και 6 γόμες. 
+```python
+>>> 150%10
+0
+>>> 90%10
+0
+>>> 60%10
+0
+```
+2. Ακόμη και δύο πακέτα μπορούν να γίνουν με 75 τετράδια, 45 στυλό και 30 γόμες.
+3. Για να έχουμε μέσα τα λιγότερα δυνατά είδη θα έχουμε περισσότερα πακέτα και θα πρέπει και οι τρεις αριθμοί να διαιρούν ακριβώς το πλήθος των πακέτων:
+```python
+>>> for i in range(1,60):
+>>>     if (150 % i == 0 and 90 % i == 0 and 60 % i == 0):
+>>>         print(i)
+1
+2
+3
+5
+6
+10
+15
+30
+```
+Έτσι η απάντηση είναι 30 πακέτα με 150:30 = 5 τετράδια, 3 στυλό και 2 γόμες το καθένα.
+
+Το μέγιστο πλήθος των πακέτων που διαιρεί και τους τρεις αριθμούς είναι ο μέγιστος κοινός διαιρέτης τους, ή αλλιώς Μ.Κ.Δ., για να βρεθεί ο Μ.Κ.Δ. δύο αριθμών στην Python 3 μπορεί να χρησιμοποιηθεί το παρακάτω πρόγραμμα:
+```
+>>> from fractions import gcd
+>>> print(gcd(150,90))
+30
+```
+Η συνάρτηση gcd υπολογίζει τον Μ.Κ.Δ. δύο αριθμών.
+
+Για τους τρεις αριθμούς, υπάρχει το εξής πρόβλημα αν τους τοποθετήσετε σαν ορίσματα της συνάρτησης gcd
+```
+>>> print(gcd(150,90,60))
+Traceback (most recent call last):
+  File "python", line 1, in <module>
+TypeError: gcd() takes 2 positional arguments but 3 were given
+```
+Η φράση *gcd() takes 2 positional arguments but 3 were given* σημαίνει πως δεν μπορούμε να υπολογίσουμε τον Μ.Κ.Δ. βάζοντας όλους τους αριθμούς σαν ορίσματα της συνάρτησης. Ευτυχώς, ο Μ.Κ.Δ. των τριών αριθμών μπορεί να υπολογιστεί ως εξής:
+
+```python
+>>> mkd150_90 = gcd(150,90)
+>>> print(gcd(mkd150_90,60))
+```
+που είναι το ίδιο με τον παρακάτω κώδικα:
+```python
+>>> print(gcd(gcd(150,90),60))
+30
+```
+
+## Ανάλυση σε γινόμενο πρώτων παραγόντων
+
+Το παρακάτω πρόγραμμα αναλύει αριθμούς σε γινόμενο παραγόντων.
+```python
+class ginomenoparagontwn():
+  def __init__(self,n):
+    self.paragontes = []
+    self.dinameis = {}
+    if type(n) == int:
+      self.arithmos = n
+      while n > 1:
+        for i in range(2,n+1):
+          if n%i == 0:
+            n = n // i
+            self.paragontes.append(i)
+            break
+      self.paragontes = sorted(self.paragontes)
+      for i in self.paragontes:
+        if i not in self.dinameis:
+          self.dinameis[i] = self.paragontes.count(i)
+    elif type(n) == dict:
+      self.arithmos = 1
+      self.dinameis = n
+      for i in n:
+        self.arithmos *= i**n[i]
+      for i in n:
+        self.paragontes.extend([i]*n[i])
+      self.paragontes = sorted(self.paragontes)
+    if len(self.paragontes) > 1:
+      self.einaiPrwtos = False
+    else:
+      self.einaiPrwtos = True
+  
+  def mkd(self,other):
+    if type(other) == int:
+      other = ginomenoparagontwn(other)
+    dinameismkd = {}
+    for i in self.dinameis:
+      if i in other.dinameis:
+        dinameismkd[i] = min(self.dinameis[i],other.dinameis[i])
+    if dinameismkd == {}:
+      return(ginomenoparagontwn({1:1}))
+    else:
+      return(ginomenoparagontwn(dinameismkd))
+      
+  def ekp(self,other):
+    if type(other) == int:
+      other = ginomenoparagontwn(other)
+    dinameisekp = self.dinameis
+    for i in other.dinameis:
+      if i in dinameisekp:
+        dinameisekp[i] = max(dinameisekp[i],other.dinameis[i])
+      else:
+        dinameisekp[i] = other.dinameis[i]
+    return(ginomenoparagontwn(dinameisekp))
+    
+  def __repr__(self):
+    return(str(self.arithmos) + ':' + '*'.join([str(x) + '^' + str(self.dinameis[x]) 
+      for x in self.dinameis]) + ':' + '*'.join([str(x) for x in self.paragontes]) + 
+      (',πρώτος' if self.einaiPrwtos else ""))
+```
+> Να αναλυθούν οι αριθμοί 2520, 2940, 3780 σε γινόμενο πρώτων παραγόντων. 
+
+```python
+>>> print(ginomenoparagontwn(2520))
+2520:2^3*3^2*5^1*7^1:2*2*2*3*3*5*7
+>>> print(ginomenoparagontwn(2940))
+2940:2^2*3^1*5^1*7^2:2*2*3*5*7*7
+>>> print(ginomenoparagontwn(3780))
+3780:2^2*3^3*5^1*7^1:2*2*3*3*3*5*7
+```
+Επομένως, η ανάλυση σε γινόμενο είναι:
+$$2520 = 2^3\cdot 3^2\cdot 5\cdot 7$$
+$$2940 = 2^2\cdot 3\cdot 5\cdot 7^2$$
+$$3780 = 2^2\cdot 3^3\cdot 5\cdot 7$$
+
+Το ελάχιστο κοινό πολλαπλάσιο (Ε.Κ.Π.) υπολογίζεται ως εξής:
+
+```python
+>>> ginomenoparagontwn(2520).ekp(2940).ekp(3780)
+52920:2^3*3^3*5^1*7^2:2*2*2*3*3*3*5*7*7
+```
+επομένως Ε.Κ.Π.(2520,2940,3780) = 52920.
+Ομοίως, ο μέγιστος κοινός διαιρέτης (Μ.Κ.Δ.) υπολογίζεται ως εξής:
+
+```
+>>> ginomenoparagontwn(2520).mkd(2940).mkd(3780)
+420:2^2*3^1*5^1*7^1:2*2*3*5*7
+```
+και Μ.Κ.Δ.(2520,2940,3780) = 420.
+
+> Να βρεθεί αν διαιρούνται οι αριθμοί 12510, 772, 225, 13600 με 2, 3, 4, 5, 8, 9, 10, 25, 100.
+
