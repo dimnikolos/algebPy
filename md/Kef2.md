@@ -16,7 +16,7 @@
 0.25
 ```
 Θυμηθείτε ότι η python χρησιμοποιεί την τελεία για τους δεκαδικούς!
-Τι μέρος της πίτσας περίσσεωε;
+Τι μέρος της πίτσας περίσσεψε;
 ```python
 >>> 1 - 1/8 - 3/8 - 2/8
 0.25
@@ -79,7 +79,7 @@ from fractions import Fraction
 ```python
 NameError: name 'Fraction' is not defined
 ```
-> Μια δεξαμενή πετρελαίου σε μια πολυκατοικία, χωράει 2000 lt. Ο διαχειριστής σε μια μέτρηση βρήκε ότι ήταν γεμάτη κατά τα Εικόνα. Πόσα λίτρα πετρέλαιο είχε η δεξαμενή;
+> Μια δεξαμενή πετρελαίου σε μια πολυκατοικία, χωράει 2000 lt. Ο διαχειριστής σε μια μέτρηση βρήκε ότι ήταν γεμάτη κατά τα $\frac{3}{4}$. Πόσα λίτρα πετρέλαιο είχε η δεξαμενή;
 
 ```python
 >>> dexameni = Fraction(3,4)*2000
@@ -124,7 +124,7 @@ True
 
 Παρατηρούμε ότι η εντολή Fraction(4,28) κάνει απλοποίηση κλάσματος.
 
-> Αν το Εικόνα ενός κιλού καρύδια είναι 14 καρύδια, το κιλό περιέχει 70 καρύδια;
+> Αν το $\frac{1}{5}$ ενός κιλού καρύδια είναι 14 καρύδια, το κιλό περιέχει 70 καρύδια;
 ```python
 >>> print(14*5 == 70)
 ```
@@ -171,7 +171,7 @@ True
 32
 ```
 
-> Σε ένα ορθογώνιο παραλληλόγραμμο η μια πλευρά του είναι 33 εκατοστά και η άλλη τα Εικόνα της πρώτης. Να βρεις την περίμετρο του ορθογωνίου.
+> Σε ένα ορθογώνιο παραλληλόγραμμο η μια πλευρά του είναι 33 εκατοστά και η άλλη τα $\frac{3}{11}$ της πρώτης. Να βρεις την περίμετρο του ορθογωνίου.
 
 ```python
 >>> plevra1 = 33
@@ -201,17 +201,67 @@ True
 5/11
 ```
 
-```
-#ask3 
+> Να μετατραπούν σε ομώνυμα τα κλάσματα $\frac{3}{5}$, $\frac{2}{3}$ και $\frac{5}{20}$:
+
+Επειδή η Fraction κάνει απλοποίηση σε ανάγωγο κλάσμα δεν μπορούμε να επιλέξουμε παρονομαστή, γι' αυτό θα κατασκευάσετε μια συνάρτηση η οποία θα τυπώνει το κλάσμα επιλέγοντας τον παρονομαστή.
+
+```python
 def tiposemeparonomasti(k,p):
-  if p % k.denominator == 0:
-    coef = int(p // k.denominator)
-    print(str(k.numerator * coef) + '/' + str(k.denominator * coef))
-  else:
+  """
+  tiposemeparonomasti(k,p)
+  Τύπωσε το κλάσμα k με παρονομαστή p
+  """
+  if p % k.denominator == 0:#αν το p είναι πολλαπλάσιο
+                            #του τρέχοντος παρονομαστή (denominator)
+                            #τότε μπορούμε να πολλαπλασιάσουμε
+                            #όλο το κλάσμα με έναν συντελεστή
+    synt = int(p // k.denominator)
+    print(str(k.numerator * synt) + '/' + str(k.denominator * synt))
+  else:#αν το p δεν είναι πολλαπλάσιο του τρέχοντος παρονομαστή
+       #τότε τυπώνουμε το κλάσμα ως έχει
+    print(k)
+```
+
+Το k.denominator είναι ο παρονομαστής του κλάσματος k.
+
+Αφού φτιάξετε τη συνάρτηση tiposemeparonomasti δοκιμάστε:
+```python
+>>> tiposemeparonomasti(Fraction(3,4),12)
+9/12
+>>> tiposemeparonomasti(Fraction(1,2),20)
+10/20
+```
+
+Για να κάνουμε ομώνυμα τα κλάσματα βρίσκουμε το Ελάχιστο Κοινό Πολλαπλάσιο (Ε.Κ.Π.) των παρονομαστών. 
+Η συνάρτηση για το Ε.Κ.Π. είναι η παρακάτω, αφού το Ε.Κ.Π. δύο αριθμών προκύπτει από το γινόμενο τους αφού το διαιρέσουμε με τον μέγιστο κοινό διαιρέτη (Μ.Κ.Δ. - G.C.D.). Μάλιστα η βιβλιοθήκη fractions περιέχει τη συνάρτηση gcd που υπολογίζει το Μ.Κ.Δ. οπότε:
+```
+from fractions import gcd
+def ekp(a,b):
+  return(a*b/gcd(a,b))
+```
+
+Τέλος συνδυάζοντας τα προηγούμενα το συνολικό πρόγραμμα για να κάνουμε ομώνυμα τα κλάσματα $\frac{3}{5}$, $\frac{2}{3}$ και $\frac{5}{20}$ είναι:
+
+```
+from fractions import Fraction,gcd
+def tiposemeparonomasti(k,p):
+  """
+  tiposemeparonomasti(k,p)
+  Τύπωσε το κλάσμα k με παρονομαστή p
+  """
+  if p % k.denominator == 0:#αν το p είναι πολλαπλάσιο
+                            #του τρέχοντος παρονομαστή (denominator)
+                            #τότε μπορούμε να πολλαπλασιάσουμε
+                            #όλο το κλάσμα με έναν συντελεστή
+    synt = int(p // k.denominator)
+    print(str(k.numerator * synt) + '/' + str(k.denominator * synt))
+  else:#αν το p δεν είναι πολλαπλάσιο του τρέχοντος παρονομαστή
+       #τότε τυπώνουμε το κλάσμα ως έχει
     print(k)
 
 def ekp(a,b):
-  return(a*b/gcd(a,b))
+  return(a*b/gcd(a,b))    
+  
 a = Fraction(3,5)
 b = Fraction(2,3)
 c = Fraction(5,20)
@@ -220,29 +270,79 @@ koinos = ekp(a.denominator,ekp(b.denominator,c.denominator))
 tiposemeparonomasti(a,koinos)
 tiposemeparonomasti(b,koinos)
 tiposemeparonomasti(c,koinos)
+```
 
-print(Fraction(2,3)==Fraction(18,27))
-print(Fraction(3,4)==Fraction(1,2))
-print(Fraction(7,8)==Fraction(30,40))
-print(Fraction(13,14)==Fraction(26,28))
+Μπορούμε να εισάγουμε δύο λειτουργίες από την ίδια βιβλιοθήκη χωρίζοντάς τες με κόμμα ",".
+Θυμηθείτε ότι σε ένα κλάσμα a το a.denominator είναι ο παρονομαστής.
 
-tiposemeparonomasti(Fraction(3,4),100)
-tiposemeparonomasti(Fraction(8,5),100)
-tiposemeparonomasti(Fraction(4,20),100)
-tiposemeparonomasti(Fraction(5,2),100)
-tiposemeparonomasti(Fraction(60,75),100)
+Το αποτέλεσμα του προγράμματος είναι:
 
-print(Fraction(10,6))
-print(Fraction(50,30))
-print(Fraction(18,27))
+```python
+36/60
+40/60
+15/60
+```
 
-tiposemeparonomasti(Fraction(2,3),6)
-tiposemeparonomasti(Fraction(2,3),15)
+> Να εξετάσετε ποια από τα παρακάτω κλάσματα είναι ισοδύναμα:
+(α)$\frac{2}{3},\frac{18}{27}$, (β)$\frac{3}{4},\frac{1}{2}, (γ)$\frac{7}{8},\frac{30}{40}$, (δ)$\frac{13}{14},\frac{26}{28}$.
+```python
+>>> print(Fraction(2,3)==Fraction(18,27))
+True
+>>> print(Fraction(3,4)==Fraction(1,2))
+False
+>>> print(Fraction(7,8)==Fraction(30,40))
+False
+>>> print(Fraction(13,14)==Fraction(26,28))
+True
+```
+> Να μετατρέψεις καθένα από τα παρακάτω κλάσματα σε ισοδύναμο κλάσμα με παρονομαστή  τον αριθμό 100: 
+(α)$\frac{3,4}$ (β)$\frac{8,5}$ (γ)$\frac{4,20}$ (δ)$\frac{5}{2}$ (ε)$\frac{60}{75}$
 
-print(Fraction(25,30))
-print(Fraction(12,9))
-print(Fraction(32,56))
+Μπορούμε να χρησιμοποιήσουμε την συνάρτηση tiposemeparonomasti
+```python
+>>> tiposemeparonomasti(Fraction(3,4),100)
+75/100
+>>> tiposemeparonomasti(Fraction(8,5),100)
+160/100
+>>> tiposemeparonomasti(Fraction(4,20),100)
+20/100
+>>> tiposemeparonomasti(Fraction(5,2),100)
+250/100
+>>> tiposemeparonomasti(Fraction(60,75),100)
+80/100
+```
 
+> Να μετατρέψεις τα παρακάτω κλάσματα σε ισοδύναμα με παρονομαστή τον αριθμό 3:
+
+```python
+>>> tiposemeparonomasti(Fraction(10,6),3)
+5/3
+>>> tiposemeparonomasti(Fraction(50,30),3)
+5/3
+>>> tiposemeparonomasti(Fraction(18,27),3)
+2/3
+```
+
+> Να μετατρέψεις το κλάσμα $\frac{2}{3}$ σε ισοδύναμο κλάσμα με παρονομαστή:(α) 6, και (β) 15.
+
+```python
+>>> tiposemeparonomasti(Fraction(2,3),6)
+4/6
+>>> tiposemeparonomasti(Fraction(2,3),15)
+10/15
+```
+> Να απλοποιήσεις τα κλάσματα: (α)$\frac{25}{30}$ (β) $\frac{12}{9}$ (γ) $\frac{32}{56}$
+```python
+>>> print(Fraction(25,30))
+5/6
+>>> print(Fraction(12,9))
+4/3
+>>> print(Fraction(32,56))
+4/7
+```
+
+
+```
 """
 #----------------------------------------------------
 """
