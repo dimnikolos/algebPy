@@ -366,24 +366,44 @@ True
 >>> print(Fraction(2,5)+Fraction(1,3))
 11/15
 ```
-print(Fraction(1,4)+Fraction(2,4) + 3)
 
-print(Fraction(3,12) + Fraction(7,20))
-print(Fraction(3,12) - Fraction(7,20))
+> Να υπολογισθεί το άθροισμα 
+> $$\frac{1}{4}+\frac{2}{4} + 3$$
 
-print(1-Fraction(1,2) - Fraction(1,3))
+```python
+>>> print(Fraction(1,4)+Fraction(2,4) + 3)
+15/4
+```
 
+> Να υπολογισθεί η διαφορά και το άθροισμα των κλασμάτων
+$\frac{3}{12}$ και $\frac{7}{20}$.
+
+```python
+>>> print(Fraction(3,12) + Fraction(7,20))
+3/5
+>>> print(Fraction(7,20) - Fraction(3,12))
+1/10
+```
+Για να τυπώσουμε ένα κλάσμα ως μεικτό θα εφαρμόσουμε τα εξής βήματα:
+1. Βρίσκουμε το ακέραιο μέρος της διαίρεσης του αριθμητή με τον παρονομαστή έστω $\mu$.
+2. Αν το $\mu$ είναι 0 τυπώνουμε το κλάσμα ως έχει (είναι μικρότερο της μονάδας), αλλιώς τυπώνουμε το $\mu$ και στη συνέχεια το κλάσμα που προκύπτει αν από το αρχικό κλάσμα αφαίρεσουμε το $\mu$.
+
+```
 def tiposemikto(k):
-  if k.numerator > k.denominator:
-    akeraios = (k.numerator - k.numerator % k.denominator) // k.denominator
-    klasma = Fraction(k.numerator % k.denominator, k.denominator)
-    print(str(akeraios) + " " + str(klasma))
+  m = k.numerator // k. denominator
+  if m == 0:
+  	print(k)
   else:
-    print(k)
-    
-tiposemikto(Fraction(15,4))
-tiposemikto(Fraction(5,2))
-tiposemikto(Fraction(38,12))
+  	print(str(m) + " " + str(k-m))
+```
+
+Για παράδειγμα
+```python
+>>> tiposemikto(Fraction(15,4))
+3 3/4
+>>> tiposemikto(Fraction(5,2))
+2 1/2
+>>> tiposemikto(Fraction(38,12))
 
 print(Fraction(5,9) - Fraction(3,8))
 
