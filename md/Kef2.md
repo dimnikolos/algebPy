@@ -456,27 +456,113 @@ True
 
 Δεν χρειάζεται να τα μετατρέψουμε σε ομώνυμα, η python λύνει το πρόβλημα της σύγκρισης με τον δικό της τρόπο.
 
+> Σύγκρινε τα κλάσματα (α) $\frac{3}{7}$ και $\frac{5}{7}$, (β) $\frac{3}{5}$ και $\frac{3}{9}$ και (γ) $\frac{4}{5}$ και $\frac{8}{12}$.
 
-print(Fraction(5,9) - Fraction(3,8))
-
-print(1-Fraction(2,5) - Fraction(2,15) - Fraction(1,3) - Fraction(1,10))
-"""
-#----------------------------------------------------
-"""
-print(Fraction(3,7)*Fraction(70,6)*Fraction(8,5))
-
-print((Fraction(7,3) + Fraction(2,15)) * Fraction(3,8))
-
-print(Fraction(2,3)/Fraction(10,9))
-"""
-#----------------------------------------------------
-print(max(Fraction(7,15),Fraction(7,10)))
-print(max(Fraction(5,8),Fraction(4,9)))
-print(sorted([Fraction(5,3),Fraction(7,2),Fraction(8,9),Fraction(63,5),Fraction(125,10)]))
-
-print(Fraction(1,4)+Fraction(2,4)+3)
-print(Fraction(3,12)+Fraction(7,20))
-print(Fraction(3,12)-Fraction(7,20))
-print(Fraction(15,4)-1)
-print(2+1+Fraction(1,3))
 ```python
+>>> Fraction(3,7) < Fraction(5,7)
+True
+>>> Fraction(3,5) > Fraction(3,9)
+True
+>>> Fraction(4,5) > Fraction(8,12)
+True
+```
+
+> Βάλε σε σειρά τα κλάσματα $\frac{3}{5},\frac{8}{15},\frac{5}{10},\frac{20}{15},\frac{7}{5}$
+
+```python
+>>> lista = [Fraction(31,10),Fraction(8,15),Fraction(5,10),Fraction(20,15),Fraction(7,5)]
+>>> print(",".join([str(x) for x in sorted(lista)]))
+1/2,8/15,4/3,7/5,31/10
+```
+
+# Πολλαπλασιασμός κλασμάτων
+```python
+#Pollaplasiasmos klasmatwn
+
+x = Fraction(3,7)*Fraction(70,6)*Fraction(8,5)
+print(x)
+
+x = 3*Fraction(3,4)
+print(x)
+
+x = 7*Fraction(10,14)
+print(x)
+
+x = Fraction(4,2)*2
+print(x)
+
+x = Fraction(5,100)*10
+print(x)
+
+x = Fraction(2,5)*Fraction(7,8)
+print(x)
+
+x = Fraction(8,10)*Fraction(100,5)
+print(x)
+
+x = Fraction(4,9)*Fraction(5,9)
+print(x)
+
+x = Fraction(3,2)*Fraction(2,15)
+print(x)
+
+ori = [Fraction(5,7),Fraction(3,2),1,Fraction(3,4)]
+kat = [Fraction(7,5),Fraction(2,3),1,Fraction(4,3)]
+print("\n".join([",".join([str(k*o).rjust(5) 
+  for o in ori]) for k in kat]))
+  
+x = (2+Fraction(1,3))*Fraction(3,21)
+print(x)
+
+x = (4+Fraction(1,5))*(2+Fraction(1,2))
+print(x)
+
+x = (3+Fraction(1,8))*10
+print(x)
+
+x = (1+Fraction(2,3))*Fraction(3,2)
+print(x)
+
+klasmata = [Fraction(4,7),Fraction(72),Fraction(5,8),Fraction(1,3),Fraction(739,8),Fraction(1)]
+print(",".join([str(1/k) for k in klasmata]))
+
+x = Fraction(6,5) + Fraction(3,5)*Fraction(1,4)
+print(x)
+
+x = (Fraction(6,5)+Fraction(3,5))*Fraction(1,4)
+print(x)
+
+x = (Fraction(6,5)-Fraction(3,5))*Fraction(1,4)
+print(x)
+
+x = (Fraction(7,3)+Fraction(2,15))*Fraction(3,8)
+print(x)
+
+x = (Fraction(7,3)-Fraction(2,15))*Fraction(3,8)
+print(x)
+
+x = Fraction(7,3)-Fraction(2,15)*Fraction(3,8)
+print(x)
+"""
+
+x = Fraction(Fraction(2,3),Fraction(10,9))
+print(x)
+
+x = Fraction(4,Fraction(9,8))
+print(x)
+
+x = Fraction(Fraction(7,10),5)
+print(x)
+
+x = Fraction((Fraction(3,10)+Fraction(1,2)),(Fraction(4,3)-Fraction(4,6)))
+print(x)
+
+def rhind(x):
+  """calculate (2/3)*(1/x)"""
+  if not x%2 == 1:
+    return(None)
+  else:
+    return(Fraction(1,2*x)+Fraction(1,6*x))
+  
+print(rhind(7) == Fraction(2,3)*Fraction(1,7))
+```
