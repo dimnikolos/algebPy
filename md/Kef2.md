@@ -286,7 +286,7 @@ tiposemeparonomasti(c,koinos)
 ```
 
 > Να εξετάσετε ποια από τα παρακάτω κλάσματα είναι ισοδύναμα:
-(α)$\frac{2}{3},\frac{18}{27}$, (β)$\frac{3}{4},\frac{1}{2}, (γ)$\frac{7}{8},\frac{30}{40}$, (δ)$\frac{13}{14},\frac{26}{28}$.
+(α)$\frac{2}{3},\frac{18}{27}$, (β)$\frac{3}{4}$,$\frac{1}{2}$, (γ)$\frac{7}{8}$,$\frac{30}{40}$, (δ)$\frac{13}{14}$,$\frac{26}{28}$.
 
 ```python
 >>> print(Fraction(2,3)==Fraction(18,27))
@@ -476,11 +476,22 @@ True
 ```
 
 # Πολλαπλασιασμός κλασμάτων
-```python
-#Pollaplasiasmos klasmatwn
 
-x = Fraction(3,7)*Fraction(70,6)*Fraction(8,5)
-print(x)
+> Να βρεθεί το γινόμενο $\frac{3}{7}\cdot\frac{70}{6}\cdot\frac{8}{5}$
+
+```python
+>>> Fraction(3,7)*Fraction(70,6)*Fraction(8,5)
+8
+```
+> Σε ένα σχολείο με 252 μαθητές τα $\frac{5}{9}$ είναι αγόρια. Πόσα είναι τα αγόρια και πόσα είναι τα κορίτσια
+
+```python    
+>>> agoria,koritsia = 252*Fraction(5,9),252-252*Fraction(5,9)
+>>> print(agoria)
+140
+>>> print(koritsia)
+112
+```
 
 x = 3*Fraction(3,4)
 print(x)
