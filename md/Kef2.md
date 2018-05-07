@@ -493,35 +493,79 @@ True
 112
 ```
 
-x = 3*Fraction(3,4)
-print(x)
+> Υπολόγισε τα γινόμενα $3\cdot\frac{3}{4}$, $7\cdot\frac{10}{14}$,$\frac{4}{2}\cdot 2$,$\frac{5}{100}\cdot 10$
 
-x = 7*Fraction(10,14)
-print(x)
+```
+>>> x = 3*Fraction(3,4)
+>>> print(x)
+9/4
+>>> x = 7*Fraction(10,14)
+>>> print(x)
+5
+>>> x = Fraction(4,2)*2
+>>> print(x)
+4
+>>> x = Fraction(5,100)*10
+>>> print(x)
+1/2
+```
 
-x = Fraction(4,2)*2
-print(x)
+> Βρες τα γινόμενα $\frac{2}{5}\cdot\frac{7}{8}$, $\frac{8}{10}\cdot\frac{100}{5}$, $\frac{4}{9}\cdot\frac{5}{9}$, $\frac{3}{2}\cdot\frac{2}{15}$
 
-x = Fraction(5,100)*10
-print(x)
+```
+>>> x = Fraction(2,5)*Fraction(7,8)
+>>> print(x)
+7/20
+>>> x = Fraction(8,10)*Fraction(100,5)
+>>> print(x)
+16
+>>> x = Fraction(4,9)*Fraction(5,9)
+>>> print(x)
+20/81
+>>> x = Fraction(3,2)*Fraction(2,15)
+>>> print(x)
+1/5
+```
+>Συμπλήρωσε τον πίνακα:
 
-x = Fraction(2,5)*Fraction(7,8)
-print(x)
+>$\cdot$, $\frac{5}{7}$, $\frac{3}{2}$, $1$, $\frac{3}{4}$
+>
+>$\frac{7}{5}$
+>
+>$\frac{2}{3}$
+>
+> $1$
+>
+> $\frac{4}{3}$
 
-x = Fraction(8,10)*Fraction(100,5)
-print(x)
+Ο πίνακας αυτός μπορεί να εμφανιστεί με το παρακάτω πρόγραμμα:
 
-x = Fraction(4,9)*Fraction(5,9)
-print(x)
-
-x = Fraction(3,2)*Fraction(2,15)
-print(x)
+```python
+from fractions import Fraction
 
 ori = [Fraction(5,7),Fraction(3,2),1,Fraction(3,4)]
 kat = [Fraction(7,5),Fraction(2,3),1,Fraction(4,3)]
-print("\n".join([",".join([str(k*o).rjust(5) 
-  for o in ori]) for k in kat]))
-  
+print(" "*5+", ",end=" ")
+for orizontio in ori:
+    print(str(orizontio).rjust(5),end=", ")
+print()
+print("-"*35)
+for katheto in kat:
+    print(str(katheto).rjust(5),end=", |")
+    for orizontio in ori:
+        print(str(orizontio*katheto).rjust(5),end=", ")
+    print()
+```
+και το αποτέλεσμα του προγράμματος είναι:
+```
+     ,    5/7,   3/2,     1,   3/4,
+-----------------------------------
+  7/5, |    1, 21/10,   7/5, 21/20,
+  2/3, |10/21,     1,   2/3,   1/2,
+    1, |  5/7,   3/2,     1,   3/4,
+  4/3, |20/21,     2,   4/3,     1,
+```
+
 x = (2+Fraction(1,3))*Fraction(3,21)
 print(x)
 
