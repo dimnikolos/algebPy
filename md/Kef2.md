@@ -565,21 +565,43 @@ for katheto in kat:
     1, |  5/7,   3/2,     1,   3/4,
   4/3, |20/21,     2,   4/3,     1,
 ```
+>Υπολόγισε τα γινόμενα (α) $2\frac{1}{3}\cdot\frac{3}{21}$ (β) $4\frac{1}{5}\cdot 2\frac{1}{2}$ (γ) $3\frac{1}{8}\cdot 10$ (δ) $1\frac{2}{3}\cdot\frac{3}{2}.
 
-x = (2+Fraction(1,3))*Fraction(3,21)
-print(x)
+```
+>>> x = (2+Fraction(1,3))*Fraction(3,21)
+>>> print(x)
+1/3
+>>> x = (4+Fraction(1,5))*(2+Fraction(1,2))
+>>> print(x)
+21/2
+>>> x = (3+Fraction(1,8))*10
+>>> print(x)
+125/4
+>>> x = (1+Fraction(2,3))*Fraction(3,2)
+>>> print(x)
+5/2
+```
 
-x = (4+Fraction(1,5))*(2+Fraction(1,2))
-print(x)
+>Να βρεις τους αντίστροφους των αριθμών (α) $\frac{4}{7}$, (β) $72$, (γ) $\frac{5}{8}$, (δ) $\frac{1}{3}$, (ε) $\frac{739}{8}$, (στ) $1$.
 
-x = (3+Fraction(1,8))*10
-print(x)
+```
+    klasmata = [Fraction(4,7),Fraction(72),Fraction(5,8),Fraction(1,3),Fraction(739,8),Fraction(1)]
+    print(",".join([str(1/k) for k in klasmata]))
+```
+Το αποτέλεσμα της εκτέλεσης του παραπάνω προγράμματος είναι:
+```
+7/4,1/72,8/5,3,8/739,1
+```
 
-x = (1+Fraction(2,3))*Fraction(3,2)
-print(x)
+>Ο Κώστας ήπιε τα $\frac{2}{3}$ από ένα μπουκάλι που περιείχε αναψυκτικό όγκου $1\frac{1}{2}$ του λίτρου. Πόσα λίτρα αναψυκτικού ήπιε;
 
-klasmata = [Fraction(4,7),Fraction(72),Fraction(5,8),Fraction(1,3),Fraction(739,8),Fraction(1)]
-print(",".join([str(1/k) for k in klasmata]))
+Το $1\frac{1}{2}$ στην python γράφεται ως 1+Fraction(1,2), οπότε 
+```
+>>> x = Fraction(2,3)*(1+Fraction(1,2))
+>>> print(x)
+>>> 1
+```
+Ο Κώστας ήπιε ένα λίτρο αναψυκτικού.
 
 x = Fraction(6,5) + Fraction(3,5)*Fraction(1,4)
 print(x)
