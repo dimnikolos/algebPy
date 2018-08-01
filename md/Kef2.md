@@ -127,6 +127,7 @@ True
 Παρατηρούμε ότι η εντολή Fraction(4,28) κάνει απλοποίηση κλάσματος.
 
 > Αν το $\frac{1}{5}$ ενός κιλού καρύδια είναι 14 καρύδια, το κιλό περιέχει 70 καρύδια;
+
 ```python
 >>> print(14*5 == 70)
 ```
@@ -599,40 +600,76 @@ for katheto in kat:
 ```
 >>> x = Fraction(2,3)*(1+Fraction(1,2))
 >>> print(x)
->>> 1
+1
 ```
 Ο Κώστας ήπιε ένα λίτρο αναψυκτικού.
 
-x = Fraction(6,5) + Fraction(3,5)*Fraction(1,4)
-print(x)
+>Υπολόγισε τα εξαγόμενα των πράξεων: (α) $\frac{6}{5}+\frac{3}{5}\cdot\frac{1}{4}$, (β) $\left(\frac{6}{5}+\frac{3}{5}\right)\cdot\frac{1}{4}$,(γ) $\left(\frac{6}{5}-\frac{3}{5}\right)\cdot\frac{1}{4}$
 
-x = (Fraction(6,5)+Fraction(3,5))*Fraction(1,4)
-print(x)
+```
+>>> x = Fraction(6,5) + Fraction(3,5)*Fraction(1,4)
+>>> print(x)
+27/20
+>>>
+>>> x = (Fraction(6,5)+Fraction(3,5))*Fraction(1,4)
+>>> print(x)
+9/20
+>>>
+>>> x = (Fraction(6,5)-Fraction(3,5))*Fraction(1,4)
+>>> print(x)
+3/20
+```
 
-x = (Fraction(6,5)-Fraction(3,5))*Fraction(1,4)
-print(x)
+>Όμοια για (α) $\left(\frac{7}{3}+\frac{2}{15}\right)\cdot\frac{3}{8}$, (β) $\left(\frac{7}{3} - \frac{2}{15}\right)\cdot\frac{3}{8}$, (γ) $\frac{7}{3}-\frac{2}{15}\cdot \frac{3}{8}$
 
-x = (Fraction(7,3)+Fraction(2,15))*Fraction(3,8)
-print(x)
+```
+>>> x = (Fraction(7,3)+Fraction(2,15))*Fraction(3,8)
+>>> print(x)
+37/40
+>>>
+>>> x = (Fraction(7,3)-Fraction(2,15))*Fraction(3,8)
+>>> print(x)
+33/40
+>>>
+>>> x = Fraction(7,3)-Fraction(2,15)*Fraction(3,8)
+>>> print(x)
+137/60
+```
+# Διαίρεση κλασμάτων
+Η διαίρεση κλασμάτων μπορεί να γίνει με δύο τρόπους ή με τον τελεστή /, ή σχηματίζοντας σύνθετο κλάσμα, το αποτέλεσμα και στιςι δύο περιπτώσεις είναι το ίδιο:
+```
+>>> x = Fraction(2,3)/Fraction(10,9)
+>>> x
+Fraction(3, 5)
+>>> x = Fraction(Fraction(2,3),Fraction(10,9))
+>>> x
+Fraction(3, 5)
+```
 
-x = (Fraction(7,3)-Fraction(2,15))*Fraction(3,8)
-print(x)
+>Να γίνουν απλά τα σύνθετα κλάσματα 
+$$\frac{\frac{2}{3}}{\frac{10}{9}}, \frac{4}{\frac{9}{8}}, \frac{\frac{7}{10}}{5}$$
 
-x = Fraction(7,3)-Fraction(2,15)*Fraction(3,8)
-print(x)
-"""
+```
+>>> x = Fraction(Fraction(2,3),Fraction(10,9))
+>>> print(x)
+3/5
+>>>
+>>> x = Fraction(4,Fraction(9,8))
+>>> print(x)
+32/9
+>>>
+>>> x = Fraction(Fraction(7,10),5)
+>>> print(x)
+7/50
+```
+>Να εκτελεστούν οι πράξεις:
+$$\frac{\frac{3}{10}+\frac{1}{2}}{\frac{4}{3}-\frac{4}{6}}$$
 
-x = Fraction(Fraction(2,3),Fraction(10,9))
-print(x)
-
-x = Fraction(4,Fraction(9,8))
-print(x)
-
-x = Fraction(Fraction(7,10),5)
-print(x)
-
-x = Fraction((Fraction(3,10)+Fraction(1,2)),(Fraction(4,3)-Fraction(4,6)))
-print(x)
+```
+>>> x = Fraction((Fraction(3,10)+Fraction(1,2)),(Fraction(4,3)-Fraction(4,6)))
+>>> print(x)
+6/5
+```
 
 def rhind(x):
   """calculate (2/3)*(1/x)"""
