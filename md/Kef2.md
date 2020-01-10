@@ -566,6 +566,8 @@ for katheto in kat:
   4/3, |20/21,     2,   4/3,     1,
 ```
 
+>Υπολόγισε τα γινόμενα $2\frac{1}{3}\cdot\frac{3}{21}$,$4\frac{1}{5}\cdot 2\frac{1}{2}$,$3\frac{1}{8}\cdot 10$,$1\frac{2}{3}\cdot\frac{3}{2}$
+```python
 x = (2+Fraction(1,3))*Fraction(3,21)
 print(x)
 
@@ -577,10 +579,45 @@ print(x)
 
 x = (1+Fraction(2,3))*Fraction(3,2)
 print(x)
+```
+και το αποτέλεσμα είναι
+```
+1/3
+21/2
+125/4
+5/2
+```
+>Να βρεις τους αντίστροφους των αριθμών $\frac{4}{7}$,$72$,$\frac{5}{8}$,$\frac{1}{3}$,$\frac{739}{8}$,$1$
+```python
+print(1/Fraction(4,7))
+print(1/Fraction(72))
+print(1/Fraction(5,8))
+print(1/Fraction(1,3))
+print(1/Fraction(739,8))
+print(1/Fraction(1))
+```
+και το αποτέλεσμα είναι:
+```
+7/4
+1/72
+8/53
+8/739
+1
+```
+>Ο Κώστας ήπιε τα $\frac{2}{3}$ από ένα μπουκάλι, που περιείχε αναψυκτικό όγκου $1\frac{1}{2}$ του λίτρου. Πόσα λίτρα αναψυκτικού ήπιε;
+```python
+print(Fraction(2,3)*(1+Fraction(1,2)))
+```
+που δίνει αποτέλεσμα
+```
+1
+```
+Ο Κώστας ήπιε $1$ λίτρο αναψυκτικού.
 
-klasmata = [Fraction(4,7),Fraction(72),Fraction(5,8),Fraction(1,3),Fraction(739,8),Fraction(1)]
-print(",".join([str(1/k) for k in klasmata]))
+>Υπολόγισε τα εξαγόμενα των πράξεων $\frac{6}{5} + \frac{3}{5}\cdot\frac{1}{4}$,$(\frac{6}{5} + \frac{3}{5})\cdot\frac{1}{4}$,
+$\frac{6}{5} - \frac{3}{5}\cdot\frac{1}{4}$
 
+```python
 x = Fraction(6,5) + Fraction(3,5)*Fraction(1,4)
 print(x)
 
@@ -589,7 +626,15 @@ print(x)
 
 x = (Fraction(6,5)-Fraction(3,5))*Fraction(1,4)
 print(x)
-
+```
+Το αποτέλεσμα είναι το εξής:
+```
+27/20
+9/20
+3/20
+```
+>Όμοια $(\frac{7}{3}+\frac{2}{15})\cdot \frac{3}{8}$,$(\frac{7}{3}+\frac{2}{15})\cdot \frac{3}{8}$,$\frac{7}{3}-\frac{2}{15}\cdot \frac{3}{8}$
+```python
 x = (Fraction(7,3)+Fraction(2,15))*Fraction(3,8)
 print(x)
 
@@ -598,7 +643,13 @@ print(x)
 
 x = Fraction(7,3)-Fraction(2,15)*Fraction(3,8)
 print(x)
-"""
+```
+και το αποτέλεσμα είναι:
+```
+37/40
+33/40
+137/60
+```
 
 x = Fraction(Fraction(2,3),Fraction(10,9))
 print(x)
