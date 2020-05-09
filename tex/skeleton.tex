@@ -1,0 +1,27 @@
+\documentclass[a4paper,12pt]{memoir}
+\usepackage{fontspec}
+\usepackage{courier}
+\usepackage{polyglossia}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{egyptian}
+\lstset{basicstyle=\ttfamily\footnotesize,language=Python,backgroundcolor = \color{lightgray},showstringspaces=false,columns=fullflexible,showstringspaces=false, morestring=[b]", morestring=[b]',keepspaces=true}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{exercise}[theorem]{Άσκηση}
+\setmainlanguage{greek}
+\setromanfont{Candara}
+\setsansfont{Calibri}
+\setmonofont{Consolas}
+
+\newcommand{\sel}[1] {(Στο βιβλίο βρίσκεται στη Σελ. #1)}
+\begin{document}
+\title{$A\lambda\gamma\epsilon\beta\rho y$ \\ Μαθηματικά Γυμνασίου με Python}
+
+\author{Δημήτρης Νικολός}
+\maketitle
+\input{Kef1.tex}
+\input{Kef2.tex}
+\end{document}
