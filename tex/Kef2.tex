@@ -459,7 +459,7 @@ print('δεκαοχτώ')
 print('δεκαεννιά')
 \end{lstlisting}
 
-Το παραπάνω πρόγραμμα μπορεί να γίνει πιο μαζεμένο με τη χρήση λίστας. Μια λίστα μπορεί να περιέχει τα λεκτικά για κάθε αριθμό. Η λίστα στην Python σημειώνεται με τις τετράγωνες αγκύλες \[ και \]. Τα στοιχεία της χωρίζονται με κόμμα. Έτσι η λίστα που θέλουμε τώρα είναι η εξής:
+Το παραπάνω πρόγραμμα μπορεί να γίνει πιο μαζεμένο με τη χρήση λίστας. Μια λίστα μπορεί να περιέχει τα λεκτικά για κάθε αριθμό. Η λίστα στην Python σημειώνεται με τις τετράγωνες αγκύλες [ και ]. Τα στοιχεία της χωρίζονται με κόμμα. Έτσι η λίστα που θέλουμε τώρα είναι η εξής:
 \begin{lstlisting}
 lektika = ['μηδέν','ένα','δύο','τρία','τέσσερα','πέντε','έξι','εφτά','οχτώ','εννιά','δέκα','έντεκα','δώδεκα','δεκατρία','δεκατέσσερα','δεκαπέντε','δεκαέξι','δεκαεφτά','δεκαοχτώ','δεκαεννιά']
 \end{lstlisting}
@@ -1048,3 +1048,531 @@ print(athroisma)
 500500.0
 \end{lstlisting}
 Στην Python to 500500.0 σημαίνει πως το δεκαδικό μέρος είναι 0 οπότε το αποτέλεσμα είναι και πάλι 500500.
+
+
+\section{Ευκλείδια διαίρεση}
+
+\begin{exercise}Για να αποφασίσει ο καθηγητής με ποιο τρόπο θα παρατάξει τους 168 μαθητές για την παρέλαση, πρέπει να διαιρέσει το 168 με τους αριθμούς 3, 4, 5, 6 και 7. \end{exercise}
+
+Διαίρεση με το τρία:
+\begin{lstlisting}
+>>> print(168/3,168%3)
+56.0 0
+\end{lstlisting}
+Η διαίρεση γίνεται με τον τελεστή /, οπότε 168/3 είναι το πηλίκο της διαίρεσης του 168 με το 3. Στους υπολογιστές δεν χρησιμοποιούμε την άνω κάτω τελεία για διαίρεση αλλά την κάθετο /, που συνήθως βρίσκεται χαμηλά στο πληκτρολόγιο και στο αριθμητικό πληκτρολόγιο. 
+
+Το υπόλοιπο δίνεται με τον τελεστή \%, οπότε 168\%3 είναι το υπόλοιπο της διαίρεσης του 168 με το 3. Στο συγκεκριμένο παράδειγμα παρατηρούμε ότι το 168 διαιρείται ακριβώς με το 3 και δίνει πηλίκο 56, οπότε ο καθηγητής μπορεί να παρατάξει τους 168 μαθητές σε 56 τριάδες.
+
+Παρόμοια, η διαίρεση του αριθμού 168 με τους αριθμούς 4, 6, και 7 δίνει τα πηλίκα: 42, 28 και 24 αντίστοιχα. 
+\begin{lstlisting}
+>>> print(168/4,168%4)
+42.0 0
+>>> print(168/6,168%6)
+28.0 0
+>>> print(168/7,168%7)
+24.0 0
+\end{lstlisting}
+Επομένως, μπορούν να παραταχθούν οι μαθητές σε 42 τετράδες ή 28 εξάδες ή σε 24 επτάδες. 
+
+Τέλος, η διαίρεση του 168 με το 5 δίνει πηλίκο 33 και αφήνει υπόλοιπο 3. 
+\begin{lstlisting}
+>>> print(168/5,168%5)
+33.6 3
+\end{lstlisting}
+Άρα, δεν μπορεί ο καθηγητής να παρατάξει τους μαθητές σε πλήρεις πεντάδες.
+
+Εκτός από τον τελεστή / για την διαίρεση υπάρχει και ο τελεστής // ο οποίος όμως δίνει το ακέραιο μέρος του πηλίκου. Οπότε αν γράψουμε 168//5 το αποτέλεσμα θα είναι ο ακέραιος αριθμός 33, που όμως είναι μόνο το ακέραιο μέρος του πηλίκου.
+
+Χρησιμοποιώντας αυτούς τους τελεστές μπορεί να γραφεί μια συνάρτηση που να εμφανίζει την ευκλείδια διαίρεση μεταξύ δύο αριθμών:
+\begin{lstlisting}
+def eykleidia(D,d):
+  print(str(D)+':' + str(d) + '=' + str(D//d) + '*' + str(d) + '+' + str(D%d))
+\end{lstlisting}
+Για παράδειγμα (Άσκηση 1):
+\begin{lstlisting}
+>>> eykleidia(4002,69)
+4002:69=58*69+0
+>>> eykleidia(1445,17)
+1445:17=85*17+0
+>>> eykleidia(925,37)
+925:37=25*37+0
+>>> eykleidia(3621,213)
+3621:213=17*213+0
+>>> eykleidia(35280,2940)
+35280:2940=12*2940+0
+>>> eykleidia(5082,77)
+5082:77=66*77+0
+\end{lstlisting}
+
+Άσκηση 2:
+\begin{lstlisting}
+>>> eykleidia(65,5)
+65:5=13*5+0
+>>> eykleidia(30,3)
+30:3=10*3+0
+>>> eykleidia(46592,52)
+46592:52=896*52+0
+\end{lstlisting}
+Άσκηση 3:
+\begin{lstlisting}
+>>> eykleidia(125,3)
+125:3=41*3+2
+>>> eykleidia(762,19)
+762:19=40*19+2
+>>> eykleidia(1500,35)
+1500:35=42*35+30
+>>> eykleidia(300,18)
+300:18=16*18+12
+\end{lstlisting}
+
+\begin{exercise} Ποια μπορεί να είναι τα υπόλοιπα της διαίρεσης ν:8. \end{exercise}
+
+\begin{lstlisting}
+>>> for i in range(10):
+        print(i%8, end = ', ')
+0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 
+\end{lstlisting}
+
+Φυσικά τα υπόλοιπα μπορεί να είναι από 0 έως 7.
+
+
+\begin{exercise} Αν ένας αριθμός διαιρεθεί δια 9 δίνει πηλίκο 73 και υπόλοιπο 4. Ποιος είναι ο αριθμός;\end{exercise}
+
+\begin{lstlisting}
+>>> print(9*73+4)
+661
+>>> eykleidia(661,73)
+661:73=9*73+4
+\end{lstlisting}
+
+Ο αριθμός αυτός είναι $9\cdot 73+4 = 661$.
+
+\begin{exercise} Αν σήμερα είναι Τρίτη, τι μέρα θα είναι μετά από 247 ημέρες;\end{exercise}
+
+Για να λυθεί αυτό το πρόβλημα θα κατασκευάσουμε έναν πίνακα meres:
+\begin{lstlisting}
+meres = ['ΤΡ','ΤΕ','ΠΕ','ΠΑ','ΣΑ','ΚΥ','ΔΕ']
+\end{lstlisting}
+Σε αυτόν meres[0] = 'ΤΡ', meres[1]='ΤΕ' κ.λπ.
+Αυτό το πρόβλημα προσεγγίζεται ως εξής:
+1. Μετά από μία(1) ημέρα θα είναι Τετάρτη(meres[1])
+2. Μετά από δυό(2) ημέρες θα είναι Πέμπτη(meres[2])
+3. Μετά από τρεις(3) ημέρες θα είναι Παρασκευή(meres[3])
+4. Μετά από τέσσερις(4) ημέρες θα είναι Σάββατο(meres[4])
+5. Μετά από πέντε(5) ημέρες θα είναι Κυριακή(meres[5])
+6. Μετά από έξι(6) ημέρες θα είναι Δευτέρα(meres[6])
+7. Μετά από επτά(7) ημέρες θα είναι Τρίτη(meres[0] = meres[7 \% 7]), αφού το υπόλοιπο της διαίρεσης του 7 με το 7 είναι 0.
+8. Μετά από οκτώ(8) ημέρες θα είναι Τετάρτη(meres[1] = meres[8 \% 7]), αφού το υπόλοιπο της διαίρεσης του 8 με το 7 είναι 1.
+
+κατά συνέπεια μετά από 247 ημέρες θα είναι Πέμπτη:
+\begin{lstlisting}
+>>> meres = ['ΤΡ','ΤΕ','ΠΕ','ΠΑ','ΣΑ','ΚΥ','ΔΕ']
+>>> print(meres[247%7])
+ΠΕ
+\end{lstlisting}
+\section{Χαρακτήρες διαιρετότητας - ΜΚΔ - ΕΚΠ - Ανάλυση αριθμού σε γινόμενο πρώτων παραγόντων}
+\begin{exercise}Το τοπικό γραφείο της UNICEF θα μοιράσει 150 τετράδια, 90 στυλό και 60 γόμες σε πακέτα δώρων, ώστε τα πακέτα να είναι τα ίδια και να περιέχουν και τα τρία είδη.\end{exercise}
+\begin{exercise} 1. Μπορεί να γίνουν 10 πακέτα δώρων; Αν ναι, πόσα από κάθε είδος θα έχει κάθε πακέτο;\end{exercise}
+\begin{exercise} 2. Πόσα πακέτα δώρων μπορεί να γίνουν με όλα τα διαθέσιμα είδη;\end{exercise}
+\begin{exercise} 3. Πόσα πακέτα δώρων μπορεί να γίνουν με τα λιγότερα δυνατά από κάθε είδος;\end{exercise}
+
+1. Μπορούν να γίνουν 10 πακέτα δώρων, με 15 τετράδια, 9 στυλό και 6 γόμες. 
+\begin{lstlisting}
+>>> 150%10
+0
+>>> 90%10
+0
+>>> 60%10
+0
+\end{lstlisting}
+2. Ακόμη και δύο πακέτα μπορούν να γίνουν με 75 τετράδια, 45 στυλό και 30 γόμες.
+3. Για να έχουμε μέσα τα λιγότερα δυνατά είδη θα έχουμε περισσότερα πακέτα και θα πρέπει και οι τρεις αριθμοί να διαιρούν ακριβώς το πλήθος των πακέτων:
+\begin{lstlisting}
+>>> for i in range(1,60):
+>>>     if (150 % i == 0 and 90 % i == 0 and 60 % i == 0):
+>>>         print(i)
+1
+2
+3
+5
+6
+10
+15
+30
+\end{lstlisting}
+Έτσι η απάντηση είναι 30 πακέτα με 150:30 = 5 τετράδια, 3 στυλό και 2 γόμες το καθένα.
+
+Το μέγιστο πλήθος των πακέτων που διαιρεί και τους τρεις αριθμούς είναι ο μέγιστος κοινός διαιρέτης τους, ή αλλιώς Μ.Κ.Δ., για να βρεθεί ο Μ.Κ.Δ. δύο αριθμών στην Python 3 μπορεί να χρησιμοποιηθεί το παρακάτω πρόγραμμα:
+\begin{lstlisting}
+>>> from fractions import gcd
+>>> print(gcd(150,90))
+30
+\end{lstlisting}
+Η συνάρτηση gcd υπολογίζει τον Μ.Κ.Δ. δύο αριθμών.
+
+Για τους τρεις αριθμούς, υπάρχει το εξής πρόβλημα αν τους τοποθετήσετε σαν ορίσματα της συνάρτησης gcd
+\begin{lstlisting}
+>>> print(gcd(150,90,60))
+Traceback (most recent call last):
+  File "python", line 1, in <module\begin{exercise}\end{exercise}
+TypeError: gcd() takes 2 positional arguments but 3 were given
+\end{lstlisting}
+Η φράση *gcd() takes 2 positional arguments but 3 were given* σημαίνει πως δεν μπορούμε να υπολογίσουμε τον Μ.Κ.Δ. βάζοντας όλους τους αριθμούς σαν ορίσματα της συνάρτησης. Ευτυχώς, ο Μ.Κ.Δ. των τριών αριθμών μπορεί να υπολογιστεί ως εξής:
+
+\begin{lstlisting}
+>>> mkd150_90 = gcd(150,90)
+>>> print(gcd(mkd150_90,60))
+30
+\end{lstlisting}
+που είναι το ίδιο με τον παρακάτω κώδικα:
+\begin{lstlisting}
+>>> print(gcd(gcd(150,90),60))
+30
+\end{lstlisting}
+
+\subsection{Ανάλυση σε γινόμενο πρώτων παραγόντων}
+
+Το παρακάτω πρόγραμμα αναλύει αριθμούς σε γινόμενο παραγόντων.
+\begin{lstlisting}
+class ginomenoparagontwn():
+  def __init__(self,n):
+    self.paragontes = []
+    self.dinameis = {}
+    if type(n) == int:
+      self.arithmos = n
+      while n <1:
+        for i in range(2,n+1):
+          if n%i == 0:
+            n = n // i
+            self.paragontes.append(i)
+            break
+      self.paragontes = sorted(self.paragontes)
+      for i in self.paragontes:
+        if i not in self.dinameis:
+          self.dinameis[i] = self.paragontes.count(i)
+    elif type(n) == dict:
+      self.arithmos = 1
+      self.dinameis = n
+      for i in n:
+        self.arithmos *= i**n[i]
+      for i in n:
+        self.paragontes.extend([i]*n[i])
+      self.paragontes = sorted(self.paragontes)
+    if len(self.paragontes) < 1:
+      self.einaiPrwtos = False
+    else:
+      self.einaiPrwtos = True
+  
+  def mkd(self,other):
+    if type(other) == int:
+      other = ginomenoparagontwn(other)
+    dinameismkd = {}
+    for i in self.dinameis:
+      if i in other.dinameis:
+        dinameismkd[i] = min(self.dinameis[i],other.dinameis[i])
+    if dinameismkd == {}:
+      return(ginomenoparagontwn({1:1}))
+    else:
+      return(ginomenoparagontwn(dinameismkd))
+      
+  def ekp(self,other):
+    if type(other) == int:
+      other = ginomenoparagontwn(other)
+    dinameisekp = self.dinameis
+    for i in other.dinameis:
+      if i in dinameisekp:
+        dinameisekp[i] = max(dinameisekp[i],other.dinameis[i])
+      else:
+        dinameisekp[i] = other.dinameis[i]
+    return(ginomenoparagontwn(dinameisekp))
+    
+  def __repr__(self):
+    return(str(self.arithmos) + ':' + '*'.join([str(x) + '^' + str(self.dinameis[x]) 
+      for x in self.dinameis]) + ':' + '*'.join([str(x) for x in self.paragontes]) + 
+      (',πρώτος' if self.einaiPrwtos else ""))
+\end{lstlisting}
+\begin{exercise}
+ Να αναλυθούν οι αριθμοί 2520, 2940, 3780 σε γινόμενο πρώτων παραγόντων. \end{exercise}
+
+\begin{lstlisting}
+>>> print(ginomenoparagontwn(2520))
+2520:2^3*3^2*5^1*7^1:2*2*2*3*3*5*7
+>>> print(ginomenoparagontwn(2940))
+2940:2^2*3^1*5^1*7^2:2*2*3*5*7*7
+>>> print(ginomenoparagontwn(3780))
+3780:2^2*3^3*5^1*7^1:2*2*3*3*3*5*7
+\end{lstlisting}
+Επομένως, η ανάλυση σε γινόμενο είναι:
+$$2520 = 2^3\cdot 3^2\cdot 5\cdot 7$$
+$$2940 = 2^2\cdot 3\cdot 5\cdot 7^2$$
+$$3780 = 2^2\cdot 3^3\cdot 5\cdot 7$$
+
+Το ελάχιστο κοινό πολλαπλάσιο (Ε.Κ.Π.) υπολογίζεται ως εξής:
+
+\begin{lstlisting}
+>>> ginomenoparagontwn(2520).ekp(2940).ekp(3780)
+52920:2^3*3^3*5^1*7^2:2*2*2*3*3*3*5*7*7
+\end{lstlisting}
+επομένως Ε.Κ.Π.(2520,2940,3780) = 52920.
+Ομοίως, ο μέγιστος κοινός διαιρέτης (Μ.Κ.Δ.) υπολογίζεται ως εξής:
+
+\begin{lstlisting}
+>>> ginomenoparagontwn(2520).mkd(2940).mkd(3780)
+420:2^2*3^1*5^1*7^1:2*2*3*5*7
+\end{lstlisting}
+και Μ.Κ.Δ.(2520,2940,3780) = 420.
+
+\begin{exercise}
+ Να βρεθεί αν διαιρούνται οι αριθμοί 12510, 772, 225, 13600 με 2, 3, 4, 5, 8, 9, 10, 25, 100.\end{exercise}
+
+Η φιλοσοφία της άσκησης είναι να λυθεί με τα κριτήρια διαιρετότητας ωστόσο, στον υπολογιστή ο υπολογισμός του υπολοίπου είναι εύκολος με τον τελεστή %.
+\begin{lstlisting}
+diairetaios = [12510,772,224,13600]
+diairetis = [2,3,4,5,8,9,10,25,100]
+print(" "*5,end=',')
+for d in diairetis:
+    print(str(d).rjust(3),end = ',')
+print()
+for D in diairetaios:
+    print(str(D).rjust(5),end=',')
+    for d in diairetis:
+        if (D%d==0):
+            print('Ναι'.rjust(3),end = ',')
+        else:
+            print('Όχι'.rjust(3),end = ',')
+    print()
+\end{lstlisting}
+Το αποτέλεσμα είναι:
+\begin{lstlisting}
+     ,  2,  3,  4,  5,  8,  9, 10, 25,100,
+12510,Ναι,Ναι,Όχι,Ναι,Όχι,Ναι,Ναι,Όχι,Όχι,
+  772,Ναι,Όχι,Ναι,Όχι,Όχι,Όχι,Όχι,Όχι,Όχι,
+  224,Ναι,Όχι,Ναι,Όχι,Ναι,Όχι,Όχι,Όχι,Όχι,
+13600,Ναι,Όχι,Ναι,Ναι,Ναι,Όχι,Ναι,Ναι,Ναι,
+\end{lstlisting}
+
+Το άθροισμα των ψηφίων ενός αριθμού μπορεί να υπολογιστεί με την εξής εντολή:
+\begin{lstlisting}
+sum([int(i) for i in str(num)])
+\end{lstlisting}
+Για παράδειγμα
+\begin{lstlisting}
+>>> num = 123
+>>> sum([int(i) for i in str(num)])
+6
+\end{lstlisting}
+Αυτή η εντολή ανήκει στην κατηγορία του list comprehension. Η εναλλακτική είναι το εξής πρόγραμμα:
+\begin{lstlisting}
+athroisma = 0
+for i in str(num):
+    athroisma = athroisma + i
+\end{lstlisting}
+Το αποτέλεσμά του είναι:
+\begin{lstlisting} 
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+\end{lstlisting}
+Ο λόγος είναι σε αυτό το i είναι το κάθε ψηφίο αλλά σαν γράμμα της αλφαβήτου του υπολογιστή (αλφαριθμητικό / string). Έτσι το σωστό πρόγραμμα είναι:
+\begin{lstlisting}
+athroisma = 0
+for i in str(num):
+    athroisma = athroisma + int(i)
+\end{lstlisting}
+που υπολογίζει το άθροισμα των ψηφίων.
+
+Στην python ο τελεστής sum, υπολογίζει το άθροισμα των στοιχείων μιας λίστας όταν αυτή αποτελείται από αριθμούς για παράδειγμα
+\begin{lstlisting}
+>>> sum([1,2,3])
+6
+\end{lstlisting}
+Επομένως πρέπει να κατασκευάσουμε μια λίστα στην οποία οι αριθμοί θα είναι τα ψηφία του αρχικού αριθμού num. Η κατασκευή αυτής της λίστας μπορεί να γίνει πάλι με μία for και στη συνέχεια να υπολογιστεί το άθροισμα :
+\begin{lstlisting}
+lista = []
+for i in str(num):
+    lista.append(int(i))
+sum(lista)
+\end{lstlisting}
+Με το list comprehension όμως η δημιουργία της λίστας απλοποιείται, γράφοντας το for μέσα στον πίνακα και γίνεται:
+\begin{lstlisting}
+lista = [int(i) for i in str(num)]
+sum(lista)
+\end{lstlisting}
+και τέλος
+\begin{lstlisting}
+sum([int(i) for i in str(num)])
+\end{lstlisting}
+Το άθροισμα των ψηφίων των παραπάνω αριθμών μπορεί να υπολογιστεί με το παρακάτω πρόγραμμα:
+\begin{lstlisting}
+diairetaios = [12510,772,224,13600]
+for num in diairetaios:
+    print(num,sum([int(i) for i in str(num)]))
+\end{lstlisting}
+και είναι
+\begin{lstlisting}
+12510 9
+772 16
+224 8
+13600 10
+\end{lstlisting}
+\subsubsection{Ασκήσεις}
+\begin{exercise}
+ 1. Ισχύει ότι: (100 - 30) - 10 = 100 - (30 - 10)\end{exercise}
+
+\begin{lstlisting}
+>>> (100 - 30) - 10 == 100 - (30 - 10)
+False
+\end{lstlisting}
+         
+\begin{exercise}
+ 2. Για να πολλαπλασιάσουμε έναν αριθμό με το 11 τον πολλαπλασιάζουμε με το 10 και προσθέτουμε 1.\end{exercise}
+
+Ισχύει   
+\begin{exercise}
+ 3. To γινόμενο $3\cdot 3 \cdot 3$ γράφεται $3^3$.\end{exercise}
+
+\begin{lstlisting}
+>>> 3*3*3 == 3**3
+True 
+\end{lstlisting}
+\begin{exercise}
+ 4.     Το $2^5$ ισούται με 10.\end{exercise}
+
+\begin{lstlisting}
+>>> 2**5 == 10
+False
+\end{lstlisting}
+\begin{exercise}
+ 5. $\alpha + \alpha + \alpha + \alpha = 4 \cdot \alpha$.\end{exercise}
+
+Ισχύει
+\begin{exercise}
+ 6. $\alpha\cdot \alpha\cdot \alpha\cdot \alpha\cdot \alpha\cdot \alpha = \alpha^5$.\end{exercise}
+
+Δεν ισχύει
+\begin{exercise}
+ 7. $2^3 + 3 = 11$.\end{exercise}
+
+\begin{lstlisting}
+>>> 2**3 + 3 == 11
+True
+\end{lstlisting}     
+ \begin{exercise}
+8. $3\cdot 10^2 + 2 \cdot 10^1 + 2 \cdot 10^0 = 322$.\end{exercise}
+
+\begin{lstlisting}
+>>> 3*10**2 + 2*10**1 + 2*10**0 == 322
+True
+\end{lstlisting}    
+\begin{exercise}
+ 9.     $20 - 12 : 4 = 2$.\end{exercise}
+
+\begin{lstlisting}
+>>> 20-12/4 == 2
+False
+\end{lstlisting}    
+\begin{exercise}
+ 10. $9 \cdot 3 - 2 + 5 = 30$.\end{exercise}
+
+\begin{lstlisting}
+>>> 9*3-2+5 == 11
+False
+\end{lstlisting}             
+\begin{exercise}
+ 11. $(3 \cdot 1 - 3) : 3 = 0$.\end{exercise}
+
+\begin{lstlisting}
+>>> (3*1-3)/3 == 0
+True
+\end{lstlisting}  
+
+\begin{exercise}
+ 12. Στη σειρά των πράξεων:  $7 + (6 \cdot 5) + 4$, οι παρενθέσεις δεν χρειάζονται.\end{exercise}
+
+\begin{lstlisting}
+>>> 7+(6*5)+4 == 7+6*5+4
+True
+\end{lstlisting}  
+
+\begin{exercise}
+ 13. Η διαφορά δύο περιττών αριθμών είναι πάντα περιττός αριθμός.\end{exercise}
+
+Δεν ισχύει
+\begin{exercise}
+ 14. Αν ο αριθμός α είναι πολλαπλάσιο του αριθμού β, τότε ο α διαιρείται με το β.\end{exercise}
+
+Ισχύει   
+\begin{exercise}
+ 15.    Το 38 είναι πολλαπλάσιο του 2 και του 3.\end{exercise}
+
+\begin{lstlisting}
+>>> 38%2
+0
+>>> 38%3
+2
+\end{lstlisting}
+Το 38 δεν είναι πολλαπλάσιο του 3
+
+\begin{exercise}
+ 16. Ο αριθμός 450 διαιρείται με το 3 και το 9.\end{exercise}
+
+\begin{lstlisting}
+>>> 450%3
+0
+>>> 450%9
+0
+\end{lstlisting}
+Άρα, ο αριθμός 450 διαιρείται και με το 3 και με το 9.
+
+\begin{exercise}
+ 17. Ο 35 και ο 210 έχουν μέγιστο κοινό διαιρέτη τον αριθμό 5.\end{exercise}
+
+\begin{lstlisting}
+>>> ginomenoparagontwn(35).mkd(210)
+35:5^1*7^1:5*7
+\end{lstlisting}
+Δεν ισχύει, έχουν το 35.
+\begin{exercise}
+ 18. Το ΕΚΠ των 2 και 24 είναι ο αριθμός 48.\end{exercise}
+
+\begin{lstlisting}
+ginomenoparagontwn(2).mkd(24)
+24:2^3*3^1:2*2*2*3
+\end{lstlisting}
+\begin{exercise}
+ 19. Η διαίρεση 420 : 15 δίνει υπόλοιπο 18.\end{exercise}
+
+\begin{lstlisting}
+>>> 420 % 15
+0
+\end{lstlisting}
+Δεν ισχύει
+\begin{exercise}
+ 20. Η σχέση 177 = 5 · 35 + 2 είναι μια ευκλείδια διαίρεση.\end{exercise}
+
+\begin{lstlisting}
+>>> 177 == 5 * 35 + 2
+True
+\end{lstlisting}
+και επίσης, το υπόλοιπο (2) είναι μικρότερο του διαιρέτη 5.      
+
+\begin{exercise}
+ 21. Ο αριθμός 3 · α + 9 διαιρείται με το 3.\end{exercise}
+
+$$\frac{3\cdot \alpha +9}{3} = \alpha + 3$$
+Οπότε αν ο $\alpha$ είναι ακέραιος τότε το $3\cdot \alpha +9$ διαρείται με το 3.
+\begin{exercise}
+ 22. Ο αριθμός $300$ αναλύεται σε γινόμενο πρώτων παραγόντων ως $3\cdot 10^2$.\end{exercise}
+
+\begin{lstlisting}
+>>> ginomenoparagontwn(300)
+300:2^2*3^1*5^2:2*2*3*5*5
+\end{lstlisting}
+\begin{exercise}
+ 23. Ο αριθμός 224 διαιρείται με το 4 και το 8.\end{exercise}
+
+\begin{lstlisting}
+>>> 224%4
+0
+>>> 224%8
+0
+\end{lstlisting}
+Ισχύει!
