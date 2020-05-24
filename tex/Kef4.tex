@@ -517,3 +517,46 @@ Nα γράψεις τη δεκαδική μορφή των αριθμών:
 >>> 9.2e2
 920.0
 \end{lstlisting}
+\begin{exercise}
+\sel{66}Mια αμαξοστοιχία διανύει την απόσταση Αθήνας -
+Πύργου σε 4 ώρες και 57 λεπτά.
+Αν η αμαξοστοιχία ξεκινά από την Αθήνα στις 9:10
+π.μ. το πρωί, ποια ώρα θα φτάσει στον Πύργο;
+\end{exercise}
+Πώς μπορούμε στην Python να κάνουμε πράξεις με τις ώρες;  Υπάρχουν δύο τρόποι:
+α)
+Να τα υπολογίσουμε με όσα γνωρίζουμε:
+Έτσι αν έχουμε θέλουμε να προσθέσουμε 9h και 10m με 4h και 57m οπότε ξεκινάμε από τα λεπτά και βρίσκουμε τις ώρες μετά. Ένας τρόπος είναι λοιπόν ο εξής:
+\begin{lstlisting}
+anaxWra = 9
+anaxLepta = 10
+diarkeiaWra = 4
+diarkeiaLepta = 57
+athroismaLepta = anaxLepta + diarkeiaLepta
+telikaLepta = athroismaLepta % 60
+telikiWra = anaxWra + diarkeiaWra + athroismaLepta // 60
+print(str(telikiWra ) + ':' + str(telikaLepta))
+if telikiWra > 12:
+    print(str(telikiWra ) + ':' + str(telikaLepta - 12)+ ' μ.μ.')
+else:
+    print(str(telikiWra)+':'+str(telikaLepta) + 'π.μ.')
+\end{lstlisting}
+
+Όπως καταλαβαίνεις το θέμα δεν είναι να υπολογίσεις μια φορά το αποτέλεσμα αλλά να φτιάξεις ένα πρόγραμμα που να υπολογίζει το αποτέλεσμα αν ο χρήστης δίνει την ώρα αναχώρησης και τη διάρκεια του ταξιδιού. Αυτό μπορεί να γίνει με την input και τη split.
+\begin{lstlisting}
+anax = input('Αναχώρηση (μορφή ωω:λλ)>')
+diarkeia = input('Διάρκεια (μορφή ωω:λλ)>')
+anaxWra = int(anax.split(':')[0])
+anaxLepta = int(anax.split(':')[1])
+diarkeiaWra = int(diarkeia.split(':')[0])
+diarkeiaLepta = int(diarkeia.split(':')[1])
+athroismaLepta = anaxLepta + diarkeiaLepta
+telikaLepta = athroismaLepta % 60
+telikiWra = anaxWra + diarkeiaWra + athroismaLepta // 60
+print(str(telikiWra ) + ':' + str(telikaLepta))
+if telikiWra > 12:
+    print(str(telikiWra ) + ':' + str(telikaLepta -12)+ ' μ.μ.')
+else:
+    print(str(telikiWra)+':'+str(telikaLepta) + 'π.μ.')
+\end{lstlisting}
+
