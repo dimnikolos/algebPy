@@ -535,7 +535,6 @@ diarkeiaLepta = 57
 athroismaLepta = anaxLepta + diarkeiaLepta
 telikaLepta = athroismaLepta % 60
 telikiWra = anaxWra + diarkeiaWra + athroismaLepta // 60
-print(str(telikiWra ) + ':' + str(telikaLepta))
 if telikiWra > 12:
     print(str(telikiWra ) + ':' + str(telikaLepta - 12)+ ' μ.μ.')
 else:
@@ -553,10 +552,91 @@ diarkeiaLepta = int(diarkeia.split(':')[1])
 athroismaLepta = anaxLepta + diarkeiaLepta
 telikaLepta = athroismaLepta % 60
 telikiWra = anaxWra + diarkeiaWra + athroismaLepta // 60
-print(str(telikiWra ) + ':' + str(telikaLepta))
 if telikiWra > 12:
     print(str(telikiWra ) + ':' + str(telikaLepta -12)+ ' μ.μ.')
 else:
     print(str(telikiWra)+':'+str(telikaLepta) + 'π.μ.')
 \end{lstlisting}
+
+Το παραπάνω πρόγραμμα μας δίνει τη σωστή απάντηση σε πολλές περιπτώσεις. Όχι όμως σε όλες. Δείτε:
+\begin{lstlisting}
+Αναχώρηση (μορφή ωω:λλ)>19:30
+Διάρκεια (μορφή ωω:λλ)>5:40
+25:-2 μ.μ.
+\end{lstlisting}
+Θα πρέπει λοιπόν να φτιάξουμε το άθροισμα της ώρας να μην ξεπερνάει το 24.
+\begin{lstlisting}
+anax = input('Αναχώρηση (μορφή ωω:λλ)>')
+diarkeia = input('Διάρκεια (μορφή ωω:λλ)>')
+anaxWra = int(anax.split(':')[0])
+anaxLepta = int(anax.split(':')[1])
+diarkeiaWra = int(diarkeia.split(':')[0])
+diarkeiaLepta = int(diarkeia.split(':')[1])
+athroismaLepta = anaxLepta + diarkeiaLepta
+telikaLepta = athroismaLepta % 60
+telikiWra = (anaxWra + diarkeiaWra + athroismaLepta // 60) % 24
+if telikiWra > 12:
+    print(str(telikiWra ) + ':' + str(telikaLepta -12)+ ' μ.μ.')
+else:
+    print(str(telikiWra)+':'+str(telikaLepta) + 'π.μ.')
+\end{lstlisting}
+
+Τότε παίρνουμε το σωστό αποτέλεσμα:
+\begin{lstlisting}
+Αναχώρηση (μορφή ωω:λλ)>19:30
+Διάρκεια (μορφή ωω:λλ)>5:40
+1:10π.μ.
+\end{lstlisting}
+
+β)
+Ο δεύτερος τρόπος είναι να χρησιμοποιήσουμε τη βιβλιοθήκη datetime η οποία χρειάζεται κάποιους ειδικούς χειρισμούς.
+\begin{lstlisting}
+import datetime
+
+anax = input('Αναχώρηση (μορφή ωω:λλ)>')
+diarkeia = input('Διάρκεια (μορφή ωω:λλ)>')
+anaxWra = int(anax.split(':')[0])
+anaxLepta = int(anax.split(':')[1])
+diarkeiaWra = int(diarkeia.split(':')[0])
+diarkeiaLepta = int(diarkeia.split(':')[1])
+t = datetime.time(9,10)
+t = datetime.datetime.combine(datetime.date(2020,5,25),t)
+d = datetime.timedelta(hours = 4, minutes=57)
+print((t+d).strftime('%H:%M'))
+\end{lstlisting}
+
+Μπορούμε να μικρύνουμε λίγο ακόμη το πρόγραμμα ως εξής:
+\begin{lstlisting}
+import datetime
+
+anax = input('Αναχώρηση (μορφή ωω:λλ)>')
+diarkeia = input('Διάρκεια (μορφή ωω:λλ)>')
+t = datetime.time(int(anax.split(':')[0]),int(anax.split(':')[1]))
+t = datetime.datetime.combine(datetime.date(2020,5,25),t)
+d = datetime.timedelta(hours = int(diarkeia.split(':')[0]), 
+    minutes=int(diarkeia.split(':')[1]))
+print((t+d).strftime('%H:%M'))
+\end{lstlisting}
+
+Το αποτέλεσμα του προγράμματος με τα δεδομένα του προβλήματος είναι:
+\begin{lstlisting}
+Αναχώρηση (μορφή ωω:λλ)>9:10
+Διάρκεια (μορφή ωω:λλ)>4:57
+14:07
+\end{lstlisting}
+
+Αν δώσουμε διαφορετικά δεδομένα παίρνουμε σωστές απαντήσεις:
+\begin{lstlisting}
+Αναχώρηση (μορφή ωω:λλ)>14:10
+Διάρκεια (μορφή ωω:λλ)>5:30
+19:40
+\end{lstlisting}
+
+και για τις ειδικές περιπτώσεις:
+\begin{lstlisting}
+Αναχώρηση (μορφή ωω:λλ)>19:30
+Διάρκεια (μορφή ωω:λλ)>5:40
+01:10
+\end{lstlisting}
+
 
