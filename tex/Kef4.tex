@@ -517,6 +517,82 @@ Nα γράψεις τη δεκαδική μορφή των αριθμών:
 >>> 9.2e2
 920.0
 \end{lstlisting}
+
+\begin{exercise} 
+Η επιφάνεια ενός κύβου έχει εμβαδόν 96 cm$^2$. Να βρεθεί ο όγκος του.
+\end{exercise}
+Η λύση του βιβλίου είναι:
+
+Επειδή ο κύβος έχει 6 έδρες, η κάθε έδρα του θα έχει εμβαδόν $96\textrm{cm}^2 : 6 = 16\textrm{cm}^2$.
+
+Αλλά είναι $16\textrm{cm}^2 = 4\textrm{cm} \cdot 4\textrm{cm} = (4\textrm{cm})^2$, άρα, η ακμή του κύβου είναι 4cm.
+
+Επομένως, ο όγκος του κύβου είναι: $(4\textrm{cm})^3 = 4\textrm{cm} \cdot 4\textrm{cm} \cdot 4\textrm{cm} = 64 \textrm{cm}^3$
+
+Σε Python η λύση προχωράει ως εξής:
+\begin{lstlisting}
+>>> epifaneia = 96
+>>> epifaneiaPlevras = epifaneia/6
+16
+\end{lstlisting}
+
+Εμείς ξέρουμε ότι $4^2=16$ και μπορούμε να το θυμηθούμε. Ο υπολογιστής όμως δεν το ξέρει και πρέπει να έχει μια συνάρτηση για να υπολογίσει τον αριθμό που αν τον υψώσουμε στο τετράγωνο θα κάνει 16. Ευτυχώς, αυτή η συνάρτηση υπάρχει λέγεται sqrt και βρίσκεται στη βιβλιοθήκη math. Οπότε μπορούμε να τη χρησιμοποιήσουμε ως εξής:
+\begin{lstlisting}
+>>> import math
+>>> math.sqrt(16)
+4.0
+\end{lstlisting}
+και από εκεί μπορούμε να υπολογίσουμε τον όγκο υψώνοντας στην τρίτη.
+
+Συνολικά το πρόγραμμά μας γίνεται:
+\begin{lstlisting}
+import math
+epifaneia = 96
+epifaneiaPlevras = epifaneia/6
+akmi = math.sqrt(epifaneiaPlevras)
+ogkos = akmi**3
+print(ogkos)
+\end{lstlisting}
+που δίνει το αποτέλεσμα:
+\begin{lstlisting}
+64.0
+\end{lstlisting}
+
+Το ίδιο πρόγραμμα μπορούμε να το χρησιμοποιήσουμε και για να βρούμε τον όγκο ενός κύβου με επιφάνεια 54. Αφού έχουμε
+$54:6=9$ άρα η ακμή του κύβου είναι $3$ και ο όγκος του $27$. Το παρακάτω πρόγραμμα δίνει το σωστό αποτέλεσμα:
+\begin{lstlisting}
+import math
+epifaneia = 54
+epifaneiaPlevras = epifaneia/6
+akmi = math.sqrt(epifaneiaPlevras)
+ogkos = akmi**3
+print(ogkos)
+\end{lstlisting}
+
+Μπορούμε να γράψουμε ένα πρόγραμμα που να του δίνουμε την επιφάνεια ενός κύβου και να μας βρίσκει τον όγκο του το πρόγραμμα αυτό είναι το εξής:
+\begin{lstlisting}
+import math
+epifaneia = int(input('Δώσε επιφάνεια κύβου: '))
+epifaneiaPlevras = epifaneia/6
+akmi = math.sqrt(epifaneiaPlevras)
+ogkos = akmi**3
+print('Ο όγκος του κύβου είναι: ', ogkos)
+\end{lstlisting}
+
+Τέλος, μπορούμε να γράψουμε μια συνάρτηση που να υπολογίζει τον όγκο ενός κύβου από την επιφάνειά του:
+\begin{lstlisting}
+import math
+def ogkosapoepifaneia(epifaneia):
+    epifaneiaPlevras = epifaneia/6
+    akmi = math.sqrt(epifaneiaPlevras)
+    ogkos = akmi**3
+    return(ogkos)
+epifaneia = int(input('Δώσε επιφάνεια κύβου: '))
+print('Ο όγκος του κύβου είναι: ', ogkosapoepifaneia(epifaneia))
+\end{lstlisting}
+    
+ 
+
 \begin{exercise}
 \sel{66}Mια αμαξοστοιχία διανύει την απόσταση Αθήνας -
 Πύργου σε 4 ώρες και 57 λεπτά.
