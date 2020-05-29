@@ -821,3 +821,81 @@ print('Χάνονται ',kila, ' κιλά.')
 Μάζα κάθε σταγόνας:0.05
 Χάνονται  0.36  κιλά.
 \end{lstlisting}
+\begin{exercise}
+\sel{67}
+Να συμπληρώσεις τα κενά: (α) 23 dm = …………… cm, (β) 3,1 m = …………… Km, (γ) 45,83 cm = …………… m, (δ) 67,2 Κm = …………… mm, (ε) 95,5 mm = …………… cm. 
+\end{exercise}
+Μπορούμε να φτιάξουμε ένα πρόγραμμα που να λύνει αυτή την άσκηση. Οι μονάδες μέτρησης που μας ενδιαφέρουν είναι:
+
+mm,cm,dm,m,Km
+
+Αν υποθέσουμε ότι ξέρουμε τα χιλιοστά τότε οι υπόλοιπες μονάδες είναι $10$mm, $100$mm, $1000$mm, και $1000000$mm.
+Μπορούμε λοιπόν να φτιάξουμε έναν μετατροπέα από χιλιοστά σε οποιδήποτε άλλη μονάδα:
+\begin{lstlisting}
+def frommmto(num,mon):
+    if mon == 'mm':
+        return(num)
+    elif mon=='cm':
+        return(num/10)
+    elif mon=='dm':
+        return(num/100)
+    elif mon=='m':
+        return(num/1000)
+    elif mon=='Km':
+        return(num/1000000)
+    else:
+        return(None)
+\end{lstlisting}
+Αντίστοιχα μπορούμε να φτιάξουμε έναν μετατροπέα από οποιαδήποτε μονάδα σε χιλιοστά:
+\begin{lstlisting}
+def tommfrom(num,mon):
+    if mon == 'mm':
+        return(num)
+    elif mon=='cm':
+        return(num*10)
+    elif mon=='dm':
+        return(num*100)
+    elif mon=='m':
+        return(num*1000)
+    elif mon=='Km':
+        return(num*1000000)
+    else:
+        return(None)
+\end{lstlisting}
+Συνδυάζοντας αυτούς τους δύο μετατροπείς θα έχουμε έναν μετατροπέα από οποιαδήποτε μονάδα σε οποιαδήποτε:
+\begin{lstlisting}
+changeUnit(num,arx_mon,tel_mon):
+    mms = tommfrom(num,arx_mon)
+    if mms is not None:
+        result = frommmto(mms,tel_mon)
+        return(result)
+    else:
+        return(None)
+\end{lstlisting}
+Και ένα πρόγραμμα για δοκιμή είναι:
+\begin{lstlisting}
+changeUnit(23,'dm','cm')
+changeUnit(3.1,'m','Km')
+changeUnit(45.83,'cm','m')
+changeUnit(67.2,'Km','mm')
+changeUnit(95.5,'mm','cm')
+\end{lstlisting}
+και το αποτέλεσμα είναι:
+\begin{lstlisting}
+230.0
+0.0031
+0.45829999999999993
+67200000.0
+9.55
+\end{lstlisting}
+\begin{exercise}
+Ένα ορθογώνιο παραλληλεπίπεδο έχει ακμές μήκους α = 3,1 m, β = 4,2 m και γ= 2,3 m. Να υπολογίσεις το μήκος των ακμών του σε mm και να το γράψεις σε τυποποιημένη μορφή.
+\end{exercise}
+Χρησιμοποιώντας την ίδια συνάρτηση όπως και παραπάνω μπορούμε να γράψουμε:
+\begin{lstlisting}
+>>> mikos = changeUnit(3.1+4.2+2.3,'m','mm')
+>>> mikos
+9600.000000000002
+>>> '{:.2e}'.format(mikos)
+'9.60e+03'
+\end{lstlisting}
