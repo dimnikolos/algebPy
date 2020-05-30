@@ -10,6 +10,7 @@
 \usepackage{egyptian}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{xparse}
 \lstset{basicstyle=\ttfamily\footnotesize,language=Python,backgroundcolor = \color{lightgray},showstringspaces=false,columns=fullflexible,showstringspaces=false, morestring=[b]", morestring=[b]',keepspaces=true,
 escapeinside={(*@}{@*)}}
 \newtheorem{theorem}{Theorem}[section]
@@ -19,14 +20,21 @@ escapeinside={(*@}{@*)}}
 \setsansfont{Calibri}
 \setmonofont{Consolas}
 
-\newcommand{\sel}[1] {(Στο βιβλίο βρίσκεται στη Σελ. #1)}
+%\newcommand{\sel}[1] {(Στο βιβλίο βρίσκεται στη Σελ. #1)}
+\NewDocumentCommand\sel{om}{%
+  \IfNoValueTF{#1}
+    {(Στο βιβλίο βρίσκεται στη Σελ. #2)}%
+    {(Άσκηση #1 του βιβλίου, Σελ. #2)}
+}
+
+
 \begin{document}
 \title{$A\lambda\gamma\epsilon\beta\rho y$ \\ Μαθηματικά Γυμνασίου με Python}
 
 \author{Δημήτρης Νικολός}
 \maketitle
-\input{Kef1.tex}
-\input{Kef2.tex}
-\input{Kef3.tex}
+%\input{Kef1.tex}
+%\input{Kef2.tex}
+%\input{Kef3.tex}
 \input{Kef4.tex}
 \end{document}
