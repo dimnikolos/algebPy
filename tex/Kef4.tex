@@ -900,7 +900,7 @@ changeUnit(95.5,'mm','cm')
 '9.60e+03'
 \end{lstlisting}
 \begin{exercise}
-\sel[5]{67}
+\sel[3]{67}
 Γράψε τα παρακάτω μήκη σε αύξουσα σειρά: 986 m, 0,023 Κm, 456 cm, 678 dm.
 \end{exercise}
 Μπορούμε να χρησιμοποιήσουμε τη συνάρτηση tommfrom από παραπάνω ώστε να γίνουν πρώτα όλα ίδιες μονάδες για να συγκριθούν.
@@ -918,3 +918,156 @@ def onoma_sinartisis(x):
 \begin{lstlisting}
 [(456, 'cm'), (0.023, 'Km'), (678, 'dm'), (986, 'm')]
 \end{lstlisting}
+\begin{exercise}
+\sel[4]{67}
+Ένα ορθογώνιο παραλληλόγραμμο έχει διαστάσεις πλευρών α=23 cm και β=45 cm.
+Nα βρεις το εμβαδόν του, σε cm$^2$ και σε mm$^2$.
+\end{exercise}
+Μπορούμε να τη λύσουμε στο REPL ως εξής:
+\begin{lstlisting}
+>>> emvadosecm2 = 23*45
+>>> emvadosecm2
+1035
+>>> emvadosecm2*100
+103500
+\end{lstlisting}
+\begin{exercise}
+\sel[5]{67}
+Συμπλήρωσε τα κενά:
+(α) 56 Km$^2$=.......m$^2$, (β) 0,987 στρέμματα=.......m$^2$, (γ) 350 στρέμματα=.......m$^2$.
+\end{exercise}
+Στο REPL:
+\begin{lstlisting}
+>>> 56 * 1000000
+56000000
+>>> 0.987 * 1000
+987
+>>> 350 * 1000
+350000
+\end{lstlisting}
+(α) 56 Km$^2$=56000000m$^2$, (β) 0,987 στρέμματα=987m$^2$, (γ) 350 στρέμματα=350000m$^2$.
+\begin{exercise}
+\sel[6]{67}
+Ένα οικόπεδο έχει σχήμα τετραγώνου με πλευρά 210 m. Να υπολογίσεις το εμβαδόν
+του σε m$^2$ και σε στρέμματα.
+\end{exercise}
+\begin{lstlisting}
+>>> emvado = 210*210
+>>> emvado
+44100
+>>> emvado / 1000
+44.1
+\end{lstlisting}
+\begin{exercise}
+\sel[7]{67}
+Μια αυλή, σχήματος ορθογωνίου παραλληλογράμμου, έχει διαστάσεις 5 m και 7,2 m. Θέλουμε
+να τη στρώσουμε, με τετράγωνες πλάκες, πλευράς 40 cm.Πόσες πλάκες θα χρειαστούμε;
+\end{exercise}
+\begin{lstlisting}
+>>> emvadoorth = 5*7.2
+>>> emvadoplakas = 0,4*0,4
+>>> emvadoorth/emvadoplakas
+224.99999999999994
+\end{lstlisting}
+Δηλαδή περίπου 225 πλάκες.
+\begin{exercise}
+\sel[8]{67}
+Ο όγκος ενός στερεού είναι 15 dm$^3$ 29 cm$^3$. Να βρεις τον όγκο του στερεού σε cm$^3$, m$^3$ και mm$^3$.
+\end{exercise}
+\begin{lstlisting}
+>>> 15 * 100** 3 + 29 * 10 **3
+15029000
+>>> 15029000 / 1000
+15029
+>>> 15029/ 100**3
+0.01529
+\end{lstlisting}
+\begin{exercise}
+\sel[9]{67}
+Ένας οινοπαραγωγός έχει αποθηκεύσει το κρασί του σε 3 ίσες δεξαμενές, σχήματος
+ορθογωνίου παραλληλεπιπέδου, με διαστάσεις 3 m, 2 m και 5 m.
+Aν πουλήσει το κρασί του προς 4 ευρώ το λίτρο, πόσα χρήματα θα εισπράξει;
+\end{exercise}
+\begin{lstlisting}
+>>> 3 * 3 * 2 *5 
+90
+>>> 90 * 10 **3
+90000
+>>> 90000 * 4
+360000
+\end{lstlisting}
+\begin{exercise}
+\sel[10]{67}
+Να υπολογίσεις τον χρόνο, από τις 8h 10min το πρωί, ως τις 5h 20min το απόγευμα.
+\end{exercise}
+\begin{lstlisting}
+>>> 20 - 10
+10
+>>> 17 - 8
+9
+\end{lstlisting}
+Άρα 9h και 10min.
+H Python μπορεί να κάνει την πράξη χρησιμοποιώντας το module datetime. 
+\begin{lstlisting}
+>>> import datetime
+>>> t1str = '2015-08-12 08:10'
+>>> t1 = datetime.datetime.strptime(t1str, '%Y-%m-%d %H:%M')
+>>> t2str = '2015-08-12 17:20'
+>>> t2 = datetime.datetime.strptime(t2str, '%Y-%m-%d %H:%M')
+>>> print(t2-t1)
+9:10:00
+\end{lstlisting}
+\begin{exercise}
+\sel[11]{67}
+Συμπλήρωσε τα κενά: (α) 4h 52min=.......min=.......s, (β) 3h 12min=......min=.......s,
+(γ) 5h 20min 30s=.......min=.......s, (δ) 56min 45s=.......min=.......s
+\end{exercise}
+Γι' αυτή την άσκηση θα φτιάξουμε ένα πρόγραμμα ώστε να ζητάμε από τον χρήστη ώρες λεπτά και δευτερόλεπτα και να μας μετατρέπει το χρόνο σε λεπτά και σε δευτερόλεπτα.
+\begin{lstlisting}
+def xronosseld(wres,lepta,deutera):
+    xronossedeutera = wres * 60 * 60 + lepta * 60 + deutera
+    xronosselepta = xronossedeutera / 60
+    print(xronosselepta,' min=',xronossedeutera,' s')
+
+while True:
+    wres = int(input('Ώρες:'))
+    lepta = int(input('Λεπτα:'))
+    deutera = int(input('Δευτερόλεπτα:'))
+    xronosseld(wres,lepta,deutera)
+\end{lstlisting}
+
+Όταν εκτελέσουμε το παραπάνω πρόγραμμα θα έχουμε το εξής αποτέλεσμα:
+\begin{lstlisting}
+ Ώρες:4
+ Λεπτα:52
+ Δευτερόλεπτα:0
+ 292.0  min= 17520  s
+ Ώρες:3
+ Λεπτα:12
+ Δευτερόλεπτα:0
+ 192.0  min= 11520  s
+ Ώρες:5
+ Λεπτα:20
+ Δευτερόλεπτα:30
+ 320.5  min= 19230  s
+ Ώρες:0
+ Λεπτα:56
+ Δευτερόλεπτα:45
+ 56.75  min= 3405  s
+ Ώρες:^C
+ \end{lstlisting}
+Επειδή έχουμε βάλει \lstinline{while True} η επανάληψη γίνεται για πάντα. Για να βγούμε από το πρόγραμμα θα πατήσουμε το πλήκτρο Ctrl και το πλήκτρο C (\^C).
+\begin{exercise}
+\sel[12]{67}
+Να υπολογίσεις: (α) το $\frac{1}{10}$ της ώρας, (β) το $\frac{1}{5}$ της ώρας, (γ) το $\frac{1}{6}$ της ώρας.
+\end{exercise}
+\begin{lstlisting}
+>>> 1/10*60
+6
+>>> 1/5*60
+12
+>>> 1/6*60
+10
+\end{lstlisting}
+Άρα είναι 6 λεπτά, 12 λεπτά και 10 λεπτά.
+
