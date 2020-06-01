@@ -1071,3 +1071,63 @@ while True:
 \end{lstlisting}
 Άρα είναι 6 λεπτά, 12 λεπτά και 10 λεπτά.
 
+\begin{exercise}
+\sel[13]{68}
+Διαθέτουμε σταθμά των 50 g, 500 g και δύο σταθμά του 1 Κg. Πώς θα ζυγίσουμε
+ένα βάρος (α) 3 Κg και 600g και (β) 2 Κg και 450 g.
+\end{exercise}
+Θα προσπαθήσουμε να γράψουμε ένα πρόγραμμα που να λύνει το πρόβλημα. Τα δεδομένα είναι το βάρος σε κιλά και γραμμάρια και μια λίστα με τα σταθμά. Στη συνέχεια μετατρέπουμε το βάρος που δίνεται σε κιλά και γραμμάρια αποκλειστικά σε γραμμάρια. Ξεκινάμε από το μεγαλύτερο από τα σταθμά και βρίσκουμε πόσες φορές χωράει στο βάρος. Συνεχίζουμε την ίδια διαδικασία με το υπόλοιπο του βάρους και τα υπόλοιπα σταθμά.
+\begin{lstlisting}
+def zygisi(barosKila,barosg,stathmaseg):
+    baros = barosKila * 1000 + barosg
+    stathmos = 0
+    res = [0]*len(stathmaseg)
+    while baros>=stathmaseg[-1]:
+        if baros >= stathmaseg[stathmos]:
+            res[stathmos]=baros//stathmaseg[stathmos]
+            baros = baros % stathmaseg[stathmos]
+        stathmos += 1
+    return(res)
+
+print(zygisi(3,600,[1000,500,50]))
+print(zygisi(2,450,[1000,500,50]))
+\end{lstlisting}
+Το οποίο δίνει το σωστό αποτέλεσμα:
+\begin{lstlisting}
+[3, 1, 2]
+[2, 0, 9]
+\end{lstlisting}
+
+Αυτό το πρόγραμμα έχει ένα μειονέκτημα. Η σωστή του λειτουργία βασίζεται στο να δώσει ο χρήστης τα σταθμά ξεκινώντας από το μεγαλύτερο προς το μικρότερο. Δες τι θα συμβεί αν εκτελέσουμε:
+\begin{lstlisting}
+print(zygisi(3,600,[1000,50,500]))
+print(zygisi(2,450,[50,500,100]))
+\end{lstlisting}
+\begin{lstlisting}
+[3, 12, 0]
+[49, 0, 0]
+\end{lstlisting}
+Μπορείς να το αποφύγεις με κάποιες αλλαγές στον κώδικα. Η βασική αλλαγή είναι πως αντί να ελέγχεις το stathmaseg[stathmos] βασιζόμενος ότι αυτό θα είναι το μεγαλύτερο να ελέγχεις με το max(stathmaseg). Θα πρέπει όμως μετά να βάλεις το αποτέλεσμα στη σωστή θέση. Η θέση αυτή είναι stathmaseg.index(max(stathmaseg)). Όμως θα πρέπει να διαγράφουμε κάθε φορά το μεγαλύτερο στοιχείο ώστε η max να μην το ξαναεπιστρέψει. Για αυτό θα χρειαστεί να κάνουμε ένα αντίγραφο της λίστας πάνω στο οποίο δουλεύουμε χωρίς να πειράξουμε το stathmaseg. Συνολικά:
+\begin{lstlisting}
+def zygisi(barosKila,barosg,stathmaseg):
+    baros = barosKila * 1000 + barosg
+    stathmos = 0
+    res = [0]*len(stathmaseg)
+    s = list(stathmaseg)
+    while baros>=min(s):
+        if baros >= max(s):
+            res[stathmaseg.index(max(s))]=baros//max(s)
+            baros = baros % max(s)
+        s.pop(s.index(max(s)))
+        if not s:
+            break
+    return(res)
+
+print(zygisi(3,600,[1000,50,500]))
+print(zygisi(2,450,[50,500,1000]))
+\end{lstlisting}
+Με αυτόν τον τρόπο έχεις το σωστό αποτέλεσμα που είναι:
+\begin{lstlisting}
+[3, 2, 1]
+[9, 0, 2]
+\end{lstlisting}
