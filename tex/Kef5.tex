@@ -21,3 +21,38 @@ from sympy import *
 (ε) $15 \cdot \beta – 9 \cdot \beta$.
 \end{exercise}
 
+Επειδή τα σύμβολα είναι τα $x, a, b$ θα πρέπει να τα δηλώσουμε στο sympy. Αυτό γίνεται ως εξής:
+\begin{lstlisting}
+from sympy import *
+x,a,b = symbols("x a b")
+\end{lstlisting}
+
+Στη συνέχεια όποτε αναφέρουμε τα $x, a, b$ η Python θα καταλαβαίνει ότι πρόκειται για σύμβολα και θα δρα ανάλογα.
+Έτσι αν δώσουμε στην Python
+\begin{lstlisting}
+>>> x + x + x + x
+\end{lstlisting}
+Θα μας δώσει ως απάντηση
+$$4x$$
+στο live.sympy.org
+και
+\begin{lstlisting}
+4*x
+\end{lstlisting}
+στην απλή Python ή στο Mu Editor.
+Άρα το 
+\begin{lstlisting}
+>>> a + a + a + b + b
+\end{lstlisting}
+Θα μας δώσει σαν απάντηση:
+$$3a+2b$$
+και τα 
+\begin{lstlisting}
+>>> 3*a + 5*a 
+>>> 18*x + 7*x + 4*x
+>>> 15*b - 9b
+\end{lstlistling}
+$$8a$$
+$$29x$$
+$$6b$$
+αντίστοιχα.
