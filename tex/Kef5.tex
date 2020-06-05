@@ -56,3 +56,232 @@ $$8a$$
 $$29x$$
 $$6b$$
 αντίστοιχα.
+\begin{exercise}
+Να αντικαταστήσεις το x, με τους αριθμούς 1, 3, 4, 5, 6 και 11, σε κάθε ισότητα της πρώτης στήλης, του παρακάτω πίνακα. Βρες ποιος από αυτούς την επαληθεύει και ποιος όχι.
+\begin{tabular}[|c|c|c|]
+Εξίσωση 	       &Αριθμοί που την επαληθεύουν 	&Αριθμοί που δεν την επαληθεύουν\\
+x – 4 = 1        &                             &                                \\
+5 – x = 4        &                             &                                \\
+2x = 8           &                             &                                \\
+\frac{6}{x} = 2  &                             &                                \\
+\frac{x}{2} = 3  &                             &                                \\
+x + 7 = 30 	  	 &                             &                                \\
+\end{tabular}
+\end{exercise}
+
+\begin{lstlisting}
+>>> e = x - 4
+>>> e.subs(x,1)
+\end{lstlisting}
+$$−3$$
+\begin{lstlisting}
+>>> e.subs(x,3)
+\end{lstlisting}
+$$−1$$
+\begin{lstlisting}
+>>> e.subs(x,4)
+\end{lstlisting}
+$$0$$
+\begin{lstlisting}
+>>> e.subs(x,5)
+\end{lstlisting}
+$$1$$
+\begin{lstlisting}
+>>> e.subs(x,6)
+\end{lstlisting}
+$$2$$
+\begin{lstlisting}
+>>> e.subs(x,11)
+\end{lstlisting}
+$$7$$
+
+Οπότε ο αριθμός που την επαληθεύει είναι ο 5 και όλοι οι υπόλοιποι δεν την επαληθεύουν.
+
+\begin{lstlisting}
+>>> e = 5 - x
+>>> e.subs(x,1)
+\end{lstlisting}
+$$4$$
+\begin{lstlisting}
+>>> e.subs(x,3)
+\end{lstlisting}
+$$2$$
+\begin{lstlisting}
+>>> e.subs(x,4)
+\end{lstlisting}
+$$1$$
+\begin{lstlisting}
+>>> e.subs(x,5)
+\end{lstlisting}
+$$0$$
+\begin{lstlisting}
+>>> e.subs(x,6)
+\end{lstlisting}
+$$-1$$
+\begin{lstlisting}
+>>> e.subs(x,11)
+\end{lstlisting}
+$$-6$$
+
+Οπότε ο αριθμός που την επαληθεύει είναι ο 1 και όλοι οι υπόλοιποι δεν την επαληθεύουν.
+
+\begin{lstlisting}
+>>> e = 2*x
+>>> e.subs(x,1)
+\end{lstlisting}
+$$2$$
+\begin{lstlisting}
+>>> e.subs(x,3)
+\end{lstlisting}
+$$6$$
+\begin{lstlisting}
+>>> e.subs(x,4)
+\end{lstlisting}
+$$8$$
+\begin{lstlisting}
+>>> e.subs(x,5)
+\end{lstlisting}
+$$10$$
+\begin{lstlisting}
+>>> e.subs(x,6)
+\end{lstlisting}
+$$12$$
+\begin{lstlisting}
+>>> e.subs(x,11)
+\end{lstlisting}
+$$22$$
+
+Οπότε ο αριθμός που την επαληθεύει είναι ο 4 και όλοι οι υπόλοιποι δεν την επαληθεύουν.
+
+\begin{lstlisting}
+>>> e = 6/x
+>>> e.subs(x,1)
+\end{lstlisting}
+$$6$$
+\begin{lstlisting}
+>>> e.subs(x,3)
+\end{lstlisting}
+$$2$$
+\begin{lstlisting}
+>>> e.subs(x,4)
+\end{lstlisting}
+$$\frac{3}{2}$$
+\begin{lstlisting}
+>>> e.subs(x,5)
+\end{lstlisting}
+$$\frac{6}{5}$$
+\begin{lstlisting}
+>>> e.subs(x,6)
+\end{lstlisting}
+$$1$$
+\begin{lstlisting}
+>>> e.subs(x,11)
+\end{lstlisting}
+$$\frac{6}{11}$$
+
+Οπότε ο αριθμός 3 επαληθεύει την εξίσωση και όλοι οι υπόλοιποι δεν την επαληθεύουν:
+
+
+\begin{lstlisting}
+>>> e = x/2
+>>> e.subs(x,1)
+\end{lstlisting}
+$$6$$
+\begin{lstlisting}
+>>> e.subs(x,3)
+\end{lstlisting}
+$$2$$
+\begin{lstlisting}
+>>> e.subs(x,4)
+\end{lstlisting}
+$$\frac{3}{2}$$
+\begin{lstlisting}
+>>> e.subs(x,5)
+\end{lstlisting}
+$$\frac{6}{5}$$
+\begin{lstlisting}
+>>> e.subs(x,6)
+\end{lstlisting}
+$$1$$
+\begin{lstlisting}
+>>> e.subs(x,11)
+\end{lstlisting}
+$$\frac{6}{11}$$
+
+\begin{lstlisting}
+>>> e = x/2
+>>> e.subs(x,1)
+\end{lstlisting}
+$$\frac{1}{2}$$
+
+\begin{lstlisting}
+>>> e.subs(x,3)
+\end{lstlisting}
+$$\frac{3}{2}$$
+
+\begin{lstlisting}
+>>> e.subs(x,4)
+\end{lstlisting}
+$$2$$
+
+\begin{lstlisting}
+>>> e.subs(x,5)
+\end{lstlisting}
+$$\frac{5}{2}$$
+
+\begin{lstlisting}
+>>> e.subs(x,6)
+\end{lstlisting}
+$$3$$
+\begin{lstlisting}
+>>> e.subs(x,11)
+\end{lstlisting}
+$$\frac{11}{2}$$
+
+Ο αριθμός που επαληθεύει την εξίσωση είναι ο 6, οι υπόλοιποι αριθμοί δεν την επαληθεύουν.
+
+\begin{lstlisting}
+>>> e = x + 7
+>>> e.subs(x,1)
+\end{lstlisting}
+$$8$$
+
+\begin{lstlisting}
+>>> e.subs(x,3)
+\end{lstlisting}
+$$10$$
+
+\begin{lstlisting}
+>>> e.subs(x,4)
+\end{lstlisting}
+$$11$$
+
+\begin{lstlisting}
+>>> e.subs(x,5)
+\end{lstlisting}
+$$12$$
+
+\begin{lstlisting}
+>>> e.subs(x,6)
+\end{lstlisting}
+$$13$$
+\begin{lstlisting}
+>>> e.subs(x,11)
+\end{lstlisting}
+$$18$$
+
+Κανένας από αυτούς τους αριθμούς δεν επαληθεύει την εξίσωση, οπότε:
+
+\begin{tabular}[|c|c|c|]
+Εξίσωση 	       &Αριθμοί που την επαληθεύουν  &Αριθμοί που δεν την επαληθεύουν\\
+x – 4 = 1        &            5                &          1, 3, 4, 6 και 11    \\
+5 – x = 4        &            1                &          3, 4, 5, 6 και 11    \\
+2x = 8           &            4                &          1, 3, 5, 6 και 11    \\
+\frac{6}{x} = 2  &            3                &          1, 4, 5, 6 και 11    \\
+\frac{x}{2} = 3  &            6                &          1, 3, 4, 5 και 11    \\
+x + 7 = 30 	  	 &                             &          1, 3, 4, 5, 6 και 11 \\
+\end{tabular}
+
+>>> for e in exprs: 
+...     for (i,xi) in enumerate([1,3,4,5,6,11]):
+...         print(e,xi,e.subs(x,xi),res[i])
