@@ -416,3 +416,48 @@ $$w$$
 >>> e.subs(e,x,12)
 \end{lstlisting}
 $$25$$
+\begin{exercise}
+\sel[8]{74}
+Τοποθέτησε ένα “Χ” στη θέση εκείνη που ο αριθμός επαληθεύει την αντίστοιχη εξίσωση:
+
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+&1&2&3&4&5&6&7&8\\
+$x – 2 = 4$&&&&&&&&\\
+$1 + y = 4$&&&&&&&&\\
+$18 – \omega = 10$&&&&&&&&\\
+$2 – \alpha = 1$&&&&&&&&\\
+$93 – \beta = 86$&&&&&&&&\\
+\end{tabular}
+\end{exercise}
+Χρησιμοποιώντας έναν πίνακα για τα αποτελέσματα res γράφουμε:
+\begin{lstlisting}
+from sympy import *
+x,y,w,a,b  = symbols('x y w a b')
+s = [x,y,w,a,b]
+e = [x-2,1+y,18-w,2-a,93-b]
+res = [4,4,10,1,86]
+for (en,expr) in enumerate(e):
+    for i in range(9):
+        if expr.subs(s[en],i) == res[en]:
+            print('X',end='')
+        else:
+            print('O',end='')
+    print()
+\end{lstlisting}
+που δίνει το αποτέλεσμα
+\begin{lstlisting}
+OOOOOOXOO
+OOOXOOOOO
+OOOOOOOOX
+OXOOOOOOO
+OOOOOOOXO
+\end{lstlisting}
+οπότε ο πίνακας διαμορφώνεται ως εξής:
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+&1&2&3&4&5&6&7&8\\
+$x – 2 = 4$&&&&&&Χ&&\\
+$1 + y = 4$&&&&Χ&&&&\\
+$18 – \omega = 10$&&&&&&&&Χ\\
+$2 – \alpha = 1$&&Χ&&&&&&\\
+$93 – \beta = 86$&&&&&&&Χ&\\
+\end{tabular}
