@@ -1,0 +1,40 @@
+C:/Users/dniko/Documents/anastasia/quartus/onecyclemips/mips/test.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/dniko/Documents/anastasia/quartus/onecyclemips/mips/test.vhd
+Model Technology ModelSim ALTERA vcom 10.3d Compiler 2014.10 Oct  7 2014
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity TEST
+-- Compiling architecture BEH of TEST
+
+} {} {}} C:/Users/dniko/Documents/anastasia/quartus/onecyclemips/mips/clock.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/dniko/Documents/anastasia/quartus/onecyclemips/mips/clock.vhd
+Model Technology ModelSim ALTERA vcom 10.3d Compiler 2014.10 Oct  7 2014
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity theclock
+-- Compiling architecture behavior of theclock
+
+} {} {}} C:/Users/dniko/Documents/anastasia/quartus/onecyclemips/mips/dmemory.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/dniko/Documents/anastasia/quartus/onecyclemips/mips/dmemory.vhd
+Model Technology ModelSim ALTERA vcom 10.3d Compiler 2014.10 Oct  7 2014
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_SIGNED
+-- Loading package altera_mf_components
+-- Compiling entity dmemory
+-- Compiling architecture behavior of dmemory
+
+} {} {}} C:/Users/dniko/Documents/anastasia/quartus/onecyclemips/mips/mips.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/dniko/Documents/anastasia/quartus/onecyclemips/mips/mips.vhd
+Model Technology ModelSim ALTERA vcom 10.3d Compiler 2014.10 Oct  7 2014
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Compiling entity MIPS
+-- Compiling architecture structure of MIPS
+
+} {} {}}
