@@ -1,0 +1,117 @@
+\chapter{Ποσοστά}
+Στον διπλανό πίνακα φαίνεται το σύνολο των
+πολιτών που ψήφισαν στα χωριά
+Α, Β, Γ και Δ και οι ψήφοι που πήραν οι
+αντίστοιχοι πρόεδροι που εκλέχτηκαν.
+Βρες, ποιος από τους προέδρους που
+εκλέχτηκαν, είναι ο πιο δημοφιλής.
+
+\begin{tabular}{ccc}
+Κοινότητα & Ψηφίσαντες & Ο πρόεδρος ψηφίστηκε από\\
+A& 585& 354\\
+B& 3.460& 1.802\\
+Γ& 456&312\\
+Δ&1.295&823\\
+\end{tabular}	
+
+\begin{lstlisting}
+>>> 354/585
+0.6051282051282051
+\end{lstlisting}
+Όμως για να το κάνουμε σαν ποσοστό \% τότε θα πρέπει να το πολλαπλασιάσουμε με το 100 οπότε:
+\begin{lstlisting}
+>>> 354/585*100
+60.51282051282051
+\end{lstlisting}
+Επίσης καλό είναι η στρογγυλοποίηση να γίνει στο δεύτερο δεκαδικό ψηφίο. Οπότε 
+\begin{lstlisting}
+>>> round(354/585*100,2)
+60.51
+\end{lstlisting}
+Μπορούμε να φτιάξουμε μια μικρή συνάρτηση που να τυπώνει σε ποσοστό έναν αριθμό ως εξής:
+\begin{lstlisting}
+def pososto(x):
+    print(str(round(x*100,2))+'%')
+
+pososto(354/585)
+\end{lstlisting}
+
+Που  δίνει το αποτέλεσμα 60.51\%
+Οπότε έχουμε
+\begin{lstlisting}
+>>> pososto(354/585)
+60.51%
+>>> pososto(1802/3460)
+52.08%
+>>> pososto(312/456)
+68.42%
+>>> pososto(823/1295)
+63.55%
+\end{lstlisting}
+
+Ο πιο δημοφιλής είναι ο Γ που έχει 68.42\%.
+Αν θέλουμε όμως η Python να λύσει το πρόβλημα τότε μπορούμε να φτιάξουμε το εξής:
+\begin{lstlisting}
+class proedros():
+    def __init__(self,onoma,psifoi,katoikoi):
+        self.onoma = onoma
+        self.psifoi = psifoi
+        self.katoikoi = katoikoi
+    def pososto(self):
+        return(round(self.psifoi/self.katoikoi*100,2))
+
+A = proedros('A',354,585)
+B = proedros('B',1802,3460)
+C = proedros('C',312,456)
+D = proedros('D',823,1295)
+
+M = max([A,B,C,D],key=lambda x:x.pososto());
+print(M.onoma)
+\end{lstlisting}
+
+Που δίνει το αποτέλεσμα C δηλαδή Γ.
+
+\begin{exercise}
+Να γραφούν, ως ποσοστά επί τοις εκατό, τα παρακάτω κλάσματα:
+(α) $\frac{4}{5}$
+(β) $\frac{3}{8}$
+(γ) $\frac{84}{91}$
+
+με στρογγυλοποίηση στο εκατοστό.
+\end{exercise}
+
+Επειδή η συνάρτηση που έχουμε φτιάξει δεν προσαρμόζει την στρογγυλοποίηση μπορείς να την αλλάξεις ώστε να έχει έξτρα αυτό το δεδομένο. Μάλιστα μπορείς να δηλώσεις στην Python ότι αν δεν γράψεις αυτό το στοιχέιο θα είναι 0.
+\begin{lstlisting}
+def pososto(x,strog = 2):
+    print(str(round(x*100,strog))+'%')
+
+pososto(4/5,strog=0)
+pososto(3/8,strog=0)
+pososto(84/91,strog=0)
+\end{lstlisting}
+
+Έχουμε το αποτέλεσμα:
+\begin{lstlisting}
+80.0%
+38.0%
+92.0%
+\end{lstlisting}
+Μπορείς να αλλάξεις τη συνάρτηση ώστε να κάνει το αποτέλεσμα ακέραιο ειδικά αν το strog είναι 0.
+\begin{lstlisting}
+def pososto(x,strog = 2):
+    if strog == 0:
+        print(str(int(round(x*100),0))+'%')
+    else:
+        print(round(int(x*100),strog)+'%')
+
+pososto(4/5,strog=0)
+pososto(3/8,strog=0)
+pososto(84/91,strog=0)
+\end{lstlisting}
+
+Τότε το αποτέλεσμα θα είναι:
+\begin{lstlisting}
+80%
+37%<--!!!!!!!!!!!!!
+92%
+\end{lstlisting}
