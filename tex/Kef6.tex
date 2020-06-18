@@ -115,3 +115,38 @@ pososto(84/91,strog=0)
 37%<--!!!!!!!!!!!!!
 92%
 \end{lstlisting}
+\begin{exercise}
+\sel{81}
+Να γραφούν, ως κλάσματα, τα ακόλουθα ποσοστά: (α) 12\%, (β) 73\%, (γ) 32,5\%.
+\end{exercise}
+
+\begin{lstlisting}
+from fractions import Fraction
+strx = input('Ποσοστό:')
+if strx[-1] == '%':
+    strx=strx[:-1]
+
+fx = float(strx)
+denom = 100
+while int(fx) != fx:
+    fx *= 10
+    denom *= 10
+fx = int(fx)
+print(Fraction(fx,denom))
+\end{lstlisting}
+\begin{lstlisting}
+Ποσοστό:12
+3/25
+Ποσοστό:73
+73/100
+Ποσοστό:32.5
+13/40
+\end{lstlisting}
+\begin{exercise}
+\sel{81}
+Ποια θα είναι η τιμή πώλησης ενός πουλόβερ, αξίας 150€, με επιβάρυνση Φ.Π.Α. 19\%;
+\end{exercise}
+\begin{lstlisting}
+>>> 150 + 150*19/100
+178.5
+\end{lstlisting}
