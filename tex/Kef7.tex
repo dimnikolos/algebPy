@@ -84,3 +84,100 @@ plt.show()
 \begin{figure}
 \includegraphics{graph3.png}
 \end{figure}
+
+\begin{exercise}
+\sel{90}
+Συμπλήρωσε τον παρακάτω πίνακα:
+\begin{table}
+\begin{tabular}{|l|c|c|c|}
+Πλευρά τετραγώνου& 1,5 cm& 4 cm& 4,5 cm\\\hline
+Περίμετρος τετραγώνου&&&\\\hline
+\end{tabular}
+\end{table}
+\begin{itemize}
+\item Εξήγησε πώς προκύπτουν οι αριθμοί της δεύτερης σειράς.
+\item Βρες για κάθε τετράγωνο το κλάσμα πλευρά προς περίμετρο.
+\item Ποιο είναι το συμπέρασμα που βγάζεις;
+\end{itemize}
+\end{exercise}
+\begin{lstlisting}
+>>> 4*1.5
+6.0
+>>> 4*4
+16
+>>> 4*4.5
+18.0
+\end{lstlisting}
+\begin{tabular}{|l|c|c|c|}
+Πλευρά τετραγώνου& 1,5 cm& 4 cm& 4,5 cm\\\hline
+Περίμετρος τετραγώνου&6&16&18\\\hline
+\end{tabular}
+Θυμηθείτε το ποσοστό σε κλάσμα:
+\begin{lstlisting}
+def posostoseklasma(fx):
+    fx = float(fx)
+    denom = 100
+    while int(fx) != fx:
+         fx *= 10
+         denom *= 10
+    fx = int(fx)
+    return(Fraction(fx,denom))
+\end{lstlisting}
+Το fx είναι είναι ο αριθμητής ενός κλάσματος με παρονομαστή 100. Εδώ δεν θα υπάρχει ο παρονομαστής 100 οπότε έχουμε denom = 1.
+\begin{lstlisting}
+def posostoseklasma(fx):
+    fx = float(fx)
+    denom = 1
+    while int(fx) != fx:
+         fx *= 10
+         denom *= 10
+    fx = int(fx)
+    return(Fraction(fx,denom))
+
+posostoseklasma(1.5/6)
+posostoseklasma(4/16)
+posostoseklasma(4.5/18)
+\end{lstlisting}
+και το αποτέλεσμα είναι:
+\begin{lstlisting}
+>>> posostoseklasma(1.5/6)
+Fraction(1, 4)
+>>> posostoseklasma(4/16)
+Fraction(1, 4)
+>>> posostoseklasma(4.5/18)
+Fraction(1, 4)
+\end{lstlisting}
+Άρα παντού το κλάσμα είναι $\frac{1}{4}$.
+\begin{exercise}
+\sel{90}
+Χρησιμοποιούμε τη φωτογραφική μηχανή
+για να απεικονίσουμε εικόνες αντικει-
+μένων. Οι εικόνες αυτές δείχνουν τα
+πραγματικά αντικείμενα σε σμίκρυνση.
+Στη φωτογραφία το ύψος ενός παιδιού
+είναι 2 cm ενώ γνωρίζουμε ότι το πραγμα-
+τικό του ύψος είναι 1,65 m = 165 cm. Πόση θα είναι τότε η σμίκρυνσή του
+στη φωτογραφία;
+\end{exercise}
+\begin{lstlisting}
+>>> 2/165
+0.012121212121212121
+\end{lstlisting}
+
+\begin{exercise}
+\sel{91}
+Μετρούμε μια απόσταση, σε χάρτη, με κλίμακα 1:10.000.000 και τη βρίσκουμε
+ίση με 2,4 cm. Ποια είναι η πραγματική απόσταση των δύο σημείων;
+\end{exercise}
+\begin{lstlisting}
+>>> x = 2.4*10000000
+>>> x
+24000000
+>>> x = x/100
+>>> x
+240000
+>>> x = x/1000
+>>> x
+240
+\end{lstlisting}
+240Km
