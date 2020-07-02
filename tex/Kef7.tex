@@ -125,7 +125,7 @@ def posostoseklasma(fx):
 \end{lstlisting}
 Το fx είναι είναι ο αριθμητής ενός κλάσματος με παρονομαστή 100. Εδώ δεν θα υπάρχει ο παρονομαστής 100 οπότε έχουμε denom = 1.
 \begin{lstlisting}
-def posostoseklasma(fx):
+def dekadikosseklasma(fx):
     fx = float(fx)
     denom = 1
     while int(fx) != fx:
@@ -134,29 +134,27 @@ def posostoseklasma(fx):
     fx = int(fx)
     return(Fraction(fx,denom))
 
-posostoseklasma(1.5/6)
-posostoseklasma(4/16)
-posostoseklasma(4.5/18)
+dekadikosseklasma(1.5/6)
+dekadikosseklasma(4/16)
+dekadikosseklasma(4.5/18)
 \end{lstlisting}
 και το αποτέλεσμα είναι:
 \begin{lstlisting}
->>> posostoseklasma(1.5/6)
+>>> dekadikosseklasma(1.5/6)
 Fraction(1, 4)
->>> posostoseklasma(4/16)
+>>> dekadikosseklasma(4/16)
 Fraction(1, 4)
->>> posostoseklasma(4.5/18)
+>>> dekadikosseklasma(4.5/18)
 Fraction(1, 4)
 \end{lstlisting}
 Άρα παντού το κλάσμα είναι $\frac{1}{4}$.
 \begin{exercise}
 \sel{90}
 Χρησιμοποιούμε τη φωτογραφική μηχανή
-για να απεικονίσουμε εικόνες αντικει-
-μένων. Οι εικόνες αυτές δείχνουν τα
+για να απεικονίσουμε εικόνες αντικειμένων. Οι εικόνες αυτές δείχνουν τα
 πραγματικά αντικείμενα σε σμίκρυνση.
 Στη φωτογραφία το ύψος ενός παιδιού
-είναι 2 cm ενώ γνωρίζουμε ότι το πραγμα-
-τικό του ύψος είναι 1,65 m = 165 cm. Πόση θα είναι τότε η σμίκρυνσή του
+είναι 2 cm ενώ γνωρίζουμε ότι το πραγματικό του ύψος είναι 1,65 m = 165 cm. Πόση θα είναι τότε η σμίκρυνσή του
 στη φωτογραφία;
 \end{exercise}
 \begin{lstlisting}
@@ -181,3 +179,111 @@ Fraction(1, 4)
 240
 \end{lstlisting}
 240Km
+\begin{exercise}
+\sel[3]{92}
+Σε μια φωτογραφία το ύψος ενός ανθρώπου είναι 4 cm, ενώ το
+πραγματικό το ύψος είναι 1,76 m. Πόσο έχει σμικρυνθεί η εικόνα του
+ανθρώπου στη φωτογραφία;
+\end{exercise}
+\begin{lstlisting}
+def pososto(x):
+    print(str(round(x*100,2))+'%')
+\end{lstlisting}
+Αν θυμηθούμε τη συνάρτηση pososto τότε
+\begin{lstlisting}
+>>> pososto(4/176)
+2.27%
+\end{lstlisting}
+\begin{exercise}
+\sel[4]{92}Ένας προβολέας διαφανειών προβάλλει το κείμενο μιας διαφάνειας στον απέναντι
+τοίχο. Αν ένα ``A'' έχει ύψος 7 mm στη διαφάνεια και 4,2 cm στον τοίχο, ποια είναι η
+μεγέθυνση που δίνει ο προβολέας
+\end{exercise}
+\begin{lstlisting}
+>>> pososto(4.2/0.7)
+600%
+\end{lstlisting}
+\begin{exercise}
+\sel[5]{92}
+Η σύνθεση μιας μπλούζας είναι 80\% βαμβάκι και το υπόλοιπο πολυεστέρας. Aν η μπλούζα
+ζυγίζει 820 gr, πόσα γραμμάρια ζυγίζουν τα νήματα του πολυεστέρα που περιέχει;
+\end{exercise}
+\begin{lstlisting}
+>>> 820*20/100
+164.0
+\end{lstlisting}
+\begin{exercise}
+\sel[6]{92}
+Να συμπληρωθεί ο πίνακας
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Κλίμακα&1:5&3:8&1:30&&1:100\\\hline
+Μήκος σε σχέδιο&4cm &&12cm&2cm&3,5cm\\\hline
+Πραγματικό ύψος&&24m&&10m&\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+>>> from fractions import Fraction
+>>> 5*4
+20
+>>> 3/8*24
+9.0
+>>> 12*30
+360
+>>> Fraction(2,1000)
+Fraction(1, 500)
+>>> 3.5*100
+350
+\end{lstlisting}
+Άρα ο πίνακας γίνεται:
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Κλίμακα&1:5&3:8&1:30&1:500&1:100\\\hline
+Μήκος σε σχέδιο&4cm &9cm&12cm&2cm&3,5cm\\\hline
+Πραγματικό ύψος&20cm&24m&360cm&10m&350cm\\\hline
+\end{tabular}
+\end{table}
+\begin{exercise}
+\sel[7]{92}
+Οι διαστάσεις ενός ορθογωνίου παραλληλογράμμου είναι $x+2$ και $x$.
+
+(α) Να γράψεις τη σχέση που συνδέει την περίμετρο Π του ορθογωνίου με το x.
+
+(β) Να συμπληρώσεις τον πίνακα:
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+x&&2&&4\\\hline
+Π&8&&16&\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+α)
+\begin{lstlisting}
+>>> from sympy import *
+>>> x = symbols('x')
+>>> p = x+x+2+x+x+2
+>>> p
+4*x + 4
+\end{lstlisting}
+β)
+\begin{lstlisting}
+>>> solve(p-8)
+[1]
+>>> p.subs(x,2)
+12
+>>> solve(p-16)
+[3]
+>>> p.subs(x,4)
+20
+\end{lstlisting}
+και ο πίνακας γίνεται:
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+x&1 &2  &3  &4\\\hline
+Π&8&12&16&20\\\hline
+\end{tabular}
+\end{table}
