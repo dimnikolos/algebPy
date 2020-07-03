@@ -287,3 +287,171 @@ x&1 &2  &3  &4\\\hline
 Π&8&12&16&20\\\hline
 \end{tabular}
 \end{table}
+\begin{exercise}
+\sel[8]{92}
+Aν οι διαστάσεις ενός δωματίου, σε ένα σχέδιο με κλίμακα 1:250, είναι 3x5, οι
+πραγματικές διαστάσεις του δωματίου θα είναι .....x..... .
+\end{exercise}
+\begin{lstlisting}
+>>> 3*250
+750
+>>> 5*250
+1250
+\end{lstlisting}
+Οπότε το δωμάτιο είναι 7,5m x 12,5m αν οι διαστάσεις ήταν σε cm.
+\begin{exercise}
+\sel[9]{92}
+Αν ανακατέψουμε 2 κιλά κόκκινο χρώμα και 3 κιλά κίτρινο χρώμα,
+φτιάχνουμε μια συγκεκριμένη απόχρωση του πορτοκαλί. Αν
+ανακατέψεις 5 κιλά κόκκινο χρώμα και 6 κιλά κίτρινο, θα πάρεις
+την ίδια απόχρωση; Δικαιολόγησε την απάντησή σου.
+\end{exercise}
+\begin{lstlisting}
+>>> 3/2 == 6/5
+False
+\end{lstlisting}
+Όχι δεν είναι η ίδια απόχρωση.
+\begin{exercise}
+\sel[2]{93} Όταν ο Κώστας έκλεισε τα δώδεκα χρόνια είχε το ένα τρίτο της
+ηλικίας της μητέρας του. Όταν θα γίνει είκοσι χρόνων, ο λόγος των
+δύο ηλικιών τους θα παραμείνει ο ίδιος;
+\end{exercise}
+\begin{lstlisting}
+>>> ilikiaMiteras = 3*12
+>>> ilikiaMiteras
+36
+>>> xronia = 20-12
+>>> xronia
+8
+>>> neailikiaMiteras = ilikiaMiteras + xronia
+>>> neailikiaMiteras = 44
+>>> 44/20 == 36/12
+False
+\end{lstlisting}
+Άρα όχι.
+\begin{exercise}
+Να συμπληρωθεί ο πίνακας, αν γνωρίζουμε ότι τα ποσά x και 􀁜 είναι ανάλογα, με
+συντελεστή αναλογίας $\alpha = \frac{2}{3}$.
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c}
+\hline
+x &0 &1 &0,3& &\\\hline
+y &    &  &       & $\frac{5}{3}$ & 3\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+$$
+y = \frac{2}{3}x
+$$
+\begin{lstlisting}
+>>> from sympy import *
+>>> (x,y) = symbols('x y')
+>>> e = 2/3*x
+>>> e.subs(x,0)
+0
+>>> e.subs(x,1)
+0.666666666666667
+>>> e.subs(x,0.3)
+0.200000000000000
+>>> solve(e-5/3)
+[2.50000000000000]
+>>> solve(e-3)
+[4.50000000000000]
+\end{lstlisting}
+Και ο πίνακας γίνεται:
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c}
+\hline
+x &0 &1 &0,3& 2,5&4,5\\\hline
+y & 0   & 0,6666 & 0,2      & $\frac{5}{3}$ & 3\\\hline
+\end{tabular}
+\end{table}
+\begin{exercise}
+\sel[2]{92}
+Σε ένα διάλυμα ζάχαρης η περιεκτικότητα σε ζάχαρη είναι 23\%. Πόσα γραμμάρια
+ζάχαρης υπάρχουν σε 300 gr διαλύματος;
+\end{exercise}
+\begin{lstlisting}
+>>> 300*23/100
+69.0
+\end{lstlisting}
+\begin{exercise}
+\sel[3]{97}
+Ένα πλοίο έχει σταθερή ταχύτητα και καλύπτει απόσταση 80 Km σε 2 ώρες. Σε πόσο
+χρόνο θα καλύψει απόσταση 2.000 Km;
+\end{exercise}
+$$\frac{2}{80}=\frac{x}{2000}$$
+\begin{lstlisting}
+>>> from sympy import *
+>>> x = symbols('x')
+>>> solve(2/80-x/2000)
+[50.0000000000000]
+\end{lstlisting}
+Η απάντηση είναι 50 ώρες.
+\begin{exercise}
+Εξέτασε αν τα ποσά που δίνονται στους παρακάτω πίνακες είναι ανάλογα:
+(α) 
+\begin{table}
+\begin{tabular}{|c|c|c|c|}
+\hline
+x&3&5 &7\\\hline
+y&8&10&12\\\hline
+\end{tabular}
+\end{table}
+(β)
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+x&3&4 &6&11\\\hline
+y&0,9&1,2&1,8&3,3\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+>>> 8/3==10/5==12/7
+False
+>>> 0.9/3==1.2/4==1.8/6==3.3/11
+True
+\end{lstlisting}
+\begin{exercise}
+\sel[4]{98}
+Στον πίνακα που ακολουθεί, τα ποσά x και y είναι ανάλογα. Υπολόγισε τον συντελεστή
+αναλογίας τους και συμπλήρωσε τον πίνακα.
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+x& 5& 0& 1& & & 3,7& 0,61&\\\hline
+y&10,05& & &2 &0,125&&& 0,55\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+Η αναλογία είναι 
+\begin{lstlisting}
+>>> 10.05/5
+2.0100000000000002
+\end{lstlisting}
+Όμως αυτό είναι 2,01
+Οπότε:
+\begin{lstlisting}
+>>> 0*2.01
+0.0
+>>> 1*2.01
+2.01
+>>> 2/2.01
+0.9950248756218907
+>>> 0.125/2.01
+0.06218905472636817
+>>> 3.7*2.01
+7.436999999999999
+>>> 0.61*2.01
+1.2260999999999997
+>>> 0.55/2.01
+0.27363184079601993
+\end{lstlisting}
+και προσεγγιστικά ο πίνακας γίνεται:
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+x& 5       & 0& 1      &0,995 & 0,0622 & 3,7   & 0,61&  0,273632\\\hline
+y&10,05& 0 & 2.01&2         &0,125      &7,437& 1.226&0,55\\hline
+\end{tabular}
+\end{table}
+
