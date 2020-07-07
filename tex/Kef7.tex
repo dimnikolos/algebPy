@@ -567,3 +567,100 @@ plt.show()
 \includegraphics{3x.png}
 \end{figure}
 Οπότε τα σημεία ανήκουν σε ημιευθεία η οποία περνάει από την αρχή των αξόνων.
+
+\begin{exercise}
+\sel{100}
+Δίνονται	οι	 πίνακες	Α,	Β,	 Γ	και	Δ.	
+
+(α)	Να	γίνει	η	γραφική	απεικόνιση	των	ζευγών	(x,y)	των	πινάκων	στο επίπεδο	και	
+(β)	να	διαπιστωθεί	σε	ποια	περίπτωση	αυτά	παριστάνουν	ποσά	ανάλογα.   
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+x&0&1&2&3\\
+y&0&2&1&1.5\\
+\end{tabular}
+\caption{Πίνακας Α}
+\end{table}
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+x&0&1&2&3\\
+y&1&1.5&2&2.5\\
+\end{tabular}
+\caption{Πίνακας B}
+\end{table}
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+x&0&1&2&3\\
+y&0&1&2&3\\
+\end{tabular}
+\caption{Πίνακας Γ}
+\end{table}
+
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+x&0&1&2&3\\
+y&0&0.5&1&1.5\\
+\end{tabular}
+\caption{Πίνακας Δ}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+
+plt.clf()
+pointsA = [(0,0),(1,2),(2,1),(3,1.5)]
+pointsB = [(0,1),(1,1.5),(2,2),(3,2.5)]
+pointsC = [(0,0),(1,1),(2,2),(3,3)]
+pointsD = [(0,0),(1,0.5),(2,1),(3,1.5)]
+
+x = [p[0] for p in pointsA]
+y = [p[1] for p in pointsA]
+plt.grid()
+plt.plot(x,y, marker='o', c='r')
+
+
+x = [p[0] for p in pointsB]
+y = [p[1] for p in pointsB]
+plt.grid()
+plt.plot(x,y, marker='o', c='g')
+
+
+x = [p[0] for p in pointsC]
+y = [p[1] for p in pointsC]
+plt.grid()
+plt.plot(x,y,marker='o', c='b')
+
+
+x = [p[0] for p in pointsD]
+y = [p[1] for p in pointsD]
+plt.grid()
+plt.plot(x,y, marker='o', c='m')
+plt.show()
+\end{lstlisting}
+
+\begin{figure}
+\includegraphics{4plots.png}
+\end{figure}
+
+Μια πιο σύντομη έκδοση του προγράμματος που δίνει το ίδιο αποτέλεσμα είναι:
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+
+plt.clf()
+pointslist = [[(0,0),(1,2),(2,1),(3,1.5)],
+          [(0,1),(1,1.5),(2,2),(3,2.5)],
+          [(0,0),(1,1),(2,2),(3,3)],
+          [(0,0),(1,0.5),(2,1),(3,1.5)]]
+colors = ['r','g','b','m']
+for (i,points) in enumerate(pointslist):
+    x = [p[0] for p in points]
+    y = [p[1] for p in points]
+    plt.grid()
+    plt.plot(x,y, marker='o', c=colors[i])
+
+plt.show()
+\end{lstlisting}
