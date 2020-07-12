@@ -754,7 +754,7 @@ plt.show()
 \begin{figure}
 \includegraphics{sel101_2.png}
 \end{figure}
-Όμως τα συστήματα δεν είναι κατάλληλα για όλες τις γραφικές παραστάσεις ειδικά η τελευταία φαίνεται να είναι σταθερή στο 0. Αν τη σχεδιάσουμε μόνη της η matplotlib θα υπολογίσει ένα κατάλληλο σύστημα αξόνων.
+Όμως τα συστήματα δεν είναι κατάλληλα για όλες τις γραφικές παραστάσεις ειδικά η τελευταία φαίνεται να είναι σταθερή στο 0. Αν τη σχεδιάσουμε μόνη της η matplotlib θα υπολογίσει ένα κατάλληλο σύστημα αξόνων, δες στον άξονα y.
 \begin{lstlisting}
 import matplotlib.pyplot as plt
 from sympy import *
@@ -770,3 +770,106 @@ plt.show()
 \begin{figure}
 \includegraphics{sel101_2a.png}
 \end{figure}
+
+\begin{exercise}
+Αντιστοίχισε	κάθε	πίνακα	με	ένα	από	τους	προτεινόμενους	τύπους:
+\begin{table}
+\begin{tabular}{cccc}
+(A) & 
+\begin{tabular}{|c|c|c|c|}
+\hline
+x&4&7&12\\\hline
+y&10&17,5&30\\\hline
+\end{tabular}
+&(1)&$y=2x+3$\\
+(B) & 
+\begin{tabular}{|c|c|c|c|}
+\hline
+x&5&7,5&9\\\hline
+y&11&16&19\\\hline
+\end{tabular}
+&(2)&$y=3x$\\
+(Γ) & 
+\begin{tabular}{|c|c|c|c|}
+\hline
+x&2&3&10\\\hline
+y&7&9&23\\\hline
+\end{tabular}
+&(3)&$y=12:x$\\
+(Δ) & 
+\begin{tabular}{|c|c|c|c|}
+\hline
+x&2&4&6\\\hline
+y&6&3&2\\\hline
+\end{tabular}
+&(4)&$y=2,5x$\\
+(E) & 
+\begin{tabular}{|c|c|c|c|}
+\hline
+x&2&5&0,5\\\hline
+y&1&2,5&0,25\\\hline
+\end{tabular}
+&(5)&$y=2x+2$\\
+(Z) & 
+\begin{tabular}{|c|c|c|c|}
+\hline
+x&0,2&6&10\\\hline
+y&2,4&14&22\\\hline
+\end{tabular}
+&(6)&$y=2x+1$\\
+(H) & 
+\begin{tabular}{|c|c|c|c|}
+\hline
+x&1&1,2&2,5\\\hline
+y&3&3,6&7,5\\\hline
+\end{tabular}
+&(7)&$y=4x-1$\\
+(Θ) & 
+\begin{tabular}{|c|c|c|c|}
+\hline
+x&0,8&1&1,5\\\hline
+y&2,2&3&5\\\hline
+\end{tabular}
+&(8)&$y=0,5x$\\
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+from sympy import *
+x = symbols('x')
+pointsList = [[(4,10),(7,17.5),(12,30)],
+              [(5,11),(7.5,16),(9,19)],
+              [(2,7),(3,9),(10,23)],
+              [(2,6),(4,3),(6,2)],
+              [(2,1),(5,2.5),(0.5,0.25)],
+              [(0.2,2.4),(6,14),(10,22)],
+              [(1,3),(1.2,3.6),(2.5,7.5)],
+              [(0.8,2.2),(1,3),(1.5,5)]]
+
+typoi = [2*x+3,3*x,12/x,2.5*x,2*x+2,2*x+1,4*x-1,0.5*x]
+onomataPinaka = ['Α','Β','Γ','Δ','Ε','Ζ','Η','Θ']
+
+for (arithmosPinaka,points) in enumerate(pointsList):
+    for (arithmosTipou, t) in enumerate(typoi):
+        for p in points:
+            x = symbols('x')
+            if abs((p[1] - t.subs(x,p[0]))) > 1e-8:
+                break
+        else:
+            print(onomataPinaka[arithmosPinaka],'-',arithmosTipou+1)
+\end{lstlisting}
+
+Που δίνει το αποτέλεσμα:
+
+\begin{lstlisting}
+Α - 4
+Β - 6
+Γ - 1
+Δ - 3
+Ε - 8
+Ζ - 5
+Η - 2
+Θ - 7
+\end{lstlisting}
+
+Χρησιμοποιούμε abs((p[1] - t.subs(x,p[0]))) > 1e-8 αντί για το πιο απλό p[1]!=t.subs(x,p[0]) γιατί στην δεύτερη περίπτωση θα έχουμε σφάλματα απο στρογγυλοποιήσεις.
