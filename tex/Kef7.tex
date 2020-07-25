@@ -1091,3 +1091,261 @@ Aπό	100	Kg	σταφύλια	βγαίνουν	80	Kg	μούστος.	Ένας	α
 >>> 5 + 20 +40  +25 +7.5  + 2.5   
 100.0
 \end{lstlisting}
+\section{Αντιστρόφως ανάλογα ποσά}
+\begin{exercise}
+\sel{106}
+Ξεκινούν ταυτόχρονα από μια πόλη:  
+(α)  ένα αυτοκίνητο που τρέχει με ταχύτητα 120 kmh  
+
+(β)  ένα αεροπλάνο με 600 Kmh  
+
+(γ)  μία μοτοσικλέτα με 75 Kmh  
+
+(δ)  ένα λεωφορείο που τρέχει με 80 Kmh  
+
+(ε)  ένα ελικόπτερο με 300 Kmh 
+
+(στ)  ένα ταξί με 100 Kmh  
+
+(ζ)  μία βέσπα με 60 Kmh και  
+
+(η)  ένα πούλμαν με 90 Kmh
+
+To τέλος της διαδρομής είναι μια άλλη πόλη, που απέχει 600 Km.
+\begin{itemize}
+ \item Βρες σε πόσες ώρες, θα φθάσει το καθένα στον προορισμό του και συμπλήρωσε  τον παρακάτω πίνακα:
+ \begin{table}
+ \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+ Ταχύτητα σε Km/h&&&&&&&&\\\hline
+ Χρόνος σε ώρες&&&&&&&&\\\hline
+ \end{tabular}
+ \end{table}
+ \item Ποια σχέση συνδέει τα μεγέθη της ταχύτητας και του χρόνου;
+ \item Toποθέτησε τα ζεύγη των τιμών που βρήκες, σε ένα σύστημα ημιαξόνων και  ένωσε τα σημεία, που ορίζουν τα ζεύγη αυτά, με μία γραμμή. Τι παρατηρείς;
+\end{itemize}
+\end{exercise}
+\begin{lstlisting}
+>>> 600/120
+5.0
+>>> 600/600
+1.0
+>>> 600/75
+8.0
+>>> 600/80
+7.5
+>>> 600/300
+2.0
+>>> 600/100
+6.0
+>>> 600/60
+10.0
+>>> 600/90
+6.666666666666667
+\end{lstlisting}
+Οπότε ο πίνακας γίνεται:
+\begin{table}
+ \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+ Ταχύτητα σε Km/h&120&600&75&80&300&100&60&90\\\hline
+ Χρόνος σε ώρες&5&1&8&7.5&2&6&10&6,66\\\hline
+ \end{tabular}
+ \end{table}
+
+Τα ποσά είναι αντιστρόφως ανάλογα.
+
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+
+plt.clf()
+points = [(120,5), (600,1), (75,8), (80,7.5), (300,2), (100,6), (60,10), (90,6.66)]
+x = [p[0] for p in points]
+y = [p[1] for p in points]
+color=['m','g','r','b','c']
+plt.grid()
+plt.scatter(x,y, s=100 ,marker='o', c=color)
+
+plt.show()
+\end{lstlisting}
+\begin{figure}
+\includegraphics{graph4.png}
+\caption{Χρόνος ως προς την ταχύτητα}
+\end{figure}
+\begin{exercise}
+\sel{106}
+Ένα συνεργείο που αποτελείται από 8 εργάτες χρειάζεται 30 ημέρες για να ολοκληρώσει ένα οικοδομικό έργο. 
+\begin{itemize}
+	\item  Πόσες ημέρες θα χρειαστεί το συνεργείο,  που αποτελείται από 2, 4, 6, 10, 12, 24 ή 48  εργάτες για να τελειώσει το ίδιο έργο;
+	\item Μπορείς να συμπληρώσεις τον παρακάτω  πίνακα;
+	\begin{table}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+	Εργάτες συνεργείου &2    & 4& 6& 8& 10& 12& 24& 48\\\hline
+	Ημέρες εργασίας       & &    &   & 30 & & & & \\\hline
+	\end{tabular}
+	\end{table}
+\item  Τι παρατηρείς για το γινόμενο ``εργάτες'' $\cdot$ ``ημέρες'';
+\item  Τοποθέτησε τα ζεύγη των τιμών του πίνακα, σε ένα σύστημα ημιαξόνων και  ένωσε τα σημεία, που ορίζουν τα ζεύγη αυτά, με μία γραμμή. Τι παρατηρείς;
+\end{itemize}
+\end{exercise} 
+\begin{lstlisting}
+>>> 8/2*30
+120.0
+>>> 8/4*30
+60.0
+>>> 8/6*30
+40.0
+>>> 8/8*30
+30.0
+>>> 8/10*30
+24.0
+>>> 8/12*30
+20.0
+>>> 8/24*30
+10.0
+>>> 8/48*30
+5.0
+>>>
+\end{lstlisting}
+Ο πίνακας γίνεται:
+	\begin{table}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+	Εργάτες συνεργείου &2    & 4 & 6& 8& 10& 12& 24& 48\\\hline
+	Ημέρες εργασίας       &120 &60& 40   & 30 &24 & 20&10 &5 \\\hline
+	\end{tabular}
+	\end{table}
+
+\begin{lstlisting}
+>>> erg = [2,4,6,8,10,12,24,48]
+>>> mer = [120,60,40,30,24,20,10,5]
+>>> for i in range(8):
+...     print(erg[i]*mer[i])
+...
+240
+240
+240
+240
+240
+240
+240
+240
+\end{lstlisting}
+Το γινόμενο είναι πάντα 240.
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+
+plt.clf()
+points = [(1,120),(4,60),(6,40),(8,30),(10,24),(12,20),(24,10),(48,5)]
+x = [p[0] for p in points]
+y = [p[1] for p in points]
+color=['m','g','r','b','c']
+plt.grid()
+plt.scatter(x,y, s=100 ,marker='o', c=color)
+
+plt.show()
+\end{lstlisting}
+\begin{figure}
+\includegraphics{graph5.png}
+\end{figure}
+\begin{exercise}
+\sel{107}
+
+Ένα ορθογώνιο παραλληλόγραμμο έχει διαστάσεις x και y. Aν γνωρίζεις ότι το εμβαδόν του ορθογωνίου είναι 144 m2, μπορείς να βρεις δεκατέσσερις ακέραιες τιμές των διαστάσεών του και να συμπληρώσεις τον παρακάτω πίνακα;
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+x & 1 & 2 & 3 &  4 & 6 & 12 & 18 & 20 & 22 & 24 & 30 &  32 & 34 & 36 \\\hline
+y & & & & & & & & & & & & & &  \\\hline
+\end{tabular}
+\end{table}
+\begin{itemize}
+\item  Ποια σχέση συνδέει τις διαστάσεις του ορθογωνίου με το εμβαδόν του;
+\item Τοποθέτησε τα ζεύγη των τιμών του πίνακα, σε ένα σύστημα ημιαξόνων και  ένωσε τα σημεία, που ορίζουν τα ζεύγη αυτά, με μία γραμμή. Τι παρατηρείς;
+\item Ποιο ορθογώνιο, απ’ αυτά που βρήκες, έχει τη μικρότερη περίμετρο;
+\end{itemize}
+\end{exercise}
+\begin{lstlisting}
+>>> 144/1
+144.0
+>>> 144/2
+72.0
+>>> 144/3
+48.0
+>>> 144/4
+36.0
+>>> 144/6
+24.0
+>>> 144/12
+12.0
+>>> 144/18
+8.0
+>>> 144/20
+7.2
+>>> 144/22
+6.545454545454546
+>>> 144/24
+6.0
+>>> 144/30
+4.8
+>>> 144/32
+4.5
+>>> 144/34
+4.235294117647059
+>>> 144/36
+4.0
+\end{lstlisting}
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+x & 1 & 2 & 3 &  4 & 6 & 12 & 18 & 20 & 22 & 24 & 30 &  32 & 34 & 36 \\\hline
+y &144&72&48&36&24&12&8&7.2&6.55&6&4.8&4.5&4,235&4 \\\hline
+\end{tabular}
+\end{table}
+
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+
+plt.clf()
+x = [1,2,3,4,6,12,18,20,22,24,30,32,34,36]
+y = [144/p for p in x]
+plt.grid()
+plt.scatter(x,y, s=100 ,marker='.', c='m')
+
+plt.show()
+\end{lstlisting}
+
+\begin{figure}
+\includegraphics{graph6.png}
+\end{figure}
+Για την περίμετρο μπορούμε να κάνουμε μια γραφική παράσταση για τα σημεία που έχουμε:
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+
+plt.clf()
+x = [1,2,3,4,6,12,18,20,22,24,30,32,34,36]
+y = [144/p for p in x]
+perimetros = [2*p+2*144/p for p in x]
+plt.grid()
+plt.scatter(x,y, s=100 ,marker='.', c='m')
+plt.scatter(x,perimetros,s=100,marker='.',c='r')
+plt.show()
+\end{lstlisting}
+\begin{figure}
+\includegraphics{graph7.png}
+\end{figure}
+
+Βλέπουμε ότι η μικρότερη περίμετρος προκύπτει όταν το x είναι 12.
+
+
+Για την ακρίβεια μπορούμε να δούμε τη γραφική παράσταση για πολλά σημεία ως εξής:
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+from numpy import arange
+
+plt.clf()
+x = arange(1,20,0.5)
+y = [144/p for p in x]
+perimetros = [2*p+2*144/p for p in x]
+plt.grid()
+plt.scatter(x,y, s=100 ,marker='.', c='m')
+plt.scatter(x,perimetros,s=100,marker='.',c='r')
+plt.show()
+\end{lstlisting}
+\begin{figure}
+\includegraphics{graph8.png}
+\end{figure}
