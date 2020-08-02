@@ -1349,3 +1349,251 @@ plt.show()
 \begin{figure}
 \includegraphics{graph8.png}
 \end{figure}
+\begin{exercise}
+\sel{108}
+Ένας ελαιοπαραγωγός χρησιμοποιεί δοχεία των 20 lt, 15 lt, 10 lt και 5 lt, για να συσκευάσει το λάδι που παράγει. Η παραγωγή του είναι 3.600 lt. Θέλει να συσκευάσει την ίδια ποσότητα λαδιού σε κάθε μία από τις τέσσερις διαφορετικές συσκευασίες. (α)  Πόσα δοχεία χρειάζεται από κάθε είδος; (β)  Πόσο θα κοστίσει η συσκευασία της παραγωγής του αν στοιχίζει 0,4€ το δοχείο  των 20 lt, 0,3€ το δοχείο των 15 lt,  0,2€ το δοχείο των 10 lt και 0,1€ το δοχείο  των 5 lt; 
+\end{exercise}
+\begin{lstlisting}
+posotita = 3600/4
+x = [20,15,10,5]
+y = []
+for doxeio in x:
+    plithos = posotita / doxeio
+    y.append(plithos)
+
+kostos = [0.4,0.3,0.2,0.1]
+synolikoKostos = 0
+for (i,p) in enumerate(y):
+    synolikoKostos += kostos[i]*p
+
+print(plithos)
+print(kostos)
+\end{lstlisting}
+που δίνει αποτέλεσμα
+\begin{lstlisting}
+[45.0, 60.0, 90.0, 180.0]
+72.0
+\end{lstlisting}
+Δηλαδή 45 δοχεία των 20lt, 60 δοχεία των 15lt, 90 δοχεία των 10lt και 180 δοχεία των 5lt. Το συνολικό κόστος για τα δοχεία έιναι 72€.
+\begin{exercise}
+\sel{109}
+Εξέτασε τους παρακάτω πίνακες:
+
+α)
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+x&1&2&3&4\\\hline
+y&2&1&$\frac{2}{3}$&$\frac{1}{2}$\\\hline
+\end{tabular}
+\end{table}
+
+β)
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|}
+x&0,25&0,4&0,5\\\hline
+y&10&6,25&5\\\hline
+\end{tabular}
+\end{table}
+
+γ)
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|}
+x&$\frac{1}{100}$&$\frac{2}{58}$&$\frac{7}{10}$&4\\\hline
+y&100&29&$\frac{10}{7}$&$\frac{1}{4}$\\\hline
+\end{tabular}
+\end{table}
+
+δ)
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|}
+x&3&6&9\\\hline
+y&9&5&3\\\hline
+\end{tabular}
+\end{table}
+
+\end{exercise}
+\sel[3]{109}
+Θα φτιάξουμε μια συνάρτηση που να παίρνει σαν εισόδους δύο πίνακες με τιμές x και y και θα δίνει σαν αποτέλεσμα αν αυτές οι τιμές είναι αντιστρόφως ανάλογες ή όχι. Θα βασιστεί στο ότι αν τα ποσά είναι αντιστρόφως ανάλογα το γινόμενό τους είναι πάντα το ίδιο.
+\begin{lstlisting}
+def antistrofosanaloga(x,y):
+    if len(x) != len(y):
+        print('Τα δεδομένα δεν έχουν το ίδιο μέγεθος')
+        return(None)
+    ginomeno = x[0]*y[0]
+    for i in range(len(x)):
+        if x[i]*y[i]!=ginomeno:
+            return(False)
+    return(True)
+
+print(antistrofosanaloga([1,2,3,4],[2,1,2/3,1/2]))
+print(antistrofosanaloga([0.25,0.4,0.5],[10,6.25,5]))
+print(antistrofosanaloga([1/100,2/58,7/10,4],[100,29,10/7,1/4]))
+print(antistrofosanaloga([3,6,9],[9,5,3]))
+\end{lstlisting}
+που δίνει αποτέλεσμα
+\begin{lstlisting}
+True
+True
+True
+False
+\end{lstlisting}
+Άρα οι πίνακες α,β,γ έχουν ποσά αντιστρόφως ανάλογα ενώ ο πίνακας δ όχι.
+\begin{exercise}
+\sel[4]{109}
+Τα ποσά x και  είναι αντιστρόφως ανάλογα. 
+(α) Συμπλήρωσε τον πίνακα: 
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+x&0,2&0,5&0,7&1      &      &      & 2,3&3&            &10&12\\\hline
+y&       &     &      & 3,5 &2,5&1,75&      &   &0,875&     &\\\hline
+\end{tabular}
+\end{table}
+
+(β)  Βρες τα σημεία που παριστάνουν κάθε ζευγάρι τιμών (x, ), σε κατάλληλο  σύστημα ορθογωνίων ημιαξόνων και σχεδίασε την 
+υπερβολή. 
+\end{exercise}
+\begin{lstlisting}
+>>> 3.5/0.2
+17.5
+>>> 3.5/0.5
+7.0
+>>> 3.5/0.7
+5.0
+>>> 3.5/2.5
+1.4
+>>> 3.5/1.75
+2.0
+>>> 3.5/2.3
+1.5217391304347827
+>>> 3.5/3
+1.1666666666666667
+>>> 3.5/0.875
+4.0
+>>> 3.5/10
+0.35
+>>> 3.5/12
+0.2916666666666667
+\end{lstlisting}
+
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+x&0,2 &0,5&0,7&1      &1,4& 2   & 2,3  &3        &4        &10   &12\\\hline
+y&17,5&7    & 5  & 3,5 &2,5&1,75&1,52& 1,167&0,875&0,35 &0,29\\\hline
+\end{tabular}
+\end{table}
+
+Για να σχεδιάσουμε φτιάχνουμε το πρόγραμμα:
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+
+plt.clf()
+x=[0.2,0.5,0.7,1,1.4,2,2.3,3,4,10,12]
+y=[17.5,7,5,3.5,2.5,1.75,1.52,1.167,0.875,0.35,0.29]
+plt.grid()
+plt.scatter(x,y, s=100 ,marker='.', c='m')
+plt.show()
+\end{lstlisting}
+που δίνει το αποτέλεσμα
+\begin{figure}
+\includegraphics{graph9.png}
+\end{figure}
+\begin{exercise}
+\sel[5]{109}
+Για την αναδάσωση μιας πλαγιάς, εργάστηκαν 20 εργάτες για 10 ημέρες. Πόσοι εργάτες, ίδιας απόδοσης, χρειάζονται για να αναδασώσουν την έκταση αυτή, σε 8 ημέρες; 
+\end{exercise}
+Το γινόμενο εργάτες $\cdot$ ημέρες θα είναι σταθερό οπότε 
+$$x\cdot 8 = 20\cdot 10$$
+$$x = \frac{20\cdot 10}{8}$$
+$$x =  25$$
+
+\begin{lstlisting}
+>>> 20*10/8
+25.0
+\end{lstlisting}
+\begin{exercise}
+\sel[6]{109}
+Σε ένα αγρόκτημα, τοποθέτησαν ντομάτες σε 50 καφάσια, των 12 Kg το καθένα. Πόσα καφάσια των 20 kg θα χρειαζόντουσαν για να τοποθετήσουν τις ντομάτες. Αν κάθε καφάσι των 12 kg στοιχίζει 0,28€ και κάθε καφάσι των 20Kg 0,46€, ποια συσκευασία τους συμφέρει, ώστε να ελαχιστοποιηθεί το κόστος συσκευασίας του προϊόντος τους; 
+\end{exercise}
+\begin{lstlisting}
+>>> ntomates = 50*12
+>>> kafasia20 = ntomates/20
+>>> kafasia20
+30.0
+>>> kostos12 = 50*0.28
+>>> kostos12
+14.000000000000002
+>>> kostos20 = kafasia20*0.46
+>>> kostos20
+13.8
+\end{lstlisting}
+\begin{exercise}
+\sel[8]{109}
+Το πετρέλαιο που υπάρχει στη δεξαμενή μιας πολυκατοικίας, επαρκεί για 30 ημέρες, όταν καταναλώνονται 80 lt την ημέρα. Όταν το κρύο δυναμώνει, η ημερήσια κατανάλωση αυξάνεται, κατά 20\%. Για πόσες ημέρες θα φτάσει το πετρέλαιο;
+\end{exercise}
+\begin{lstlisting}
+>>> neakatan = 80+80*20/100
+>>> neakatan
+96.0
+>>> meres = 80*30/neakatan
+>>> meres
+25.0
+\end{lstlisting}
+\begin{exercise}
+\sel[6]{112}
+Συμπλήρωσε	τον	διπλανό	πίνακα	ανάλογων ποσών
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|}
+x&2&4 &  &12&16\\\hline
+y&  &15&30& &\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+>>> l = 15/4
+>>> 2*l
+7.5
+>>> 30/l
+8.0
+>>> 12*l
+45.0
+>>> 16*l
+60.0
+\end{lstlisting}
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|}
+x&2   &4  &8 &12&16\\\hline
+y&7.5&15&30&45 &60\\hline
+\end{tabular}
+\end{table}
+\begin{exercise}
+\sel[8]{112}
+Συμπλήρωσε τον πίνακα των αντιστρόφως ανάλογων ποσών.
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|}
+x& 2&&&4&8\\\hline
+y& 8&16&32&&\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+>>> gin = 2*8
+>>> gin/16
+1.0
+>>> gin/32
+0.5
+>>> gin/4
+4.0
+>>> gin/8
+2.0
+\end{lstlisting}
+\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|}
+x& 2&  1&0.5&4&8\\\hline
+y& 8&16&32&4&2\\\hline
+\end{tabular}
+\end{table}
