@@ -267,8 +267,8 @@ def fromabs(x):
 \begin{exercise}
 \sel[6]{121}
 Συμπλήρωσε τον πίνακα:
-\begin{table}
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|}[h]
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
 Αριθμός      &1&           &         &-19&   &    & & \\\hline
 Αντίθετος    & &           &         &   & -8& 12 & & \\\hline
@@ -277,8 +277,8 @@ def fromabs(x):
 \end{table}
 \end{exercise}
 Μπορούμε να χρησιμοποιήσουμε την abs και την fromabs για να βρούμε κάποια στοιχεία του πίνακα ο οποίος διαρμορφώνεται ως εξής:
-\begin{table}
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|}[h]
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
 Αριθμός      &1 &   2       &    -2   &-19& 8 & -12& 7&-7\\\hline
 Αντίθετος    &-1&  -2       &     2   &19 & -8& 12 &-7& 7\\\hline
@@ -288,7 +288,6 @@ def fromabs(x):
 
 \begin{exercise}
 \sel[7]{121}Toποθέτησε στον άξονα $x'Οx$ τα σημεία με τετμημένες:$–9$, $–5,5$, $+8$, $-3$, $-7,25$, $+1$, $+12$, $+3$, $+9$. 
-\end{exercise}
 Ποια από αυτά είναι συμμετρικά ως προς την αρχή του άξονα;
 \end{exercise}
 \begin{lstlisting}
@@ -424,7 +423,7 @@ True
 \begin{exercise}
 Το x παριστάνει έναν ακέραιο αριθμό. Για ποιες τιμές του x θα ισχύουν οι σχέσεις:
 (α) $–13 < x < –8$, (β) $–4 > x > –5$, (γ) $–2 < x < 5$.
-\end{lstlisting}
+\end{exercise}
 \begin{lstlisting}
 >>> for i in range(-14,-7):
     if i > -13 and i < -8:
@@ -593,6 +592,7 @@ True
 -21&&  &   &   \\\hline
 \end{tabular}
 \end{table}
+\end{exercise}
 \begin{lstlisting}
 >>> for i in [+4,-8,-11,+17]:
     for j in [-5,+9,-4,-21]:
