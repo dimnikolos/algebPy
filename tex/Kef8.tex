@@ -675,5 +675,153 @@ True
 0&-4,9&+5,9\\\hline
 \end{tabular}
 \end{table}
+\end{exercise}
+Ένα τετράγωνο με αριθμούς μπορεί να απαρασταθεί σαν μια λίστα από λίστες ως εξής:
+\begin{lstlisting}
+a = [[-1,+4,-3],
+        [-2,0,+2],
+        [+3,-4,+1]]
+b = [[+1.1,+2.4,-2.5],
+         [-0.1,+3.5,-2.4],
+         [0,-4.9,+5.9]]
+\end{lstlisting}
+Κάθε στοιχείο της λίστας a είναι μια λίστα με κάθε γραμμή του πίνακα οπότε για να βρούμε αν όλες οι γραμμές έχουν το ίδιο άθροισμα θα πρέπει να βρούμε το πρώτο και να συγκρίνουμε τις υπόλοιπες με αυτό.
+\begin{lstlisting}
+def ismagic(s):
+    athrElegxou = s[0][0]+s[0][1]+s[0][2]
+    for i in  range(3):
+        athr = s[i][0]+s[i][1]+s[i][2]
+        if athr!= athrElegxou:
+            return(False)
+    return(True)
+\end{lstlisting}
+Το παραπάνω πρόγραμμα ελέγχει μόνο τις γραμμές  θα πρέπει να ελέγξουμε και τις στήλες οι στήλες είναι οι εξής:
+\begin{lstlisting}
+>>> a[0][0]
+-1
+>>> a[1][0]
+-2
+>>> a[2][0]
+3
+\end{lstlisting}
+Έτσι το πρόγραμμα διαμορφώνεται ως εξής:
+\begin{lstlisting}
+def ismagic(s):
+    athrElegxou = s[0][0]+s[0][1]+s[0][2]
+    for i in  range(3):
+        athr = s[i][0]+s[i][1]+s[i][2]
+        if athr!= athrElegxou:
+            return(False)
+    for i in range(3):
+        athr = s[0][i] + s[1][i]+s[2][i]
+        if athr!=athrElegxou:
+            return(False)
+    return(True)
+    \end{lstlisting}
+Τέλος πρέπει να ελέγξουμε τις διαγωνίους που είναι οι \lstinline{a[0][0],a[1][1],a[2][2]} και \lstinline{a[0][2],a[1][1],a[2][0]}. Οπότε το τελικό πρόγραμμα γίνεται:
+ \begin{lstlisting}
+def ismagic(s):
+    athrElegxou = s[0][0]+s[0][1]+s[0][2]
+    for i in  range(3):
+        athr = s[i][0]+s[i][1]+s[i][2]
+        if athr!= athrElegxou:
+            return(False)
+    for i in range(3):
+        athr = s[0][i] + s[1][i]+s[2][i]
+        if athr!=athrElegxou:
+            return(False)
+    athr = a[0][0]+a[1][1]+a[2][2]
+    if athr!=athrElegxou:
+        return(False)
+    athr = a[0][2]+a[1][1]+a[2][0]
+    if athr!=athrElegxou:
+        return(False)
+    return(True)
+\end{lstlisting}
+Εκτελώντας την παραπάνω συνάρτηση παίρνουμε:
+\begin{lstlisting}
+>>> ismagic(a)
+True
+>>> ismagic(b)
+False
+\end{lstlisting}
+Που σημαίνει ότι ο πρώτος πίνακας είναι μαγικό τετράγωνο ενώ ο δεύτερος δεν είναι. Όντως για τον δεύτερο βλέπουμε στις διαγώνιες ότι:
+\begin{lstlisting}
+>>> +1.1+3.5+5.9
+10.5
+>>> -2.5+3.5+0
+1
+\end{lstlisting}
+
+\begin{exercise} \sel[7]{125} Υπολόγισε τα αθροίσματα:
+(α) $(-3.8)+(+2.8)+(-5.4)+(+8.2)$
+
+(β) $(-3.5)+(-9.99)+(+2.5)+(-15.75)+(+20.75)+(+9.99)$
 
 \end{exercise}
+\begin{lstlisting}
+>>> (-3.8)+(+2.8)+(-5.4)+(+8.2)
+1.799999999999999
+>>> (-3.5)+(-9.99)+(+2.5)+(-15.75)+(+20.75)+(+9.99)
+3.9999999999999982
+\end{lstlisting}
+
+\begin{exercise}
+\sel[8]{125}
+Υπολόγισε τα αθροίσματα:
+(α) $\left(+\frac{9}{4}\right)+\left(-\frac{5}{4}\right)+\left(\frac{2}{3}\right)+\left(-\frac{5}{3}\right)+\left(\frac{7}{13}\right)+\left(-\frac{20}{13}\right)$ και 
+
+(β) $\left(+\frac{1}{7}\right)+\left(-\frac{5}{7}\right)+\left(+\frac{3}{5}\right)+\left(-\frac{1}{35}\right)$
+\end{exercise}
+\begin{lstlisting}
+>>> from fractions import Fraction
+>>> (+Fraction(9,4))+(-Fraction(5,4))+(Fraction(2,3))+(-Fraction(5,3))+(Fraction(7,13))+(-Fraction(20,13))
+Fraction(-1, 1)
+>>> (+Fraction(1,7))+(-Fraction(5,7))+(+Fraction(3,5))+(-Fraction(1,35))
+Fraction(0, 1)
+\end{lstlisting}
+Οπότε οι απαντήσεις είναι -1 και 0 αντίστοιχα.
+\section{Αφαίρεη ρητών αριθμών}
+\begin{exercise}
+\sel[1]{127} Ένα βράδυ το θερμόμετρο στο μπαλκόνι ενός σπιτιού έδειχνε -3$^o$C και μέσα στο σπίτι 18$^o$C. Πόση ήταν η διαφορά θερμοκρασίας;
+\end{exercise}
+\begin{lstlisting}
+>>> 18 - (-3)
+21
+\end{lstlisting}
+\begin{exercise}
+\sel[2]{127}
+Ένας έμπορος χρωστάει στον προμηθευτή του 897,56€ και του οφείλει ένα πελάτης 527,42€. Πόσα € πρέπει να έχει στο ταμείο για να ξεχρεώσει;
+\end{exercise}
+\begin{lstlisting}
+>>> (+897.56)-(+527.42)
+370,14
+\end{lstlisting}
+\begin{exercise}
+\sel[3]{127} Να λυθούν οι εξισώσεις:
+
+(α) $x+(+3)=(-9)$ 
+
+(β) $(-8)-x=+7$
+\end{exercise}
+\begin{lstlisting}
+>>> from sympy import symbols,solve
+>>> x = symbols('x')
+>>> expr=x+(+3)+(+9)
+>>> solve(expr)
+[-12]
+>>> expr=(-8)-x-7
+>>> solve(expr)
+[-15]
+\end{lstlisting}
+
+\begin{exercise}
+\sel[4]{127}
+Να βρεθεί η τιμή της παράστασης $-13-(0,38-11-13)+(0,38-11)$.
+\end{exercise}
+\begin{lstlisting}
+>>> -13-(0.38-11-13)+(0.38-11)
+-1.7763568394002505e-15
+>>> 
+\end{lstlisting}
+Στην ουσία η απάντηση είναι 0.
