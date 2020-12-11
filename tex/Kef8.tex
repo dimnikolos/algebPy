@@ -825,3 +825,306 @@ Fraction(0, 1)
 >>> 
 \end{lstlisting}
 Στην ουσία η απάντηση είναι 0.
+\begin{exercise}
+\sel[1]{128} 
+δ) Ισχύει  ότι:    $ 6 - ( + 8 ) + ( + 5 ) + ( - 3 ) + ( 2 ) + ( - 1 ) = 0 $ .
+
+ε) Λύση    της εξίσωσης    $x+(-3) = -2$  είναι   ο   αριθμός $+1$.   
+
+στ) Οι  εξισώσεις  $x+(-2)=+5$   και $x-(+7)=10+(+5)$ έχουν   την
+         ίδια   λύση.
+ζ) Λύση της εξίσωσης    $x- (-2)$    = $-8  +   (+7) - (-4)$    είναι   ο   αριθμός $+1$.
+\end{exercise}
+δ)
+\begin{lstlisting}
+>>> 6 - ( + 8 ) + ( + 5 ) + ( - 3 ) + ( 2 ) + ( - 1 ) == 0
+False
+>>> 6 - ( + 8 ) + ( + 5 ) + ( - 3 ) + ( 2 ) + ( - 1 )
+1
+\end{lstlisting}
+Άρα λάθος
+ε) Στην python μπορούμε να δούμε αν η λύση της μιας εξίσωσης είναι ένας αριθμός λύνοντάς τη ή αντικαθιστώντας τη λύση και βλέποντας αν ισχύει.
+\begin{lstlisting}
+from sympy import symbols,solve
+>>> x = symbols('x')
+>>> expr = x+(-3)
+>>> expr.subs(x,1)
+-2
+>>> expr = expr + 2
+>>> expr
+x-1
+>>> solve(expr)
+[1]
+\end{lstlisting}
+στ) 
+\begin{lstlisting}
+>>> from sympy import symbols,solve
+>>> x = symbols('x')
+>>> expr1 = x+(-2)-(+5)
+>>> solve(expr1)
+7
+>>> expr2 = x-(+7)-(10+(+5))
+>>> solve(expr2)
+22
+\end{lstlisting}
+Άρα Λάθος
+ζ)
+\begin{lstlisting}
+>>> from sympy import symbols,solve
+>>> x = symbols('x')
+>>> expr = x-(-2)-(-8 +(+7)-(-4))
+>>> solve(expr)
+[1]
+\end{lstlisting}
+Δεύτερη λύση:
+\begin{lstlisting}
+>>> expr = x-(-2)
+>>> expr.subs(x,1) == -8 +(+7)-(-4)
+True
+\end{lstlisting}
+Άρα Σωστό
+\begin{exercise}
+Υπολόγισε   τις διαφορές:
+(α) $5-(-7)$,   (β) $-8-(+8)$,   (γ) $-2-(-15,2)$,    (δ) $14,55-18,45$,  (ε) $-\frac{2}{7} - \left(-\frac{2}{7} \right)$.
+\end{exercise}
+\begin{lstlisting}
+from fractions import Fraction
+>>> 5-(-7)
+12
+>>> -8-(+8)
+-16
+>>> -2-(-15.2)
+13.2
+>>> 14.55-18.45
+-3.8999999999999986
+>>> -Fraction(2,7)-(-Fraction(2,7))
+Fraction(0, 1)
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[3]{128}
+Κάνε    τις πράξεις:
+(α) $|+3|    +   |-2|    +   |-9|$,       (β) $|-20|   +   |-10| - |+10|$,          (γ) $|-3| - |-2|+ |-5| - |+6|$.
+\end{exercise}
+\begin{lstlisting}
+>>> abs(+3)+abs(-2)+abs(-9)
+14
+>>> abs(-20)+abs(-10)-abs(+10)
+20
+>>> abs(-3)-abs(-2)+abs(-5)-abs(+6)
+0
+\end{lstlisting}
+\begin{exercise}
+\sel[4]{128}Κάνε    τις πράξεις:
+(α) $(+5) - (+3) +   (+8)$,       (β) $(-25)   +   (-4)    -   (-10)$,      (γ) $(+12)   +   (+2)    -   (-8)$.
+\end{exercise}
+\begin{lstlisting}
+>>> (-25)+(-4)-(-10)
+-19
+>>> (+12)+(+2)-(-8)
+22
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[5]{128}
+Συμπλήρωσε  τον πίνακα  με  τους
+κατάλληλους αριθμούς:       
+\begin{table}{h}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$\alpha$&$\beta$&$\alpha+\beta$&$\alpha-\beta$\\\hline
++3&&-5&\\\hline
+&-8&10&\\\hline
+-2&-5&&\\\hline
+-9&&+6&\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+>>> from sympy import symbols,solve
+>>> a = symbols('a')
+>>> b = symbols('b')
+>>> solve(3+b-(-5))
+[-8]
+>>> b = -8
+>>> a = 3
+>>> a-b
+11
+>>> solve(a-8-10)
+[18]
+>>> b = -8
+>>> a =  18
+>>> a - b
+26
+>>> -2+(-5)
+-7
+>>> -2 -(-5)
+3
+>>> solve(-9+b-6)
+[15]
+>>> a = -9
+>>> b = 15
+>>> a - b
+-24
+\end{lstlisting}
+
+Και ο πίνακας γίνεται:
+\begin{table}{h}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$\alpha$&$\beta$&$\alpha+\beta$&$\alpha-\beta$\\\hline
++3&-8&-5&11\\\hline
+18&-8&10&26\\\hline
+-2&-5&-7&3\\\hline
+-9&15&+6&-24\\\hline
+\end{tabular}
+\end{table}
+\begin{exercise}
+\sel[5]{128}
+Να  λύσεις  τις εξισώσεις:  (α) $x+(-8) = -18$, 
+(β) $x + 12 = -14$,
+(γ) $x+ \frac{5}{4} = \frac{7}{8}$
+(δ) $x- \frac{5}{4} = 2$
+\end{exercise}
+\begin{lstlisting}
+from sympy import symbols, solve
+from fractions import Fraction
+expr = x+(-18) -(-18)
+solve(expr)
+expr = x+12-(-14)
+solve(expr)
+expr = x+Fraction(5,4) - Fraction(7,8)
+solve(expr)
+expr  = x - Fraction(5,4) - 2
+solve(expr) >>> from sympy import symbols, solve
+>>> from fractions import Fraction
+>>> expr = x+(-18) -(-18)
+>>> solve(expr)
+0
+>>> expr = x+12-(-14)
+>>> solve(expr)
+-26
+>>> expr = x+Fraction(5,4) - Fraction(7,8)
+>>> solve(expr)
+\end{lstlisting}
+$$\frac{-3}{8}$$
+\begin{lstlisting}
+>>> expr  = x - Fraction(5,4) - 2
+>>> solve(expr)
+\end{lstlisting}
+$$\frac{13}{4}$$
+\begin{exercise}
+\sel[7]{128}
+Συμπλήρωσε  τις δύο τελευταίες  στήλες  του πίνακα:
+Τι   συμπεραίνεις    για     τους    αριθμούς    των     δύο     αυτών  
+στηλών;
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|}
+$\alpha$&$\beta$&$\alpha-\beta$&$\beta-\alpha$\\\hline
+$7$&$3$&&\\\hline
+$2\frac{3}{4}$&$3\frac{1}{4}$&&\\\hline
+$-5.55$&$-2.45$&&\\\hline
+$3$&-2.1&&\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+from fractions import Fraction
+al = [7,2+Fraction(3,4),-5.55,3]
+bl = [3,3+Fraction(1,5),-2.45,-2.1]
+for i in range(4):
+    a=al[i]
+    b=bl[i]
+    print(a+b)
+    print(a-b)
+\end{lstlisting}
+και το αποτέλεσμα είναι:
+\begin{lstlisting}
+4
+-4
+-9/20
+9/20
+-3.0999999999999996
+3.0999999999999996
+5.1
+-5.1
+\end{lstlisting}
+\begin{exercise}
+\sel[8]{128}
+Υπολόγισε   την τιμή    των παραστάσεων με  δύο τρόπους:    
+(α) $11-(12-2)+(10-5)-(8+5)$, 
+(β) $-(13,7-2,6)+14,8-(-8,7+5)$,  
+(γ)  $\frac{1}{6} -\left(\frac{3}{4} - \frac{5}{4}\right) - \left(\frac{7}{12}+\frac{5}{6}\right)$
+\end{exercise}
+\begin{lstlisting}
+>>> from fractions import Fraction
+>>> 11-(12-2)+(10-5)-(8+5)
+-7
+>>> -(13.7-2.6)+14.8-(-8.7+5)
+7.4
+>>> Fraction(1,6) -(Fraction(3,4) - Fraction(5,4)) - (Fraction(7,12)+Fraction(5,6))
+Fraction(-3, 4)
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[9]{128}
+Συμπλήρωσε  τον πίνακα: 
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|}
+x&$3,5$&&$1,89$&$-\frac{1}{4}$\\\hline
+y&$-1,5$&$4,3$&&$-\frac{1}{4}$\\\hline
+z&&$$-2,3$$&$3,11$&\\\hline
+x+y+z&$0$&&$0,22$&$\frac{1}{2}$\\\hline
+x-y-z&&0&&\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+>>> from sympy import symbols,solve
+>>> from fractions import Fraction
+>>> x,y,z = symbols('x y z')
+>>> x = 3.5
+>>> y = -1.5
+>>> solve(x+y+z,z)
+[-2.00000000000000]
+>>> z = -2
+>>> x-y-z
+7.0
+>>> y = 4.3
+>>> z = -2.3
+>>> x,y,z = symbols('x y z')
+>>> y = 4.3
+>>> z = -2.3
+>>> solve(x-y-z,x)
+[2.00000000000000]
+>>> x = 2
+>>> x + y + z
+4.0
+>>> x,y,z = symbols('x y z')
+>>> x = 1.89
+>>> z = 3.11
+>>> solve(x+y+z-0.22,y)
+[-4.78000000000000]
+>>> y = -4.78
+>>> x -y -z
+3.56
+>>> x,y,z = symbols('x y z')
+>>> x = -Fraction(1,4)
+>>> y = -Fraction(1,4)
+>>> solve(x+y+z-Fraction(1,2),z)
+[1]
+>>> z = 1
+>>> x-y-z
+Fraction(-1, 1)
+>>>
+\end{lstlisting}
+και ο πίνακας γίνεται:
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|}
+x&$3,5$&$2$    &$1,89$&$-\frac{1}{4}$\\\hline
+y&$-1,5$&$4,3$&$-4.7$8&$-\frac{1}{4}$\\\hline
+z&$-2$&$-2,3$&$3,11$&1\\\hline
+x+y+z&$0$&4&$0,22$&$\frac{1}{2}$\\\hline
+x-y-z&7&0&3.56&-1\\\hline
+\end{tabular}
+\end{table}
