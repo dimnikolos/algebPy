@@ -1128,3 +1128,255 @@ x+y+z&$0$&4&$0,22$&$\frac{1}{2}$\\\hline
 x-y-z&7&0&3.56&-1\\\hline
 \end{tabular}
 \end{table}
+\section{Πολλαπλασιασμός ρητών αριθμών}
+\begin{exercise}
+\sel[1]{131}
+Nα	υπολογιστούν	τα	γινόμενα:	(α)	$(–1,4)\cdot 5$,		(β)	$\left(+ \frac{2}{3}\right)\cdot(–2,1)$,			(γ)	$(–10)\cdot(–0,7)$.
+\end{exercise}
+\begin{lstlisting}
+>>> from fractions import Fraction
+>>> -1.4*5
+-7.0
+>>> (+Fraction(2,3))*(-2.1)
+-1.4
+>>> (-10)*(-0.7)
+7.0
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[2]{131}
+Nα	υπολογιστεί	το	γινόμενο	$(–1)\cdot α$,	όταν	το	α	παίρνει	τις	τιμές:$+3$,	$–1,2$,	$+\frac{2}{3}$, $-2$.
+\end{exercise}
+\begin{lstlisting}
+from fractions import Fraction
+al = [+3,-1.2,+Fraction(2,3),-2]
+for a in al:
+    print(-1*a)
+\end{lstlisting}
+που δίνει το αποτέλεσμα:
+\begin{lstlisting}
+-3
+1.2
+-2/3
+2
+\end{lstlisting}
+\begin{exercise}
+\sel[4]{131}
+Να	υπολογιστεί	η	τιμή	της	παράστασης:	$(–1)(–20)(+ \frac{2}{3} )(–3)(–0,25)$.
+\end{exercise}
+\begin{lstlisting}
+>>> (-1)*(-20)*(+Fraction(2,3))*(-3)*(-0.25)
+10.0
+\end{lstlisting}
+\begin{exercise}
+\sel[2]{132} Υπολόγισε	τα	γινόμενα:	(α)	$(–1)(–1)$,	(β)	$–3(–10)$,	(γ)	$–1,2(–0,5)$,	(δ)	$0(–10589)$,
+(ε)	$1(–20015)$,	(στ)	$–0,725(+1000)$,	(ζ)	 $\frac{12}{25} \left(–\frac{ 15}{24}\right)$.
+\end{exercise}
+\begin{lstlisting}
+>>> (-1)*(-1)
+1
+>>> -3*(-10)
+30
+>>> -1,2*(-0.5)
+(-1, -1.0)
+>>> 0*(-10589)
+0
+>>> 1*(-20015)
+-20015
+>>> -0.725*(1000)
+-725.0
+>>> Fraction(12,25)*(-Fraction(15,24))
+Fraction(-3, 10)
+\end{lstlisting}
+\begin{exercise}
+\sel[3]{132}Υπολόγισε	την	τιμή	των	παραστάσεων	με	τις	λιγότερες	δυνατές	πράξεις:
+(α)	$–5\cdot 27	+	2\cdot 27$,		(β)	$10,35(–25)	+	9,65(–25)$,		(γ)	$– \frac{6}{7} (–10)+(–\frac{6}{7} )(+3)$.
+\end{exercise}
+\begin{lstlisting}
+>>> -5 * 27 + 2 *27
+-81
+>>> 10.35*(-25)+0.65*(-25)
+-275.0
+>>> -Fraction(6,7)*(-10)+(-Fraction(6,7))*(+3)
+Fraction(6, 1)
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[4]{132}
+Συμπλήρωσε τον διπλανό πίνακα:
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$\cdot$&-1&$-\frac{1}{2}$&0&+2&+3\\\hline
+$-2$&&&&&\\\hline
+$-3,2$&&&&&\\\hline
+$+\frac{3}{2}$&&&&&\\\hline
+$+10$&&&&&\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+for a in [-1,-Fraction(1,2),0,+2,+3]:
+    for b in [-2,-3.2,Fraction(3,2),10]:
+        print(a*b)
+\end{lstlisting}
+που δίνει το αποτέλεσμα:
+\begin{lstlisting}
+2
+3.2
+-3/2
+-10
+1
+1.6
+-3/4
+-5
+0
+-0.0
+0
+0
+-4
+-6.4
+3
+20
+-6
+-9.600000000000001
+9/2
+30
+\end{lstlisting}
+και ο πίνακας γίνεται:
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$\cdot$&-1&$-\frac{1}{2}$&0&+2&+3\\\hline
+$-2$&2&1&0&-4&-6\\\hline
+$-3,2$&3.2&1.6&0&-6.4&-9.6\\\hline
+$+\frac{3}{2}$&$-\frac{2}{3}$&$-\frac{3}{4}$&0&3&$\frac{9}{2}$\\\hline
+$+10$&-10&-5&0&20&30\\\hline
+\end{tabular}
+\end{table}
+\begin{exercise}
+\sel[5]{132}
+Κάνε	τις	πράξεις:	(α)	$–7(–8+10–5)$,	(β)	$(0,25–0,05)(– \frac{1}{4} + \frac{1}{2} – \frac{1}{8} )$,		(γ)$–10–6( \frac{1}{2} – \frac{1}{3})$.
+\end{exercise}
+\begin{lstlisting}
+>>> 7*(-8+10-5)
+-21
+>>> (0.25-0.05)*(- Fraction(1,4) + Fraction(1,2) - Fraction(1,8))
+0.025
+>>> -10-6*(Fraction(1,2) - Fraction(1,3))
+Fraction(-11, 1)
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[6]{132}Κάνε	τις	πράξεις:	(α)	$(5+α)(2+β)$,		(β)	$(α+7)(α–7)$,		(γ)	$(α–3)(β–3)$,		(δ)	$(γ+8)(δ+5)$.
+\end{exercise}
+Σε αυτή την περίπτωση θα χρησιμοποιήσουμε την expnad η οποία θα αναπτύξει το γινόμενο και θα κάνει τις πράξεις.
+\begin{lstlisting}
+from sympy import symbols,expand
+a,b,g,d = symbols("a b g d")
+>>> from sympy import expand
+>>> expand((5+a)*(2+b))
+a*b + 2*a + 5*b + 10
+>>> expand((5+a)*(2+b))
+a*b + 2*a + 5*b + 10
+>>> expand((a+7)*(a-7))
+a**2 - 49
+>>> expand((a-3)*(b-3))
+a*b - 3*a - 3*b + 9
+>>> expand((g+8)*(d+5))
+d*g + 8*d + 5*g + 40
+\end{lstlisting}
+\begin{exercise}
+\sel[7]{132}Υπολόγισε	τα	γινόμενα:	(α)	$(–1)(–1)$,		(β)	$(–1)(–1)(–1)$,		(γ)	$(–1)(–1)(–1)(–1)$.
+\end{exercise}
+\begin{lstlisting}
+>>> (-1)*(-1)
+1
+>>> (-1)*(-1)*(-1)
+-1
+>>> (-1)*(-1)*(-1)*(-1)
+1
+\end{lstlisting}
+\begin{exercise}
+\sel[8]{132}
+Υπολόγισε	την	τιμή	των	παραστάσεων:
+
+A	=	$(\alpha–1)(\alpha+1)(\alpha–2)(\alpha+2)$,		 	 όταν	$\alpha	=	3$
+
+B	=	$\beta(\beta–3)(\beta+3)(\beta–5)(\beta+5)$,		 	 όταν	$\beta	=	2$
+
+Γ=	$\gamma(2\gamma–1)(3\gamma+1)(4\gamma–2)(\gamma+2)(\gamma–2)$,		 όταν	$\gamma=0,5$
+
+\end{exercise}
+\begin{lstlisting}
+>>> from sympy import symbols
+>>> a,b,g = symbols("a b g")
+>>> A = (a-1)*(a+1)*(-a-2)*(a+2)
+>>> A.subs(a,3)
+-200
+>>> B=b*(b-3)*(b+3)*(b-5)*(b+5)
+>>> B.subs(b,2)
+210
+>>> G=g*(2*g-1)*(3*g+1)*(4*g-2)*(g+2)*(g-2)
+>>> G.subs(g,0.5)
+0
+\end{lstlisting}
+\begin{exercise}
+\sel[9]{132}
+Συμπλήρωσε	τον	πίνακα:
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+$x$&$y$&$z$&$\omega$&$A=xyz$&$B=yx\omega$&$\Gamma=xA-B$&$AB+\Gamma$\\\hline
+-2& 0,5& +1& -3&&&&\\\hline
+$-\frac{1}{2}$&+6&-4&-0.3&&&&\\\hline
+$-2$&$+\frac{3}{2}$&0.2&-7&&&&\\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+from sympy import symbols
+from fractions import Fraction
+xl = [-2,Fraction(1,2),-2]
+yl = [0.5,+6,+Fraction(3,2)]
+zl = [+1,-4,0.2]
+wl = [-3,0.3,-7]
+x,y,z,w = symbols("x y z w")
+A = z*y*z
+B = y*x*w
+G = x*A-B
+expr = A*B+G
+for i in range(3):
+    xv = xl[i]
+    yv = yl[i]
+    zv = zl[i]
+    wv = wl[i]
+    print('A',A.subs(x,xv).subs(y,yv).subs(z,zv).subs(w,wv))
+    print('B',B.subs(x,xv).subs(y,yv).subs(z,zv).subs(w,wv))
+    print('Γ',G.subs(x,xv).subs(y,yv).subs(z,zv).subs(w,wv))
+    print('Ε',expr.subs(x,xv).subs(y,yv).subs(z,zv).subs(w,wv))
+\end{lstlisting}
+που δίνει το αποτέλεσμα:
+\begin{lstlisting}
+A 0.500000000000000
+B 3.00000000000000
+Γ -4.00000000000000
+Ε -2.50000000000000
+A 96
+B 0.900000000000000
+Γ 47.1000000000000
+Ε 133.500000000000
+A 0.0600000000000000
+B 21
+Γ -21.1200000000000
+Ε -19.8600000000000
+\end{lstlisting}
+και ο πίνακας γίνεται:
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+$x$&$y$&$z$&$\omega$&$A=xyz$&$B=yx\omega$&$\Gamma=xA-B$&$AB+\Gamma$\\\hline
+-2& 0,5& +1& -3&0.5&3&-4&-2.5\\\hline
+$-\frac{1}{2}$&+6&-4&-0.3&96&0.9&47.1&133.5\\\hline
+$-2$&$+\frac{3}{2}$&0.2&-7&0.06&21&-21.12&-19.86\\\hline
+\end{tabular}
+\end{table}
+
