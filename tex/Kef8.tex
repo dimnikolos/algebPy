@@ -1379,4 +1379,153 @@ $-\frac{1}{2}$&+6&-4&-0.3&96&0.9&47.1&133.5\\\hline
 $-2$&$+\frac{3}{2}$&0.2&-7&0.06&21&-21.12&-19.86\\\hline
 \end{tabular}
 \end{table}
-
+\section{Διαίρεση ρητών αριθμών}
+\begin{exercise}
+\sel[1]{133}Να υπολογιστούν τα πηλίκα:
+(α) $(+1,4):(+5)$, (β) $\left(+\frac{2}{3}\right):\left(-\frac{7}{5}\right)$
+(γ) $(-0,45):(-0,15)$
+\end{exercise}
+\begin{lstlisting}
+from fractions import Fraction
+>>> (+1.5)/(+5)
+0.3
+>>> (+Fraction(2,3))/(-Fraction(7,5))
+Fraction(-10, 21)
+>>> (-0.45)/(-0.15)
+3.0
+\end{lstlisting}
+Οπότε οι λύσεις είναι 0,3, $-\frac{10}{21}$, 3
+\begin{exercise}
+\sel[2]{134}
+Να λυθούν οι εξισώσεις: (α) $-6x=-24$ (β) $-3x=+15$ (γ) $x:(-2) = -3$
+\end{exercise}
+\begin{lstlisting}
+>>> from sympy import symbols,solve
+>>> x = symbols('x')
+>>> solve(-6*x-(-24))
+[4]
+>>> solve(-3*x-(+15))
+[-5]
+>>> solve(x/(-2)-(-3))
+[6]
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[2]{134} Να βρεθεί η τιμή της παράστασης:
+$$\left[\frac{2}{3}(-3)-(-2)(-9)\right]:[0,4(-10)-(-0,2)(-5)]+7$$
+\end{exercise}
+\begin{lstlisting}
+>>> (Fraction(2,3)*(-3)-(-2)*(-9))/(0.4*(-10)-(-0.2)*(-5))+7
+11
+\end{lstlisting}
+\begin{exercise}
+\sel[2]{134}
+Κάνε τις διαιρέσεις:
+(α) $(+15,15):(+3)$
+(β) $(-4,5):(-1,5)$
+(γ) $(-81):(+0,9)$
+(δ) $49:(-7)$
+\end{exercise}
+\begin{lstlisting}
+>>> (+15.15)/(+3)
+5.05
+>>> (-4.5)/(-1.5)
+3.0
+>>> (-81)/(0.9)
+-90.0
+>>> (49)/(-7)
+-7.0
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[3]{134}
+Συμπλήρωσε τον πίνακα:
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$&$y$&$x+y$&$x-y$&$xy$&$x:y$\\\hline
+$\frac{-7}{3}$&$\frac{5}{-6}$& & & & \\\hline
+$1,7$&$2,3$&& & &  \\\hline
+$-\frac{4}{5}$&$-1$&& & &  \\\hline
+\end{tabular}
+\end{table}
+\end{exercise}
+\begin{lstlisting}
+xl = [-Fraction(7,3),1.7,-Fraction(4,5)]
+yl = [Fraction(5,-6),2.3,-1]
+for i in range(3):
+    x = xl[i]
+    y = yl[i]
+    print(x+y,x-y,xy,x/y)
+\end{lstlisting}
+Που δίνει το αποτέλεσμα:
+\begin{lstlisting}
+-19/6 -3/2 35/18 14/5
+4.0 -0.5999999999999999 3.9099999999999997 0.7391304347826088
+-9/5 1/5 4/5 4/5
+\end{lstlisting}
+και ο πίνακας γίνεται:
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$&$y$&$x+y$&$x-y$&$xy$&$x:y$\\\hline
+$\frac{-7}{3}$&$\frac{5}{-6}$&$-\frac{19}{6}$ & $-\frac{3}{2}$ &$\frac{35}{18}$ & $\frac{14}{5}$\\\hline
+$1,7$&$2,3$&$4$&$-0,6$ &$3,901$ & $0.73913$\\\hline
+$-\frac{4}{5}$&$-1$&$-\frac{9}{5}$&$\frac{1}{5}$&$\frac{4}{5}$ & $\frac{4}{5}$ \\\hline
+\end{tabular}
+\end{table}
+\begin{exercise}
+\sel[4]{134} Υπολόγισε τα πηλίκα:
+(α) $\frac{10}{0,25}$, (β) $\frac{-0,75}{-0,5}$, (γ) $\frac{-120}{(-12)+(-8)}$, (δ) $\left(-3\frac{1}{5}\right):\left(-2\frac{2}{3}\right)$.
+\end{exercise}
+\begin{lstlisting}
+>>> 10/0.25
+40.0
+>>> -0.75/-0.5
+1.5
+>>> -120/((-12)+(-8))
+6.0
+>>> (-3+Fraction(1,5))/(-(2+Fraction(2,3)))
+Fraction(21, 20)
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[5]{134}
+Λύσε	τις	εξισώσεις:	(α)	$-3x	=	74$,	(β)	$-0,14x	=	-49$,	(γ)	$x(-2)	=	12$,	(δ)	 $\frac{2}{3}x	=	- \frac{4}{6}$ .
+\end{exercise}
+\begin{lstlisting}
+>>> from sympy import symbols,solve
+>>> solve(-3*x-74)
+[-74/3]
+>>> solve(-0.14*x-(-49))
+[350.000000000000]
+>>> solve(x*(-2)-12)
+[-6]
+>>> solve(Fraction(2,3)*x-(-Fraction(4,6)))
+[-1]
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[6]{135}
+Kάνε	τις	πράξεις:	(α)	$\frac{-1}{3}+\frac{2}{-6} - \frac{12}{-15}$ ,		(β)	$-\frac{ (-2)(-5)(-1)}{-10}$ , (γ)	$\left( \frac{-7}{3}-\frac{5}{-3}\right)/\left(-\frac{3}{2}\right)$
+\end{exercise}
+\begin{lstlisting}
+>>> Fraction(-1,3)+Fraction(2,-6) - Fraction(12,-15)
+Fraction(2, 15)
+>>>
+>>> -Fraction((-2)*(-5)*(-1),(-10))
+Fraction(-1, 1)
+>>>
+>>> (Fraction(-7,3)-Fraction(5,-3))/(-Fraction(3,2))
+Fraction(4, 9)
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[7]{134}
+Υπολόγισε	την	τιμή	της	παράστασης:	
+$$\left[(-8)\left(\frac{-7}{64}\right)-(-15)	:	(-8)\right](-8)+(-27):(-\frac{9}{8})$$
+\end{exercise}
+\begin{lstlisting}
+>>> ((-8)*(Fraction(-7,64))-(-15)/(-8))*(-8)+(-27)/(-Fraction(9,8))
+32.0
+\end{lstlisting}
