@@ -1529,3 +1529,218 @@ $$\left[(-8)\left(\frac{-7}{64}\right)-(-15)	:	(-8)\right](-8)+(-27):(-\frac{9}{
 >>> ((-8)*(Fraction(-7,64))-(-15)/(-8))*(-8)+(-27)/(-Fraction(9,8))
 32.0
 \end{lstlisting}
+\section{Δεκαδική μορφή ρητών αριθμών}
+\begin{exercise}
+\sel[1]{135}
+Τεσσερις μαθητές, ο Κώστας, η Μαρία, η Ελένη και ο Γιώργος, πήγαν στο γήπεδο του σχολείου τους για να τρέξουν γύρω από αυτό. Ένας γύρος του γηπέδου είναι 400 μέτρα. Ο Κώστας έτρεξε το $\frac{1}{10}$ του  γύρου,  η  Μαρία  έτρεξε  το $\frac{1}{4}$ του γύρου, η Ελένη έτρεξε μισό γύρο και ο Γιώργος έτρεξε το $\frac{1}{9}$ του γύρου.
+
+Ποιό είναι το ακριβές μήκος σε μέτρα που έτρεξε το καθένα από τα παιδιά;
+\end{exercise}
+\begin{lstlisting}
+>>> 400*1/10
+40.0
+>>> 400*1/4
+100.0
+>>> 400*1/9
+44.44444444444444
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[2]{135}
+Προσπάθησε να βρεις, με όση ακρίβεια μπορείς, το πηλίκο της διαίρεσης 101 διά 44.
+\end{exercise}
+\begin{lstlisting}
+>>> 101/44
+2.2954545454545454
+\end{lstlisting}
+Φαίνεται ότι ο αριθμός είναι περιοδικός δηλαδή πρόκειται για τον $2.29\overline{54}$ αλλά θα πρέπει να το υπολογίσουμε.
+
+Χρειαζόμαστε ένα πρόγραμμα που να υπολογίζει τους περιοδικούς δεκαδικούς αριθμούς και επειδή δεν μπορούμε να έχουμε την γραμμή πάνω από τους αριθμούς θα τους συμβολίζουμε ως εξής:
+O $\frac{101}{44}$ θα είναι ο \lstinline{2.2954r2} που σημαίνει ότι τα τελευταία δύο δεκαδικά του ψηφία επαναλαμβάνονται ενώ ο $400\frac{1}{9}$ θα είναι ο \lstinline{4.4r1}, αφού το τελευταίο του δεκαδικό ψηφίο επαναλαμβάνεται.
+Ένα τέτοιο πρόγραμμα είναι το εξής:
+\begin{lstlisting}
+def repeating(D,d):
+    x = D//d
+    y = D%d
+    #εδώ έχει τελειώσει το ακέραιο κομμάτι της 
+    #διαίρεσης αν δεν υπάρχει υπόλοιπο
+    #τελειώνει και το πρόγραμμα
+    if y==0:
+        return(str(x))
+    else:
+        #πλέον το πηλίκο θα είναι string και 
+        #θα προσθέτουμε στοιχεία στο τέλος της
+        x = str(x)
+        x+='.'
+        ypoloipa = []
+        NeoYp = y*10
+        while (NeoYp != 0) and (NeoYp not in ypoloipa):
+            ypoloipa.append(NeoYp)
+            piliko = NeoYp//d
+            x = x+str(piliko)
+            NeoYp = NeoYp % d
+            NeoYp = NeoYp*10
+        #ή έφτασε σε NeoYp 0 οπότε φτάσαμε τη μέγιστη ακρίβεια
+        #ή έφτασε σε υπόλοιπο που είχε ξαναφτάσει
+        if NeoYp == 0:
+            #μέγιστη ακρίβεια
+            return(x)
+        else:
+            #τα ψηφία που επαναλαμβάνονται είναι τα 
+            #ψηφία της λίστας ms από το τέλος μέχρι
+            #εκεί που βρέθηκε το NeoYp
+            return(x+'r'+str(len(ypoloipa)-ypoloipa.index(NeoYp)))
+\end{lstlisting}            
+Αν την εκτελέσουμε παίρνουμε το αποτέλεσμα:
+\begin{lstlisting}
+>>> repeating(400,9)
+'44.4r1'
+>>> repeating(101,44)
+'2.2954r2'
+>>> repeating(100,1)
+'100'
+>>> repeating(10,2)
+'5'
+
+\end{lstlisting}
+Η κλασματική μορφή των περιοδικών αριθμών μπορεί να βρεθεί όπως τα παραδείγματα του βιβλίου αλλά στη γενική περίπτωση μπορούμε να πολλαπλασιάσουμε τον αρχικό αριθμό $x$ με $10^p$ όπου $p$ το πλήθος των ψηφίων της περιόδου τότε. Αν αφαιρέσουμε από το αποτέλεσμα τον αρχικό αριθμό η σειρά των δεκαδικών ψηφίων απαλείφεται και μένει ο αριθμός $x$ χωρίς τα επαναλαμβανόμενα ψηφία.
+Σε python μπορούμε να κάνουμε την αντίστροφη διαδικασία ως εξής:
+\begin{lstlisting}
+from fractions import Fraction
+def fromrepeating(r):
+    num,period=r.split('r')
+    period = int(period)
+    mhepan = num[:-period]
+    arithMhEpan = int(mhepan.replace('.',''))
+    paronMhEpan = 10**(len(mhepan)-mhepan.index('.')-1)
+    num = '0.'+'0'*(len(num)-period-mhepan.index('.')-1)+num[-period:]
+    num1,num2 = num.split('.')
+    num = num1+num2[:period]+'.'+num2[period:]
+    num = float(num)
+    denom = 10**period-1
+    while int(num)!=num:
+        num *= 10
+        denom *=10
+    num = int(num)
+    denom = int(denom)
+    return(Fraction(arithMhEpan,paronMhEpan)+Fraction(num,denom))
+\end{lstlisting}
+Που δίνει τα αποτελέσματα:
+\begin{lstlisting}
+>>> fromrepeating('0.2r1')
+Fraction(2, 9)
+>>> fromrepeating('1.64r2')
+Fraction(163,99)
+\end{lstlisting}
+
+
+\begin{exercise}
+\sel[1]{136}Βρες τη δεκαδική μορφή των ρητών: 
+(α) $–\frac{15}{10}$,  (β) $\frac{5}{8}$, (γ)$\frac{13}{14}$, (δ) $\frac{20}{11}$, (ε)$\frac{32}{31}$
+\end{exercise}
+\begin{lstlisting}
+>>> repeating(15,10)
+'1.5'
+>>> repeating(5,8)
+'0.625'
+>>> repeating(13,14)
+'0.9285714r6'
+>>> repeating(20,11)
+'1.81r2'
+>>> repeating(32,31)
+'1.032258064516129r15'
+>>> 
+\end{lstlisting}
+Οι απαντήσεις είναι:
+(α) $–\frac{15}{10}=-1,5$,  
+
+(β) $\frac{5}{8}=0,625$, 
+
+(γ)$\frac{13}{14}=0,9\overline{285714}$, 
+
+(δ) $\frac{20}{11}=1,\overline{81}$, 
+
+(ε)$\frac{32}{31} = 1,\overline{032258064516129}$
+
+\begin{exercise}
+\sel[2]{136}
+Βρες την κλασματική μορφή των αριθμών:
+(α) $57,92$, (β) $2,\overline{8}$, (γ) $3,\overline{83}$ (δ) $7,4\overline{561}$, (ε) $15,3\overline{99}$.
+\end{exercise}
+\begin{lstlisting}
+>>> Fraction(5792,100)
+Fraction(1448, 25)
+>>> fromrepeating('2.8r1')
+Fraction(26, 9)
+>>> fromrepeating('3.83r2')
+Fraction(380, 99)
+>>> fromrepeating('7.4561r3')
+Fraction(24829, 3330)
+>>> fromrepeating('15.399r2')
+Fraction(77, 5)
+>>> 
+\end{lstlisting}
+Οι απαντήσεις είναι:
+$\frac{1448}{25}$,$\frac{26}{9}$,$\frac{380}{99}$,$\frac{24829}{3330}$,$\frac{77}{5}$.
+\begin{exercise}
+\sel[3]{136}
+Bρες μια άλλη δεκαδική μορφή των αριθμών: (α) $2,\overline{9}$, (β) $7,6\overline{9}$, (γ) $7,325\overline{9}$
+\end{exercise}
+\begin{lstlisting}
+>>> fromrepeating('2.9r1')
+Fraction(3, 1)
+>>> fromrepeating('7.69r1')
+Fraction(77, 10)
+>>> fromrepeating('7.3259r1')
+Fraction(3663, 500)
+>>> 
+\end{lstlisting}
+Άρα μια άλλη δεκαδική μορφή είναι αντίστοιχα $3$,$7.7$,$7.326$
+\section{Δυνάμεις ρητών αριθμών με εκθέτη φυσικό}
+\begin{exercise}
+\sel[1]{139}
+Nα υπολογιστούν οι τιμές των παραστάσεων: (α) $-3^3$, (β) $(-3)^3$, (γ) $-3^4$ ,(δ) $(-3)^4$.
+\end{exercise}
+\begin{lstlisting}
+>>> -3**3
+-27
+>>> (-3)**3
+-27
+>>> -3**4
+-81
+>>> (-3)**4
+81
+>>>
+\end{lstlisting}
+\begin{exercise}
+\sel[2]{139}
+Nα υπολογιστεί η τιμή της παράστασης: 
+$$Π=(–2)^3\cdot 3-3^4+(–2)^4:16+[-1-(-1)^7\cdot 8]$$
+\end{exercise}
+\begin{lstlisting}
+>>> (-2)**3*3-3**4+(-2)**4/16+(-1-(-1)**7*8)
+-97.0
+\end{lstlisting}
+\begin{exercise}
+\sel[2]{139}
+Βρες με ποιο στοιχείο της 2ης και της 3ης γραμμής αντίστοιχα είναι ίσο κάθε στοιχείο της 1ης γραμμής του παρακάτω πίνακα.
+\begin{table}[ht]
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+$3+5^2$&$(3+5)^2$&$3\cdot 5^2$&$(3+5^2$&$3+5^2$&$3+5^2$&$3+5^2$&$3+5^2$&
+
+\begin{exercise}
+\sel[3]{139}
+Υπολόγισε τις τιμές των παραστάσεων:
+$$A = (-1)^1+(-1)^2+(-1)^3+(-1)^4+(-1)^5$$
+$$B =32\cdot 5^4 - 25\cdot 4^5 + 87,5\cdot 4^3$$
+$$\Gamma = -\frac{(-6)^5}{3^5}-\frac{8^4}{(-4)^4}+\frac{10^3}{(-5)^3}$$
+\end{exercise}
+\begin{lstlisting}
+>>> (-1)**1+(-1)**2+(-1)**3+(-1)**4+(-1)**5
+-1
+>>> 32*5**4 - 25*4**5 + 87.5*4**3
+0.0
+>>> -Fraction((-6)**5,3**5)-Fraction(8**4,(-4)**4)+Fraction(10**3,(-5)**3)
+Fraction(8, 1)
+>>>
+\end{lstlisting}
