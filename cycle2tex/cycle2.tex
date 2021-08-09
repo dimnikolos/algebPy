@@ -2,23 +2,198 @@
 \usepackage[left=1in,right=1.15in,top=1.25in,bottom=1.15in]{geometry}
 \usepackage{xltxtra}
 \usepackage{unicode-math}
+\usepackage[greek]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
 \begin{document}
-\setmainfont[Mapping=tex-text,Ligatures=Common]{Arno Pro}
-\setsansfont[Mapping=tex-text,Scale=MatchLowercase]{Myriad Pro}
+\setmainfont[Mapping=tex-text,Ligatures=Common]{Calibri}
+\setsansfont[Mapping=tex-text,Scale=MatchLowercase]{Candara}
 \setmonofont[Mapping=tex-text,Scale=MatchLowercase]{Consolas}
-\setmathfont{Asana-Math}
+\setmathfont{Cambria Math}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{exercise}[theorem]{Άσκηση}
+\NewDocumentCommand\sel{om}{%
+  \IfNoValueTF{#1}
+    {(Στο βιβλίο βρίσκεται στη Σελ. #2)}%
+    {(Άσκηση #1 του βιβλίου, Σελ. #2)}
+}
+\definecolor{background}{RGB}{39, 40, 34}
+\definecolor{string}{RGB}{230, 219, 116}
+\definecolor{comment}{RGB}{117, 113, 94}
+\definecolor{normal}{RGB}{248, 248, 242}
+\definecolor{identifier}{RGB}{166, 226, 46}
 
+\lstset{
+  language=python,                			% choose the language of the code
+  numbers=left,                   		% where to put the line-numbers
+  stepnumber=1,                   		% the step between two line-numbers.        
+  numbersep=5pt,                  		% how far the line-numbers are from the code
+  backgroundcolor=\color{background},  		% choose the background color. You must add \usepackage{color}
+  showspaces=false,               		% show spaces adding particular underscores
+  showstringspaces=false,         		% underline spaces within strings
+  showtabs=false,                 		% show tabs within strings adding particular underscores
+  tabsize=4,                      		% sets default tabsize to 2 spaces
+  captionpos=b,                   		% sets the caption-position to bottom
+  breaklines=true,                		% sets automatic line breaking
+  breakatwhitespace=true,         		% sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 		% show the filename of files included with \lstinputlisting;
+  basicstyle=\color{normal},					% sets font style for the code
+  keywordstyle=\color{magenta},	% sets color for keywords
+  stringstyle=\color{string},		% sets color for strings
+  commentstyle=\color{comment},	% sets color for comments
+  emph={format_string, eff_ana_bf, permute, eff_ana_btr},
+  emphstyle=\color{identifier},
+  escapeinside={(*@}{@*)}}
 \title{%
 %$A\lambda\gamma\epsilon\beta\rho y$ \\ 
 Μαθηματικά Γυμνασίου με Python}
 
 \author{}
 \maketitle
-\thispagestyle{empty}
-\chapter*	{Εισαγωγή}
+\chapter*{Εισαγωγή}
 Το βιβλίο αυτό είναι ένας συνδυασμός των μαθηματικών που έμαθες στην Α΄ Γυμνασίου με τη γλώσσα προγραμματισμού Python. Θα θυμηθείς όσα έμαθες στην Α΄ Γυμνασίου και θα μάθεις και τα βασικά μιας σύγχρονης γλώσσας προγραμματισμού που χρησιμοποιείται από πολλούς προγραμματιστές σε όλον τον κόσμο.
 
 Για να εγκαταστήσεις την Python στον υπολογιστή σου πήγαινε στη σελίδα https://www.python.org/ και κατέβασε την τελευταία έκδοση της Python 3 (Latest). Αφού κάνεις εγκατάσταση θα βρεις στον υπολογιστή σου το πρόγραμμα IDLE με το οποίο μπορείς να δουλέψεις αυτές τις σημειώσεις.
+
+\chapter{Φυσικοί αριθμοί}
+
+\section{Οι αριθμοί και η Python}
+
+Οι φυσικοί αριθμοί είναι οι αριθμοί από 0, 1, 2, 3, 4, 5, 6, \ldots, 98, 99, 100, \ldots, 1999, 2000, 2001, \ldots
+
+Η Python μπορεί να χειριστεί φυσικούς αριθμούς. Δοκιμάστε να γράψετε στο REPL έναν φυσικό αριθμό, θα δείτε ότι η Python θα τον επαναλάβει. Π.χ. δείτε τον αριθμό εκατόν είκοσι τρια (123).
+\begin{lstlisting}
+>>> 123
+123
+\end{lstlisting}
+
+Στην Python όμως θα πρέπει να ακολουθείς κάποιους επιπλέον κανόνες. Για παράδειγμα στους αριθμούς δεν πρέπει να βάζεις τελείες στις χιλιάδες όπως στο χαρτί. Αν το κάνεις στην καλύτερη περίπτωση θα προκύψει κάποιο λάθος, στην χειρότερη ο υπολογιστής θα καταλάβει διαφορετικό αριθμό από αυτόν που εννοείς.
+Δείτε το παρακάτω παράδειγμα στο REPL.
+\begin{lstlisting}
+>>> 1.000.000
+  File "<stdin>", line 1
+    1.000.000
+            ^
+SyntaxError: invalid syntax
+>>> 100.000
+100.0
+\end{lstlisting}
+Σε αυτό το παράδειγμα, η Python δεν καταλαβαίνει καθόλου τον αριθμό 1.000.000 γραμμένο με τελείες ενώ μεταφράζει το 100.000 σε 100.0, που για την Python σημαίνει 100 (εκατό). Γι' αυτόν τον λόγο δεν βάζουμε καθόλου τελείες έτσι αν θέλουμε να γράψουμε το ένα εκατομμύριο θα γράψουμε 1000000.
+\begin{lstlisting}
+>>> 1000000
+1000000
+\end{lstlisting}
+
+\section{Πρόσθεση, αφαίρεση και πολλαπλασιασμός φυσικών αριθμών}
+Μια γλώσσα προγραμματισμού μπορεί να εκτελέσει απλές πράξεις πολύ εύκολα. Στο βιβλίο των μαθηματικών  σου μπορείς να βρεις πολλές ασκήσεις με πράξεις. Μπορείς να τις λύσεις με την Python.
+
+\begin{exercise}
+\sel{16}
+Να υπολογιστούν τα γινόμενα: 
+
+(α) $35 \cdot 10$, 
+
+(β) $421 \cdot 100$,
+
+(γ) $5 \cdot 1.000$,
+
+(δ) $27 \cdot 10.000$
+\end{exercise}
+
+Η python μπορεί να κάνει αυτές τις πράξεις ως εξής:
+\begin{lstlisting}
+>>> 35*10
+350
+>>> 421*100
+42100
+>>> 5*1000
+5000
+>>> 27*10000
+270000
+\end{lstlisting}
+
+Ο τελεστής του πολλαπλασιασμού είναι το αστεράκι * (SHIFT+8) στο πληκτρολόγιο. Εναλλακτικά, μπορείτε να το βρείτε στο αριθμητικό πληκτρολόγιο. 
+
+\begin{exercise}
+\sel{16}
+Να εκτελεστούν οι ακόλουθες πράξεις:
+
+(α) $89\cdot 7 + 89\cdot 3$
+
+(β) $23 \cdot 49 + 77 \cdot 49$
+
+(γ) $76 \cdot 13 – 76 \cdot 3$
+
+(δ) $284 \cdot 99$
+\end{exercise}
+\begin{lstlisting}
+>>> 89*7+89*3
+890
+>>> 23*49+77*49
+4900
+>>> 76*13-76*3
+760
+>>> 284*99
+28116
+\end{lstlisting}
+
+Στις παραπάνω περιπτώσεις η python εκτελεί πρώτα τους πολλαπλασιασμούς και μετά τις προσθέσεις/αφαιρέσεις δίνοντας έτσι το αποτέλεσμα που αναμένεται. Για παράδειγμα 89\*7 + 89\*3 = 623 + 267 = 890, που είναι το σωστό αποτέλεσμα.
+
+\begin{exercise}
+\sel{18}
+Υπολογίστε:
+
+(α)  $157 + 33$ 
+
+(β)  $122 + 25 + 78$
+
+(γ)  $785 - 323$
+
+(δ)  $7.321 - 4.595$
+
+(ε)  $60 - (18 - 2)$
+
+(στ) $52 - 11 -9$
+
+(ζ)  $23 \cdot 10$
+
+(η)  $97 \cdot 100$
+
+(θ)  $879 \cdot 1.000$
+\end{exercise}
+Σε python τα παραπάνω υπολογίζονται ως εξής:
+\begin{lstlisting}
+>>> 157+33
+190
+>>> 122+25+78
+225
+>>> 785-323
+462
+>>> 7321-4595
+2726
+>>> 60-(18-2)
+44
+>>> 52-11-9
+32
+>>> 23*10
+230
+>>> 97*100
+9700
+>>> 879*1000
+879000
+\end{lstlisting}
+Οι παρενθέσεις (SHIFT+9 και SHIFT+0) αλλάζουν τη σειρά των πράξεων. Οι πράξεις που είναι μέσα στην παρένθεση εκτελούνται πρώτες. Γι' αυτό το λόγο 60-(18-2)=60-16=44.
+
+\begin{exercise}
+\sel{18}
+Σε ένα αρτοποιείο έφτιαξαν μία μέρα 120 κιλά άσπρο ψωμί, 135 κιλά χωριάτικο, 25 κιλά σικάλεως και 38 κιλά πολύσπορο. Πουλήθηκαν 107 κιλά άσπρο ψωμί, 112 κιλά χωριάτικο, 19 κιλά σικάλεως και 23 κιλά πολύσπορο. Πόσα κιλά ψωμί έμειναν απούλητα;
+\end{exercise}
+Με τις γνώσεις που έχουμε θα πρέπει να μετατρέψουμε το παραπάνω πρόβλημα σε μια αριθμητική παράσταση ώστε η python να μπορεί να την υπολογίσει, στη συγκεκριμένη περίπτωση η σωστή παράσταση είναι: $$(120-107)+(135-112)+(25-19)+(38-23)$$
+\begin{lstlisting}
+>>> (120-107)+(135-112)+(25-19)+(38-23)
+57
+\end{lstlisting}
+και η απάντηση είναι 57 κιλά ψωμί.
 
 
 %\input{Kef1.tex}
